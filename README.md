@@ -27,6 +27,27 @@
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain-wordmark.svg" height= 120 />
 </p>
 
+
+## Set Up
+
+### Client
+
+<code>yarn install</code> to install dependencies
+
+### Server
+<ol>
+  <li><code>yarn install</code> to install dependencies</li>
+  <li>
+      Set up mysql and make sure it is running. Make note of password used when creating mysql login.
+  </li>
+  <li>
+    In a .env file in root of server folder, place <code>DB_PASSWORD="{password for SQL}"</code> 
+  </li>
+  <li>
+    if needed <code>Port={port number for backend server}</code>. <br>Default is 3001.
+  </li>
+</ol>
+  
 ## Usage
 
 ### Client
@@ -40,26 +61,6 @@ To run client use:
 <code>yarn start</code>
 
 Uses nodemon so you if changes occur to server it will automatically restart. 
-
-## Set Up
-
-### Client
-
-No setup required. 
-
-### Server
-<ol>
-  <li>
-      Set up mysql and make sure it is running. Make note of password used when creating mysql login.
-  </li>
-  <li>
-    In a .env file in root of server folder, place <code>DB_PASSWORD="{password for SQL}"</code> 
-  </li>
-  <li>
-    if needed <code>Port={port number for backend server}</code>. <br>Default is 3001.
-  <li>
-</ol>
-  
  
 
 
