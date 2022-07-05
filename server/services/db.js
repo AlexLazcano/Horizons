@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: process.env.DB_PASSWORD,
-  database: 'zagi',
+  database: process.env.DB_Name,
   port: 3306
 })
 
