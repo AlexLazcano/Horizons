@@ -44,6 +44,9 @@
     In a .env file in root of server folder, place <code>DB_PASSWORD="{password for SQL}"</code> 
   </li>
   <li>
+    In a .env file in root of server folder, place <code>DB_Name="{database name for SQL}"</code> 
+  </li>
+  <li>
     if needed <code>Port={port number for backend server}</code>. <br>Default is 3001.
   </li>
 </ol>
