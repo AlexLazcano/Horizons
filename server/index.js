@@ -1,7 +1,11 @@
 const express = require('express')
 const app = express()
 const db = require('./services/db')
+const cors = require('cors')
+
 require('dotenv').config()
+app.use(cors())
+
 const PORT = process.env.PORT || 3001
 
 app.get('/', (req, res) => {
@@ -9,7 +13,6 @@ app.get('/', (req, res) => {
     if (err) {
       console.log(err)
     } else {
-      
       console.log(results)
     }
   })
