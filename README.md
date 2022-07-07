@@ -52,6 +52,11 @@
 </ol>
   
 ## Usage
+### Both
+To run both client and server use:
+<code>yarn start</code>
+in .../Horizons/client
+
 
 ### Client
 To run client use:
