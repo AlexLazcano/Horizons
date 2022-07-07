@@ -12,10 +12,17 @@ function App() {
     })
   }, []);
 
+  async function handleClick(){
+    axios.get('/course').then(res =>{
+      setData(res.data.message);
+    })
+  }
+
   return (
     <div className='App'>
       <header className='App-header'>
         <p>{!data ? 'Loading...' : data}</p>
+        <button onClick={handleClick}>Test</button>
       </header>
     </div>
   )

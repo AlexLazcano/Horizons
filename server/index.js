@@ -20,9 +20,12 @@ app.get('/', (req, res) => {
 })
 
 app.get("/api", (req, res) => {
-  console.log("hi");
   res.json({ message: "Hello from server!" });
 });
+
+app.get("/course", (req, res) => {
+  res.json({ message: "Horizons - CMPT 354"});
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
