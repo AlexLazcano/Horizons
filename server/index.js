@@ -19,6 +19,15 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.get('/users', (req, res) => {
+  db.query('SELECT * FROM Users', (err, results) => {
+    if (err) {
+      console.log(err)
+    }
+    res.json(results)
+  })
+})
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
 })
