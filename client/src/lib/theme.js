@@ -1,1 +1,3 @@
-export const theme = {}
+export const theme = {
+  test: 'this is a test'
+}
