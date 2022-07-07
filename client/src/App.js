@@ -1,19 +1,15 @@
 import './App.css'
 import React from 'react'
+import axios from 'axios'
 import 'antd/dist/antd.min.css'
 
 function App() {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
-    try{
-      fetch("/api")
-        .then((res) => res.json())
-        .then((data) => setData(data.message));
-    }
-    catch(error){
-      console.log("Error here");
-    }
+    axios.get('/api').then(res =>{
+      setData(res.data.message);
+    })
   }, []);
 
   return (
