@@ -9,14 +9,15 @@ app.use(cors())
 const PORT = process.env.PORT || 3001
 
 app.get('/', (req, res) => {
-  db.query('SELECT * FROM users', (err, results) => {
+  console.log(db);
+  db.query('SELECT * FROM customer', (err, results) => {
     if (err) {
       console.log(err)
     } else {
+      res.send(results)
       console.log(results)
     }
   })
-  res.send('Hello World!')
 })
 
 app.get("/api", (req, res) => {
@@ -24,7 +25,14 @@ app.get("/api", (req, res) => {
 });
 
 app.get("/course", (req, res) => {
-  res.json({ message: "Horizons - CMPT 354"});
+  db.query('SELECT * FROM customer', (err, results)=>{
+    if(err) {
+      console.log(err)
+    }
+    else{
+      res.send(results)
+    }
+  })
 })
 
 app.listen(PORT, () => {

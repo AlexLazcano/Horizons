@@ -7,14 +7,14 @@ function App() {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
-    axios.get('/api').then(res =>{
+    axios.get('http://localhost:3001/api').then(res =>{
       setData(res.data.message);
     })
   }, []);
 
   async function handleClick(){
-    axios.get('/course').then(res =>{
-      setData(res.data.message);
+    await axios.get('http://localhost:3001/course').then(res =>{
+      console.log(res.data[0]);
     })
   }
 
