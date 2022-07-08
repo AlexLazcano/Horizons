@@ -1,31 +1,48 @@
-import './App.css'
-import React from 'react'
-import axios from 'axios'
 import 'antd/dist/antd.min.css'
+import axios from 'axios'
+import React, { useEffect } from 'react'
+import { Row, Col, Button } from 'antd'
 import { BACKEND_URL } from './lib/constants'
+import { StyledApp } from './app-styles'
 
 function App() {
-  const [data, setData] = React.useState(null);
+  const [data, setData] = React.useState(null)
 
-  React.useEffect(() => {
-    axios.get(`${BACKEND_URL}/api`).then(res =>{
-      setData(res.data.message);
+  useEffect(() => {
+    axios.get(`${BACKEND_URL}/api`).then(res => {
+      console.log(res.data)
     })
-  }, []);
+  }, [])
 
-  async function handleClick(){
-    await axios.get(`${BACKEND_URL}/course`).then(res =>{
-      console.log(res.data[0]);
-    })
+  async function handleClick() {
+    await axios
+      .get(`${BACKEND_URL}/api`)
+      .then(res => {
+        setData(res.data.message)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <p>{!data ? 'Loading...' : data}</p>
-        <button onClick={handleClick}>Test</button>
-      </header>
-    </div>
+    <StyledApp>
+      <header>CMPT 354 - Horizons</header>
+      <div className='content'>
+        <Row className='grid'>
+          <Col span={24} className='table-header'>
+            Table
+          </Col>
+          <Col span={12}>Column 1</Col>
+          <Col span={12}>Column 2</Col>
+        </Row>
+        <div>
+          <Button onClick={handleClick}>Click me</Button>
+          <Button onClick={() => setData('')}>Delete</Button>
+          {data && <div>{data}</div>}
+        </div>
+      </div>
+    </StyledApp>
   )
 }
 
