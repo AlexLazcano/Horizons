@@ -8,17 +8,14 @@ import { StyledApp } from './app-styles'
 function App() {
   const [data, setData] = React.useState(null)
 
-  useEffect(() => {
-    axios.get(`${BACKEND_URL}/api`).then(res => {
-      console.log(res.data)
-    })
-  }, [])
+ 
 
   async function handleClick() {
     await axios
-      .get(`${BACKEND_URL}/api`)
+      .get(`${BACKEND_URL}/students`)
       .then(res => {
-        setData(res.data.message)
+        console.log(res.data);
+       
       })
       .catch(err => {
         console.log(err)
