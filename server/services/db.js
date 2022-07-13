@@ -1,21 +1,14 @@
-const mysql = require('mysql')
-require('dotenv').config('../.env')
+const mysql = require('mysql2/promise')
 
+const dbConfig = require('../config/db.config')
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_Name,
-  port: 3306
-})
+const query = async (sql, params) => {
+  const connection = await mysql.createConnection(dbConfig)
+  const [results] = await connection.execute(sql, params)
+  connection.end()
+  return results
+}
 
-connection.connect(err => {
-  if (err) {
-    console.error('error connecting: ' + err.message)
-    return
-  }
-  console.log('Connected to database')
-})
-
-module.exports = connection
+module.exports = {
+  query
+}

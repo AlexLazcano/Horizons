@@ -1,24 +1,45 @@
+import { Button, Col, Row, Table } from 'antd'
 import 'antd/dist/antd.min.css'
 import axios from 'axios'
-import React, { useEffect } from 'react'
-import { Row, Col, Button } from 'antd'
-import { BACKEND_URL } from './lib/constants'
+import React, { useState } from 'react'
 import { StyledApp } from './app-styles'
+import { BACKEND_URL } from './lib/constants'
 
 function App() {
-  const [data, setData] = React.useState(null)
-
-  useEffect(() => {
-    axios.get(`${BACKEND_URL}/api`).then(res => {
-      console.log(res.data)
-    })
-  }, [])
+  const [data, setData] = useState()
+  const columns = [
+    {
+      title: 'SID',
+      dataIndex: 'SID',
+      key: 'sid'
+    },
+    {
+      title: 'First Name',
+      dataIndex: 'FirstName',
+      key: 'FirstName'
+    },
+    {
+      title: 'Last Name',
+      dataIndex: 'LastName',
+      key: 'LastName'
+    },
+    {
+      title: 'Birth Date',
+      dataIndex: 'BirthDate',
+      key: 'BirthDate'
+    },
+    {
+      title: 'Time Zone',
+      dataIndex: 'Timezone',
+      key: 'Timezone'
+    }
+  ]
 
   async function handleClick() {
     await axios
-      .get(`${BACKEND_URL}/api`)
+      .get(`${BACKEND_URL}/students`)
       .then(res => {
-        setData(res.data.message)
+        setData(res.data)
       })
       .catch(err => {
         console.log(err)
@@ -33,13 +54,14 @@ function App() {
           <Col span={24} className='table-header'>
             Table
           </Col>
-          <Col span={12}>Column 1</Col>
-          <Col span={12}>Column 2</Col>
+
+          <Col span={24}>
+            <Table dataSource={data} columns={columns} />
+          </Col>
         </Row>
         <div>
           <Button onClick={handleClick}>Click me</Button>
-          <Button onClick={() => setData('')}>Delete</Button>
-          {data && <div>{data}</div>}
+          <Button onClick={() => setData(null)}>Delete</Button>
         </div>
       </div>
     </StyledApp>
