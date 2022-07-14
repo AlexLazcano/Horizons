@@ -1,11 +1,12 @@
-import { Button, Col, Row, Table } from 'antd'
+import { Col, Row, Table } from 'antd'
 import 'antd/dist/antd.min.css'
-import axios from 'axios'
 import React, { useState } from 'react'
 import { StyledApp } from './app-styles'
-import { BACKEND_URL } from './lib/constants'
+import Controls from './components/Controls'
 
 function App() {
+  // TODO: Add change currentTable functionality
+  const [currentTable, setCurrentTable] = useState('Students')
   const [data, setData] = useState()
   const columns = [
     {
@@ -35,51 +36,20 @@ function App() {
     }
   ]
 
-  const handleGet = async () => {
-    await axios
-      .get(`${BACKEND_URL}/students`)
-      .then(res => {
-        setData(res.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
-  const handlePost = async () => {
-    await axios
-      .post(`${BACKEND_URL}/students`, {
-        FirstName: 'John',
-        LastName: 'Doe',
-        BirthDate: '2020-01-01',
-        Timezone: 'UTC'
-      })
-      .then(res => {
-        console.log('post response', res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
   return (
     <StyledApp>
       <header>CMPT 354 - Horizons</header>
       <div className='content'>
         <Row className='grid'>
           <Col span={24} className='table-header'>
-            Table
+            {currentTable} Table
           </Col>
 
           <Col span={24}>
-            <Table dataSource={data} columns={columns} />
+            <Table dataSource={data} columns={columns} scroll={{ y: 400 }} />
           </Col>
         </Row>
-        <div>
-          <Button onClick={handleGet}>Get Data</Button>
-          <Button onClick={() => setData(null)}>Clear Table</Button>
-          <Button onClick={handlePost}>Post</Button>
-        </div>
+        <Controls setTable={setData} currentTable={currentTable.toLowerCase()} />
       </div>
     </StyledApp>
   )

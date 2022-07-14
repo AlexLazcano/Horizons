@@ -37,3 +37,4 @@ export const StyledApp = styled.div`
     color: white;
   }
 `
+
