@@ -35,11 +35,27 @@ function App() {
     }
   ]
 
-  async function handleClick() {
+  const handleGet = async () => {
     await axios
       .get(`${BACKEND_URL}/students`)
       .then(res => {
         setData(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  const handlePost = async () => {
+    await axios
+      .post(`${BACKEND_URL}/students`, {
+        FirstName: 'John',
+        LastName: 'Doe',
+        BirthDate: '2020-01-01',
+        Timezone: 'UTC'
+      })
+      .then(res => {
+        console.log('post response', res)
       })
       .catch(err => {
         console.log(err)
@@ -60,8 +76,9 @@ function App() {
           </Col>
         </Row>
         <div>
-          <Button onClick={handleClick}>Click me</Button>
-          <Button onClick={() => setData(null)}>Delete</Button>
+          <Button onClick={handleGet}>Get Data</Button>
+          <Button onClick={() => setData(null)}>Clear Table</Button>
+          <Button onClick={handlePost}>Post</Button>
         </div>
       </div>
     </StyledApp>
