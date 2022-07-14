@@ -11,9 +11,16 @@ const getStudents = async () => {
 
 const createStudent = async student => {
   try {
-    const result = await db.query('INSERT INTO students Values', student)
+    console.log('creating student', student)
+
+    const { FirstName, LastName, BirthDate, Timezone } = student
+    const result = await db.query(
+      'INSERT INTO students (FirstName, LastName, BirthDate, Timezone) VALUES (?, ?, ?, ?)',
+      [FirstName, LastName, BirthDate, Timezone]
+    )
+
     return {
-      message: result.rowsAffected ? 'Student created' : 'Student not created'
+      message: result.affectedRows ? 'Student created' : 'Student not created'
     }
   } catch (error) {
     console.log(error)
@@ -21,5 +28,6 @@ const createStudent = async student => {
 }
 
 module.exports = {
-  getStudents
+  getStudents,
+  createStudent
 }

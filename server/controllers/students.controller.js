@@ -11,7 +11,17 @@ const get = async (req, res) => {
   }
 }
 
+const post = async (req, res) => {
+  try {
+    const result = await students.createStudent(req.body)
+
+    res.json(result)
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 module.exports = {
-  get
+  get,
+  post
 }
