@@ -1,8 +1,10 @@
-import { Button, Col, Form, Input } from 'antd'
+import { Button, Col, Form } from 'antd'
+import moment from 'moment'
 import React from 'react'
 import { TABLE_COLUMNS, TABLE_NAMES } from '../lib/constants'
 import requests from '../lib/requests'
 import DynamicInput from './DynamicInput'
+
 import { StyledControls } from './styles'
 
 const Controls = ({ currentTable, setTableData, setCurrentTable }) => {
@@ -17,7 +19,13 @@ const Controls = ({ currentTable, setTableData, setCurrentTable }) => {
       })
   }
   const create = values => {
-    requests[currentTable].create({ ...values })
+    const { BirthDate } = values
+    const date = BirthDate ? moment(BirthDate)?.format('YYYY-MM-DD') : null
+
+    requests[currentTable].create({
+      ...values,
+      BirthDate: date
+    })
   }
 
   return (
@@ -33,12 +41,17 @@ const Controls = ({ currentTable, setTableData, setCurrentTable }) => {
       <Col span={8} className='form'>
         <Form onFinish={create} layout='vertical'>
           {TABLE_COLUMNS[currentTable].Columns.map(
-            ({ title, dataIndex, key, hidden, type, inputProps }) =>
-              hidden ? null : (
+            ({ title, dataIndex, key, hidden, type, inputProps, onChange }) => {
+              return hidden ? null : (
                 <Form.Item key={key} label={title} name={dataIndex}>
-                  <DynamicInput type={type} inputProps={inputProps} />
+                  <DynamicInput
+                    type={type}
+                    inputProps={inputProps}
+                    onChange={onChange}
+                  />
                 </Form.Item>
               )
+            }
           )}
           <Form.Item>
             <Button type='primary' htmlType='submit'>

@@ -3,14 +3,16 @@ import React from 'react'
 
 const { Option } = Select
 
-const DynamicSelect = ({ options }) => {
+const DynamicSelect = ({ options, onChange }) => {
   if (!options) {
     return null
   }
   return (
-    <Select>
+    <Select onChange={onChange}>
       {options.map(option => (
-        <Option key={option}>{option}</Option>
+        <Option key={option} value={option}>
+          {option}
+        </Option>
       ))}
     </Select>
   )

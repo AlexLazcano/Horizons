@@ -3,19 +3,14 @@ import { DatePicker, Input, Checkbox } from 'antd'
 import DynamicSelect from './DynamicSelect'
 
 const INPUTS = {
-  date: () => <DatePicker />,
-  input: () => <Input />,
-  checkbox: () => <Checkbox />,
+  date: props => <DatePicker {...props} />,
+  input: props => <Input {...props} />,
+  checkbox: props => <Checkbox {...props} />,
   select: props => <DynamicSelect {...props} />
 }
 
-const DynamicInput = ({ type, inputProps }) => {
-  console.log(type)
-  if (type === 'select') {
-    console.log(type, inputProps)
-  }
-
-  const props = inputProps || {}
+const DynamicInput = ({ type, onChange, inputProps }) => {
+  const props = { onChange, ...inputProps }
   const InputComponent = INPUTS[type]
 
   return <InputComponent {...props} />
