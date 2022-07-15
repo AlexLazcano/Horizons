@@ -19,27 +19,35 @@ export const TABLE_COLUMNS = {
         title: 'SID',
         dataIndex: 'SID',
         key: 'sid',
-        hidden: true
+        hidden: true,
+        type: 'input'
       },
       {
         title: 'First Name',
         dataIndex: 'FirstName',
-        key: 'FirstName'
+        key: 'FirstName',
+        type: 'input'
       },
       {
         title: 'Last Name',
         dataIndex: 'LastName',
-        key: 'LastName'
+        key: 'LastName',
+        type: 'input'
       },
       {
         title: 'Birth Date',
         dataIndex: 'BirthDate',
-        key: 'BirthDate'
+        key: 'BirthDate',
+        type: 'date'
       },
       {
         title: 'Time Zone',
         dataIndex: 'Timezone',
-        key: 'Timezone'
+        key: 'Timezone',
+        type: 'select',
+        inputProps: {
+          options: ['America/New_York', 'America/Chicago', 'America/Denver']
+        }
       }
     ]
   },
