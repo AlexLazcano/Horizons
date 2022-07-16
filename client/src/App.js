@@ -49,7 +49,7 @@ function App() {
             <Table dataSource={data} columns={columns} scroll={{ y: 400 }} />
           </Col>
         </Row>
-        <Controls setTable={setData} currentTable={currentTable.toLowerCase()} />
+        <Controls setTableData={setData} currentTable={currentTable.toLowerCase() } setCurrentTable={setCurrentTable} />
       </div>
     </StyledApp>
   )
