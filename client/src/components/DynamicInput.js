@@ -9,11 +9,15 @@ const INPUTS = {
   select: props => <DynamicSelect {...props} />
 }
 
-const DynamicInput = ({ type, onChange, inputProps }) => {
-  const props = { onChange, ...inputProps }
-  const InputComponent = INPUTS[type]
+const DynamicInput = ({ inputType, onChange, inputProps }) => {
+  if (inputType === undefined) {
+    return null
+  }
 
-  return <InputComponent {...props} />
+  const props = inputProps ? { onChange, ...inputProps } : { onChange }
+  const inputComponent = INPUTS[inputType]
+
+  return inputComponent(props)
 }
 
 export default DynamicInput
