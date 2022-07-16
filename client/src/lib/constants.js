@@ -46,6 +46,7 @@ export const TABLE_COLUMNS = {
         key: 'Timezone',
         type: 'select',
         inputProps: {
+          showSearch: true,
           options: ['America/New_York', 'America/Chicago', 'America/Denver']
         }
       }

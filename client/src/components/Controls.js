@@ -3,7 +3,7 @@ import moment from 'moment'
 import React from 'react'
 import { TABLE_COLUMNS, TABLE_NAMES } from '../lib/constants'
 import requests from '../lib/requests'
-import DynamicInput from './DynamicInput'
+import DynamicInput from './DynamicInput' 
 
 import { StyledControls } from './styles'
 
@@ -45,7 +45,7 @@ const Controls = ({ currentTable, setTableData, setCurrentTable }) => {
               return hidden ? null : (
                 <Form.Item key={key} label={title} name={dataIndex}>
                   <DynamicInput
-                    type={type}
+                    inputType={type}
                     inputProps={inputProps}
                     onChange={onChange}
                   />
