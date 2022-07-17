@@ -9,6 +9,7 @@ import { StyledControls } from './styles'
 
 const Controls = ({ currentTable, setTableData, setCurrentTable }) => {
   const getAll = () => {
+    console.log("hello")
     requests[currentTable]
       .getAll()
       .then(res => {

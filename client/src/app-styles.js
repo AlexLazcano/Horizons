@@ -19,22 +19,16 @@ export const StyledApp = styled.div`
   p {
     margin: 0;
   }
-  .content {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    height: 100%;
-    width: 100%;
+  
+  .header{
+    margin-left: 10px;
   }
+
   .grid {
+    margin-left: 10px;
+    margin-right: 10px;
     border: 1px solid #282c34;
     background-color: #dfe6e9;
-  }
-  .table-header {
-    text-align: center;
-    background-color: #b2bec3;
-    font-size: calc(10px + 2vmin);
-    color: white;
   }
 `
 

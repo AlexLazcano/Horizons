@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 
 const students = require('./routes/students.route')
+const languages = require('./routes/languages.route')
 const cors = require('cors')
 
 require('dotenv').config()
@@ -11,6 +12,8 @@ app.use(express.json())
 const PORT = process.env.PORT || 3001
 
 app.use('/students', students)
+
+app.use('/languages', languages)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
