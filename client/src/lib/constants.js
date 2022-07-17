@@ -12,6 +12,10 @@ export const TABLE_NAMES = [
   {
     name: 'Languages',
     sqlTable: 'languages'
+  },
+  {
+    name: 'Quizzes',
+    sqlTable: 'quizzes'
   }
 ]
 
@@ -99,6 +103,47 @@ export const TABLE_COLUMNS = {
         dataIndex: 'Name',
         key: 'Name',
         type: 'input',
+      }
+    ]
+  },
+  quizzes:{
+    TableName: 'Quizzes',
+    Columns: [
+      {
+        title: 'QuizID',
+        dataIndex: 'QuizID',
+        key: 'QuizID',
+        hidden: true
+      },
+      {
+        title: 'LanguageCode',
+        dataIndex: 'LanguageCode',
+        key: 'LanguageCode',
+        type: 'select',
+        inputProps: {
+          showSearch: true
+        }
+      },
+      {
+        title: 'IID',
+        dataIndex: 'IID',
+        key: 'IID',
+        type: 'select',
+        inputProps: {
+          showSearch: true
+        }
+      },
+      {
+        title: 'DateCreated',
+        dataIndex: 'DateCreated',
+        key: 'DateCreated',
+        hidden: true
+      },
+      {
+        title: 'DueDate',
+        dataIndex: 'DueDate',
+        key: 'DueDate',
+        type: 'date'
       }
     ]
   }

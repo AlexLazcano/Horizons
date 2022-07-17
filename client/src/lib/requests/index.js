@@ -1,5 +1,6 @@
 import studentRequests from './student'
 import languageRequests from './languages'
+import quizRequests from './quizzes'
 
 const requests = {
   students: {
@@ -7,6 +8,9 @@ const requests = {
   },
   languages: {
     ...languageRequests
+  },
+  quizzes: {
+    ...quizRequests
   }
 }
 
