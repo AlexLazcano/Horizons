@@ -8,6 +8,10 @@ export const TABLE_NAMES = [
   {
     name: 'Instructors',
     sqlTable: 'instructors'
+  },
+  {
+    name: 'Languages',
+    sqlTable: 'languages'
   }
 ]
 
@@ -64,17 +68,37 @@ export const TABLE_COLUMNS = {
       {
         title: 'First Name',
         dataIndex: 'FirstName',
-        key: 'FirstName'
+        key: 'FirstName',
+        type: 'input'
       },
       {
         title: 'Last Name',
         dataIndex: 'LastName',
-        key: 'LastName'
+        key: 'LastName',
+        type: 'input'
       },
       {
         title: 'Biography',
         dataIndex: 'Biography',
-        key: 'Biography'
+        key: 'Biography',
+        type: 'input'
+      }
+    ]
+  },
+  languages:{
+    TableName: 'Languages',
+    Columns:[
+      {
+        title: 'LanguageCode',
+        dataIndex: 'LanguageCode',
+        key: 'LanguageCode',
+        type: 'input'
+      },
+      {
+        title: 'Name',
+        dataIndex: 'Name',
+        key: 'Name',
+        type: 'input',
       }
     ]
   }

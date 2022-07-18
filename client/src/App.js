@@ -40,23 +40,16 @@ function App() {
   const columns = TABLE_COLUMNS[currentTable].Columns
   return (
     <StyledApp>
-      <header>CMPT 354 - Horizons</header>
-      <div className='content'>
-        <Row className='grid'>
-          <Col span={24} className='table-header'>
-            {currentTable} Table
-          </Col>
-
-          <Col span={24}>
-            <Table dataSource={data} columns={columns} scroll={{ y: 400 }} />
-          </Col>
-        </Row>
-        <Controls
+      <header>Horizons</header>
+      <h1 className='header'>{currentTable}</h1>
+      <Row className='grid'>
+          <Table className='data-table' dataSource={data} columns={columns} scroll={{ y: 400 }} />
+      </Row>
+      <Controls className='control-panel'
           setTableData={setData}
           currentTable={currentTable}
           setCurrentTable={setCurrentTable}
         />
-      </div>
     </StyledApp>
   )
 }
