@@ -74,11 +74,12 @@ export const TABLE_COLUMNS = {
       {
         title: 'Last Name',
         dataIndex: 'LastName',
-        key: 'LastName',
-        type: 'input'
+        type: 'input',
+        key: 'LastName'
       },
       {
         title: 'Biography',
+        type: 'input',
         dataIndex: 'Biography',
         key: 'Biography',
         type: 'input'
