@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { BACKEND_URL } from '../../constants'
 
-const studentRequests = {
+const instructorsRequest = {
   getAll: async () => {
     const res = await axios
       .get(`${BACKEND_URL}/instructors`)
@@ -33,4 +33,4 @@ const studentRequests = {
   }
 }
 
-export default studentRequests
+export default instructorsRequest
