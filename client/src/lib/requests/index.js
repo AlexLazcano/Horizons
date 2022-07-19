@@ -22,7 +22,7 @@ const requests = {
   groups: {
     ...groupRequests
   },
-  multipleChoiceQs: {
+  multiplechoiceqs: {
     ...multipleChoiceQRequests
   }
 }

@@ -26,7 +26,7 @@ export const TABLE_NAMES = [
   },
   {
     name: 'MultipleChoiceQ',
-    sqlTable: 'multiplechoiceq'
+    sqlTable: 'multiplechoiceqs'
   },
 ]
 
@@ -232,7 +232,7 @@ export const TABLE_COLUMNS = {
     ]
   },
 
-  multiplechoiceq: {
+  multiplechoiceqs: {
     TableName: 'MultipleChoiceQ',
     Columns: [
       {
