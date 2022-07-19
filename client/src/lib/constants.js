@@ -113,6 +113,7 @@ export const TABLE_COLUMNS = {
         title: 'QuizID',
         dataIndex: 'QuizID',
         key: 'QuizID',
+        type: 'input',
         hidden: true
       },
       {
@@ -121,7 +122,8 @@ export const TABLE_COLUMNS = {
         key: 'LanguageCode',
         type: 'select',
         inputProps: {
-          showSearch: true
+          showSearch: true,
+          options: ['ES-ES']
         }
       },
       {
@@ -130,13 +132,15 @@ export const TABLE_COLUMNS = {
         key: 'IID',
         type: 'select',
         inputProps: {
-          showSearch: true
+          showSearch: true,
+          options: ['1']
         }
       },
       {
         title: 'DateCreated',
         dataIndex: 'DateCreated',
         key: 'DateCreated',
+        type: 'input',
         hidden: true
       },
       {

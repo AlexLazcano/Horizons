@@ -10,11 +10,12 @@ const getQuizzes = async () => {
 }
 
 const createQuiz = async quiz => {
+  console.log('creating quiz', quiz)
   try {
-    const { QuizID, LanguageCode, IID, DateCreated, DueDate } = student
+    const { LanguageCode, IID, DateCreated, DueDate } = quiz
     const result = await db.query(
-      'INSERT INTO `quizzes`(`QuizID`, `LanguageCode`, `IID`, `DateCreated`, `DueDate`) VALUES (?, ?, ?, ?, ?)',
-      [QuizID, LanguageCode, IID, Date(), DueDate]
+      'INSERT INTO quizzes( LanguageCode, IID, DateCreated, DueDate) VALUES (?, ?, ?, ?)',
+      [LanguageCode, IID, Date(), DueDate]
     )
 
     return {
