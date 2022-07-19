@@ -9,7 +9,6 @@ import { StyledControls } from './styles'
 
 const Controls = ({ currentTable, setTableData, setCurrentTable }) => {
   const getAll = () => {
-    console.log("hello")
     requests[currentTable]
       .getAll()
       .then(res => {
@@ -20,6 +19,7 @@ const Controls = ({ currentTable, setTableData, setCurrentTable }) => {
       })
   }
   const create = values => {
+    console.log(currentTable)
     const { BirthDate } = values
     const date = BirthDate ? moment(BirthDate)?.format('YYYY-MM-DD') : null
 

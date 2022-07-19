@@ -17,6 +17,10 @@ export const TABLE_NAMES = [
     name: 'Groups',
     sqlTable: 'groups'
   },
+  {
+    name: 'Study Plans',
+    sqlTable: 'studyplans'
+  }
 ]
 
 export const TABLE_COLUMNS = {
@@ -124,5 +128,43 @@ export const TABLE_COLUMNS = {
         type: 'input',
       }
     ]
+  },
+  studyplans:{
+    TableName: 'Study Plans',
+    Columns:[
+      {
+        title: 'SPID',
+        dataIndex: 'SPID',
+        key: 'SPID',
+        hidden: true
+      },
+      {
+        title: 'Rubric',
+        dataIndex: 'Rubric',
+        key: 'Rubric',
+        type: 'input'
+      },
+      {
+        title: 'LanguageCode',
+        dataIndex: 'LanguageCode',
+        key: 'LanguageCode',
+        type: 'select',
+        inputProps: {
+          showSearch: true,
+          options: ['ES-ES']
+        }
+      },
+      {
+        title: 'SID',
+        dataIndex: 'SID',
+        key: 'SID',
+        type: 'select',
+        inputProps: {
+          showSearch: true,
+          options: ['1']
+        }
+      }
+    ]
   }
+  
 }
