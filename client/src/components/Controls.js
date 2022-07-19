@@ -3,21 +3,16 @@ import moment from 'moment'
 import React from 'react'
 import { TABLE_COLUMNS, TABLE_NAMES } from '../lib/constants'
 import requests from '../lib/requests'
-import DynamicInput from './DynamicInput' 
+import DynamicInput from './DynamicInput'
 
 import { StyledControls } from './styles'
 
-const Controls = ({ currentTable, setTableData, setCurrentTable }) => {
-  const getAll = () => {
-    requests[currentTable]
-      .getAll()
-      .then(res => {
-        setTableData(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
+const Controls = ({
+  currentTable,
+  setTableData,
+  setCurrentTable,
+  getAllUpdate
+}) => {
   const create = values => {
     const { BirthDate } = values
     const date = BirthDate ? moment(BirthDate)?.format('YYYY-MM-DD') : null
@@ -34,7 +29,7 @@ const Controls = ({ currentTable, setTableData, setCurrentTable }) => {
         <Button type='primary' danger onClick={() => setTableData(null)} block>
           Clear Table
         </Button>
-        <Button type='primary' onClick={getAll} block>
+        <Button type='primary' onClick={getAllUpdate} block>
           Get Data
         </Button>
       </Col>
