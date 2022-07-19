@@ -2,7 +2,7 @@ const db = require('../services/db')
 
 const getGroups = async () => {
     try{
-        const rows = db.query('SELECT * FROM groups')
+        const rows = db.query('SELECT * FROM horizons.groups')
         return !rows ? [] : rows
     }
     catch (err){
@@ -17,7 +17,7 @@ const createGroup = async group => {
 
         const {Name} = group
         const result = await db.query(
-            'INSERT INTO groups (Name) VALUES (?)',
+            'INSERT INTO horizons.groups (Name) VALUES (?)',
             [Name]
         )
 
