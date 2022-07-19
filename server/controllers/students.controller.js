@@ -21,7 +21,18 @@ const post = async (req, res) => {
   }
 }
 
+const remove = async (req, res) => {
+  try {
+    const result = await students.deleteStudent(req.params.id)
+
+    res.json(result)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   get,
-  post
+  post,
+  remove
 }

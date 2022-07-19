@@ -27,7 +27,19 @@ const createStudent = async student => {
   }
 }
 
+const deleteStudent = async id => {
+  try {
+    const result = await db.query('DELETE FROM students WHERE SID = ?', [id])
+    return {
+      message: result.affectedRows ? 'Student deleted' : 'Student not deleted'
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   getStudents,
-  createStudent
+  createStudent,
+  deleteStudent
 }
