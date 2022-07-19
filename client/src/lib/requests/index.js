@@ -1,5 +1,6 @@
 import studentRequests from './student'
 import languageRequests from './languages'
+import quizRequests from './quizzes'
 import instructorsRequest from './instructors'
 import groupRequests from './groups'
 
@@ -13,6 +14,9 @@ const requests = {
   },
   instructors: {
     ...instructorsRequest
+  },
+  quizzes: {
+    ...quizRequests
   },
   groups: {
     ...groupRequests

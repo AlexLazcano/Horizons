@@ -16,9 +16,13 @@ export const TABLE_NAMES = [
     sqlTable: 'languages'
   },
   {
+    name: 'Quizzes',
+    sqlTable: 'quizzes'
+  },
+  {
     name: 'Groups',
     sqlTable: 'groups'
-  },
+  }
 ]
 
 export const TABLE_COLUMNS = {
@@ -117,6 +121,51 @@ export const TABLE_COLUMNS = {
             <button className="delete-btn" onClick={() => console.log(record)}>Delete</button>       
           </Space>   
         )
+      }
+    ]
+  },
+  quizzes:{
+    TableName: 'Quizzes',
+    Columns: [
+      {
+        title: 'QuizID',
+        dataIndex: 'QuizID',
+        key: 'QuizID',
+        type: 'input',
+        hidden: true
+      },
+      {
+        title: 'LanguageCode',
+        dataIndex: 'LanguageCode',
+        key: 'LanguageCode',
+        type: 'select',
+        inputProps: {
+          showSearch: true,
+          options: ['ES-ES']
+        }
+      },
+      {
+        title: 'IID',
+        dataIndex: 'IID',
+        key: 'IID',
+        type: 'select',
+        inputProps: {
+          showSearch: true,
+          options: ['1']
+        }
+      },
+      {
+        title: 'DateCreated',
+        dataIndex: 'DateCreated',
+        key: 'DateCreated',
+        type: 'input',
+        hidden: true
+      },
+      {
+        title: 'DueDate',
+        dataIndex: 'DueDate',
+        key: 'DueDate',
+        type: 'date'
       }
     ]
   },
