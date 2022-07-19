@@ -16,6 +16,10 @@ export const TABLE_NAMES = [
   {
     name: 'Quizzes',
     sqlTable: 'quizzes'
+  },
+  {
+    name: 'Groups',
+    sqlTable: 'groups'
   }
 ]
 
@@ -78,14 +82,15 @@ export const TABLE_COLUMNS = {
       {
         title: 'Last Name',
         dataIndex: 'LastName',
-        key: 'LastName',
-        type: 'input'
+        type: 'input',
+        key: 'LastName'
       },
       {
         title: 'Biography',
+        type: 'input',
         dataIndex: 'Biography',
         key: 'Biography',
-        type: 'input'
+        //type: 'input'
       }
     ]
   },
@@ -148,6 +153,24 @@ export const TABLE_COLUMNS = {
         dataIndex: 'DueDate',
         key: 'DueDate',
         type: 'date'
+      }
+    ]
+  },
+  groups:{
+    TableName: 'Groups',
+    Columns:[
+      {
+        title: 'GID',
+        dataIndex: 'GID',
+        key: 'gid',
+        hidden: true,
+        type: 'input'
+      },
+      {
+        title: 'Name',
+        dataIndex: 'Name',
+        key: 'Name',
+        type: 'input',
       }
     ]
   }
