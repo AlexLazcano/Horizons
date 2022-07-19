@@ -6,6 +6,7 @@ const languages = require('./routes/languages.route')
 const quizzes = require('./routes/quizzes.route')
 const instructors = require('./routes/instructors.route')
 const groups = require('./routes/groups.route')
+const multipleChoiceQs = require('./routes/multipleChoiceQ.route')
 
 const cors = require('cors')
 
@@ -16,10 +17,10 @@ app.use(express.json())
 const PORT = process.env.PORT || 3001
 
 app.use('/students', students)
-
 app.use('/languages', languages)
 app.use('/instructors', instructors)
 app.use('/groups', groups)
+app.use('/multipleChoiceQ', multipleChoiceQs)
 
 app.use('/quizzes', quizzes)
 

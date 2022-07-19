@@ -19,7 +19,7 @@ function App() {
   // }
   const getAll = () => {
     requests[currentTable]
-      .getAll()
+      ?.getAll()
       .then(res => {
         setData(res)
       })
@@ -28,7 +28,7 @@ function App() {
       })
   }
 
-  const columns = TABLE_COLUMNS[currentTable].Columns
+  const columns = TABLE_COLUMNS[currentTable]?.Columns
 
   return (
     <StyledApp>
