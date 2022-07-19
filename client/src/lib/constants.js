@@ -1,4 +1,5 @@
-import { Space } from "antd"
+import { Button, Space } from 'antd'
+import requests from './requests'
 
 export const BACKEND_URL = process.env.REACT_APP_BACKEND
 
@@ -67,6 +68,23 @@ export const TABLE_COLUMNS = {
           showSearch: true,
           options: ['America/New_York', 'America/Chicago', 'America/Denver']
         }
+      },
+      {
+        title: 'Controls',
+        key: 'key',
+        dataIndex: 'key',
+        width: '10%',
+        render: (text, record) => (
+          <Space size='middle'>
+            <Button onClick={() => console.log(record)}>Edit</Button>
+            <Button
+              danger
+              onClick={() => requests.students.delete(record?.SID)}
+            >
+              Delete
+            </Button>
+          </Space>
+        )
       }
     ]
   },
@@ -95,13 +113,30 @@ export const TABLE_COLUMNS = {
         title: 'Biography',
         dataIndex: 'Biography',
         key: 'Biography',
-        //type: 'input'
+        type: 'input'
+      },
+      {
+        title: 'Controls',
+        key: 'key',
+        dataIndex: 'key',
+        width: '10%',
+        render: (text, record) => (
+          <Space size='middle'>
+            <Button onClick={() => console.log(record)}>Edit</Button>
+            <Button
+              danger
+              onClick={() => requests.instructors.delete(record?.IID)}
+            >
+              Delete
+            </Button>
+          </Space>
+        )
       }
     ]
   },
-  languages:{
+  languages: {
     TableName: 'Languages',
-    Columns:[
+    Columns: [
       {
         title: 'LanguageCode',
         dataIndex: 'LanguageCode',
@@ -112,7 +147,7 @@ export const TABLE_COLUMNS = {
         title: 'Name',
         dataIndex: 'Name',
         key: 'Name',
-        type: 'input',
+        type: 'input'
       },
       {
         title: 'Controls',
@@ -121,9 +156,14 @@ export const TABLE_COLUMNS = {
         width: '10%',
         render: (text, record) => (
           <Space size='middle'>
-            <button className="edit-btn" onClick={() => console.log("edit")}>Edit</button>
-            <button className="delete-btn" onClick={() => console.log(record)}>Delete</button>       
-          </Space>   
+            <Button onClick={() => console.log(record)}>Edit</Button>
+            <Button
+              danger
+              onClick={() => requests.languages.delete(record?.SID)}
+            >
+              Delete
+            </Button>
+          </Space>
         )
       }
     ]
