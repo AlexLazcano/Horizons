@@ -4,6 +4,7 @@ const app = express()
 const students = require('./routes/students.route')
 const languages = require('./routes/languages.route')
 const instructors = require('./routes/instructors.route')
+const groups = require('./routes/groups.route')
 
 const cors = require('cors')
 
@@ -17,6 +18,7 @@ app.use('/students', students)
 
 app.use('/languages', languages)
 app.use('/instructors', instructors)
+app.use('/groups', groups)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)

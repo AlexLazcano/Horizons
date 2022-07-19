@@ -1,6 +1,8 @@
 import studentRequests from './student'
 import languageRequests from './languages'
 import instructorsRequest from './instructors'
+import groupRequests from './groups'
+
 
 const requests = {
   students: {
@@ -11,6 +13,9 @@ const requests = {
   },
   instructors: {
     ...instructorsRequest
+  },
+  groups: {
+    ...groupRequests
   }
 }
 
