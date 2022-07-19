@@ -9,35 +9,13 @@ function App() {
   // TODO: Add change currentTable functionality
   const [currentTable, setCurrentTable] = useState('students')
   const [data, setData] = useState()
-  // const columns = [
-  //   {
-  //     title: 'SID',
-  //     dataIndex: 'SID',
-  //     key: 'sid'
-  //   },
-  //   {
-  //     title: 'First Name',
-  //     dataIndex: 'FirstName',
-  //     key: 'FirstName'
-  //   },
-  //   {
-  //     title: 'Last Name',
-  //     dataIndex: 'LastName',
-  //     key: 'LastName'
-  //   },
-  //   {
-  //     title: 'Birth Date',
-  //     dataIndex: 'BirthDate',
-  //     key: 'BirthDate'
-  //   },
-  //   {
-  //     title: 'Time Zone',
-  //     dataIndex: 'Timezone',
-  //     key: 'Timezone'
-  //   }
-  // ]
 
   const columns = TABLE_COLUMNS[currentTable].Columns
+
+  const deleteRecord = values => {
+    console.log("hello")
+  }
+  
   return (
     <StyledApp>
       <header>Horizons</header>

@@ -30,5 +30,6 @@ export const StyledApp = styled.div`
     border: 1px solid #282c34;
     background-color: #dfe6e9;
   }
+  
 `
 

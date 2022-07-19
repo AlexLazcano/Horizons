@@ -7,5 +7,6 @@ router.get('/', instructors.get)
 
 router.post('/', instructors.post)
 
+router.delete('/:id', instructors.remove)
 
-module.exports = router 
+module.exports = router

@@ -31,6 +31,16 @@ const studentRequests = {
       .catch(err => {
         console.log(err)
       })
+  },
+  delete: async id => {
+    await axios
+      .delete(`${BACKEND_URL}/students/${id}`)
+      .then(res => {
+        console.log('delete response', res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 
