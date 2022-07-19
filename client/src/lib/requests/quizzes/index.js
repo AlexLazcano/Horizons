@@ -12,14 +12,15 @@ const quizRequests = {
                 console.log(err)
             })
     },
-    create: async ({ LanguageCode, Name }) => {
-        if (!LanguageCode || !Name) {
+    create: async ({ LanguageCode, IID, DueDate }) => {
+        if (!LanguageCode || !IID || !DueDate) {
             // see if you can add an error message to the screen later
         }
         await axios
             .post(`${BACKEND_URL}/quizzes`, {
                 LanguageCode,
-                Name
+                IID,
+                DueDate
             })
             .then(res => {
                 console.log('post response', res)
