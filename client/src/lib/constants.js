@@ -12,7 +12,11 @@ export const TABLE_NAMES = [
   {
     name: 'Languages',
     sqlTable: 'languages'
-  }
+  },
+  {
+    name: 'Groups',
+    sqlTable: 'groups'
+  },
 ]
 
 export const TABLE_COLUMNS = {
@@ -82,7 +86,7 @@ export const TABLE_COLUMNS = {
         type: 'input',
         dataIndex: 'Biography',
         key: 'Biography',
-        type: 'input'
+        //type: 'input'
       }
     ]
   },
@@ -93,6 +97,24 @@ export const TABLE_COLUMNS = {
         title: 'LanguageCode',
         dataIndex: 'LanguageCode',
         key: 'LanguageCode',
+        type: 'input'
+      },
+      {
+        title: 'Name',
+        dataIndex: 'Name',
+        key: 'Name',
+        type: 'input',
+      }
+    ]
+  },
+  groups:{
+    TableName: 'Groups',
+    Columns:[
+      {
+        title: 'GID',
+        dataIndex: 'GID',
+        key: 'gid',
+        hidden: true,
         type: 'input'
       },
       {
