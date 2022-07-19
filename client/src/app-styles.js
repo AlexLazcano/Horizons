@@ -30,5 +30,25 @@ export const StyledApp = styled.div`
     border: 1px solid #282c34;
     background-color: #dfe6e9;
   }
+  
+  .delete-btn{
+    border-radius: 10%;
+    border-color: darkgray;
+    background-color: rgb(255, 77, 77);
+    color: white;
+    :hover{
+      background-color: red;
+      cursor: pointer;
+    }
+  }
+
+  .edit-btn{
+    border-radius: 10%;
+    border-color: darkgray;
+    :hover{
+      background-color: rgb(179, 179, 179);
+      cursor: pointer;
+    }
+  }
 `
 
