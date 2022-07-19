@@ -3,6 +3,7 @@ import languageRequests from './languages'
 import quizRequests from './quizzes'
 import instructorsRequest from './instructors'
 import groupRequests from './groups'
+import multipleChoiceQRequests from './multipleChoiceQ'
 
 
 const requests = {
@@ -20,6 +21,9 @@ const requests = {
   },
   groups: {
     ...groupRequests
+  },
+  multipleChoiceQs: {
+    ...multipleChoiceQRequests
   }
 }
 

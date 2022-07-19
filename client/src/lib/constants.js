@@ -23,7 +23,11 @@ export const TABLE_NAMES = [
   {
     name: 'Groups',
     sqlTable: 'groups'
-  }
+  },
+  {
+    name: 'MultipleChoiceQ',
+    sqlTable: 'multiplechoiceq'
+  },
 ]
 
 export const TABLE_COLUMNS = {
@@ -226,5 +230,60 @@ export const TABLE_COLUMNS = {
         type: 'input',
       }
     ]
+  },
+
+  multiplechoiceq: {
+    TableName: 'MultipleChoiceQ',
+    Columns: [
+      {
+        title: 'QID',
+        dataIndex: 'QID',
+        key: 'qid',
+        hidden: true
+      },
+      {
+        title: 'CorrectChoice',
+        dataIndex: 'CorrectChoice',
+        key: 'CorrectChoice',
+        type: 'input'
+      },
+      {
+        title: 'QuizID',
+        dataIndex: 'QuizID',
+        key: 'QuizID',
+        type: 'input'
+      },
+      {
+        title: 'Prompt',
+        dataIndex: 'Prompt',
+        key: 'Prompt',
+        type: 'input'
+      },
+      {
+        title: 'Choice1',
+        dataIndex: 'Choice1',
+        key: 'Choice1',
+        type: 'input'
+      },
+      {
+        title: 'Choice2',
+        dataIndex: 'Choice2',
+        key: 'Choice2',
+        type: 'input'
+      },
+      {
+        title: 'Choice3',
+        dataIndex: 'Choice3',
+        key: 'Choice3',
+        type: 'input'
+      },
+      {
+        title: 'Choice4',
+        dataIndex: 'Choice4',
+        key: 'Choice4',
+        type: 'input'
+      }
+    ]
   }
 }
+
