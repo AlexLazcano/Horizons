@@ -1,3 +1,5 @@
+import { Space } from "antd"
+
 export const BACKEND_URL = process.env.REACT_APP_BACKEND
 
 export const TABLE_NAMES = [
@@ -83,7 +85,6 @@ export const TABLE_COLUMNS = {
       },
       {
         title: 'Biography',
-        type: 'input',
         dataIndex: 'Biography',
         key: 'Biography',
         //type: 'input'
@@ -104,6 +105,18 @@ export const TABLE_COLUMNS = {
         dataIndex: 'Name',
         key: 'Name',
         type: 'input',
+      },
+      {
+        title: 'Controls',
+        key: 'key',
+        dataIndex: 'key',
+        width: '10%',
+        render: (text, record) => (
+          <Space size='middle'>
+            <button className="edit-btn" onClick={() => console.log("edit")}>Edit</button>
+            <button className="delete-btn" onClick={() => console.log(record)}>Delete</button>       
+          </Space>   
+        )
       }
     ]
   },
