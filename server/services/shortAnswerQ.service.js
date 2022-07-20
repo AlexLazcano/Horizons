@@ -27,9 +27,21 @@ const createShortAnswerQ = async shortAnswerQ => {
     }
 }
 
+const deleteShortAnswerQ = async id => {
+    try {
+      const result = await db.query('DELETE FROM horizons.shortanswerq WHERE QID = ?', [id])
+      return {
+        message: result.affectedRows ? 'shortAnswerQ deleted' : 'shortAnswerQ not deleted'
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 module.exports = {
     getShortAnswerQs,
-    createShortAnswerQ
+    createShortAnswerQ,
+    deleteShortAnswerQ
 }
 
 

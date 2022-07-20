@@ -315,6 +315,23 @@ export const TABLE_COLUMNS = {
         dataIndex: 'Answer',
         key: 'Answer',
         type: 'input'
+      },
+      {
+        title: 'Controls',
+        key: 'key',
+        dataIndex: 'key',
+        width: '10%',
+        render: (text, record) => (
+          <Space size='middle'>
+            <Button onClick={() => console.log(record)}>Edit</Button>
+            <Button
+              danger
+              onClick={() => requests.shortanswerqs.delete(record?.QID)}
+            >
+              Delete
+            </Button>
+          </Space>
+        )
       }
     ]
   }

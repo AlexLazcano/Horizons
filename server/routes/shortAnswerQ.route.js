@@ -7,5 +7,6 @@ router.get('/', shortAnswerQs.get)
 
 router.post('/', shortAnswerQs.post)
 
+router.delete('/:id', shortAnswerQs.remove)
 
 module.exports = router
