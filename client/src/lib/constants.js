@@ -28,6 +28,10 @@ export const TABLE_NAMES = [
     name: 'MultipleChoiceQ',
     sqlTable: 'multiplechoiceqs'
   },
+  {
+    name: 'ShortAnswerQ',
+    sqlTable: 'shortanswerqs'
+  },
 ]
 
 export const TABLE_COLUMNS = {
@@ -282,6 +286,52 @@ export const TABLE_COLUMNS = {
         dataIndex: 'Choice4',
         key: 'Choice4',
         type: 'input'
+      }
+    ]
+  },
+  shortanswerqs: {
+    TableName: 'ShortAnswerQ',
+    Columns: [
+      {
+        title: 'QID',
+        dataIndex: 'QID',
+        key: 'qid',
+        hidden: true
+      },
+      {
+        title: 'QuizID',
+        dataIndex: 'QuizID',
+        key: 'QuizID',
+        type: 'input'
+      },
+      {
+        title: 'Prompt',
+        dataIndex: 'Prompt',
+        key: 'Prompt',
+        type: 'input'
+      },
+      {
+        title: 'Answer',
+        dataIndex: 'Answer',
+        key: 'Answer',
+        type: 'input'
+      },
+      {
+        title: 'Controls',
+        key: 'key',
+        dataIndex: 'key',
+        width: '10%',
+        render: (text, record) => (
+          <Space size='middle'>
+            <Button onClick={() => console.log(record)}>Edit</Button>
+            <Button
+              danger
+              onClick={() => requests.shortanswerqs.delete(record?.QID)}
+            >
+              Delete
+            </Button>
+          </Space>
+        )
       }
     ]
   }
