@@ -28,6 +28,10 @@ export const TABLE_NAMES = [
     name: 'MultipleChoiceQ',
     sqlTable: 'multiplechoiceqs'
   },
+  {
+    name: 'ShortAnswerQ',
+    sqlTable: 'shortanswerqs'
+  },
 ]
 
 export const TABLE_COLUMNS = {
@@ -281,6 +285,35 @@ export const TABLE_COLUMNS = {
         title: 'Choice4',
         dataIndex: 'Choice4',
         key: 'Choice4',
+        type: 'input'
+      }
+    ]
+  },
+  shortanswerqs: {
+    TableName: 'ShortAnswerQ',
+    Columns: [
+      {
+        title: 'QID',
+        dataIndex: 'QID',
+        key: 'qid',
+        hidden: true
+      },
+      {
+        title: 'QuizID',
+        dataIndex: 'QuizID',
+        key: 'QuizID',
+        type: 'input'
+      },
+      {
+        title: 'Prompt',
+        dataIndex: 'Prompt',
+        key: 'Prompt',
+        type: 'input'
+      },
+      {
+        title: 'Answer',
+        dataIndex: 'Answer',
+        key: 'Answer',
         type: 'input'
       }
     ]
