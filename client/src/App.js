@@ -192,6 +192,7 @@ function App() {
           title: 'Controls',
           key: 'key',
           dataIndex: 'key',
+          hidden: true,
           width: '10%',
           render: (text, record) => (
             <Space size='middle'>

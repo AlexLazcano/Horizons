@@ -23,7 +23,7 @@ const post = async (req, res) => {
 }
 const remove = async (req, res) => {
     try {
-      const result = await languages.deleteLanguage(req.params.id)
+      const result = await languages.deleteLanguage(req.params.code)
   
       res.json(result)
     } catch (error) {

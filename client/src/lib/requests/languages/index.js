@@ -28,9 +28,9 @@ const languageRequests = {
         console.log(err)
       })
   },
-  delete: async id => {
+  delete: async code => {
     await axios
-      .delete(`${BACKEND_URL}/languages/${id}`)
+      .delete(`${BACKEND_URL}/languages/${code}`)
       .then(res => {
         console.log('delete response', res)
       })
