@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const studyPlans = require('../controllers/studyPlans.controller')
+const studyplans = require('../controllers/studyPlans.controller')
 
 //TODO: Add Create, Update, Delete
-router.get('/', studyPlans.get)
+router.get('/', studyplans.get)
 
-router.post('/', studyPlans.post)
+router.post('/', studyplans.post)
 
 
 module.exports = router

@@ -13,6 +13,7 @@ const studyPlanRequests = {
             })
     },
     create: async ({ Rubric, LanguageCode, SID }) => {
+        console.log("hello")
         if (!Rubric || !LanguageCode || !SID) {
             // see if you can add an error message to the screen later
         }

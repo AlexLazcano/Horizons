@@ -24,7 +24,7 @@ const requests = {
   groups: {
     ...groupRequests
   },
-  studyPlanRequests: {
+  studyplans: {
     ...studyPlanRequests
   },
   multiplechoiceqs: {

@@ -1,8 +1,8 @@
-const studyPlans = require('../services/studyPlans.service')
+const studyplans = require('../services/studyPlans.service')
 
 const get = async (req, res) => {
     try {
-      const result = await studyPlans.getStudyPlans()
+      const result = await studyplans.getStudyPlans()
   
       res.json(result)
     } catch (error) {
@@ -12,7 +12,7 @@ const get = async (req, res) => {
   
   const post = async (req, res) => {
     try {
-      const result = await studyPlans.createStudyPlans(req.body)
+      const result = await studyplans.createStudyPlans(req.body)
   
       res.json(result)
     } catch (error) {

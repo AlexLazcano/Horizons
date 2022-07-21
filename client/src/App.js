@@ -249,6 +249,24 @@ function App() {
           dataIndex: 'DueDate',
           key: 'DueDate',
           type: 'date'
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => (
+            <Space size='middle'>
+              <Button onClick={() => console.log(record)}>Edit</Button>
+              <Button
+                danger
+                onClick={() => requests.languages.delete(record?.SID)}
+              >
+                Delete
+              </Button>
+            </Space>
+          )
         }
       ]
     },
@@ -286,6 +304,24 @@ function App() {
             showSearch: true,
             options: ['1']
           }
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => (
+            <Space size='middle'>
+              <Button onClick={() => console.log(record)}>Edit</Button>
+              <Button
+                danger
+                onClick={() => requests.languages.delete(record?.SID)}
+              >
+                Delete
+              </Button>
+            </Space>
+          )
         }
       ]
     },
