@@ -9,5 +9,7 @@ router.post('/', students.post)
 
 router.delete('/:id', students.remove)
 
+router.patch('/:id', students.patch)
+
 
 module.exports = router
