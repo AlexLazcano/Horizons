@@ -1,12 +1,12 @@
 const quizzes = require('../services/quizzes.service')
 
 const get = async (req, res) => {
-    try{
+    try {
         const result = await quizzes.getQuizzes()
 
         res.json(result)
     }
-    catch (err){
+    catch (err) {
         console.error(err)
     }
 }
@@ -17,12 +17,23 @@ const post = async (req, res) => {
 
         res.json(result)
     }
-    catch (err){
+    catch (err) {
         console.error(err)
+    }
+}
+
+const remove = async (req, res) => {
+    try {
+        const result = await quizzes.deleteQuiz(req.params.id)
+
+        res.json(result)
+    } catch (error) {
+        console.log(error)
     }
 }
 
 module.exports = {
     get,
-    post
+    post,
+    remove
 }

@@ -261,7 +261,7 @@ function App() {
               <Button onClick={() => console.log(record)}>Edit</Button>
               <Button
                 danger
-                onClick={() => requests.languages.delete(record?.SID)}
+                onClick={() => requests.quizzes.delete(record?.QuizID)}
               >
                 Delete
               </Button>

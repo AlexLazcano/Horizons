@@ -31,6 +31,16 @@ const quizRequests = {
       .catch(err => {
         console.log(err)
       })
+  },
+  delete: async id => {
+    await axios
+      .delete(`${BACKEND_URL}/quizzes/${id}`)
+      .then(res => {
+        console.log('delete response', res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 
