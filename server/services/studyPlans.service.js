@@ -27,7 +27,19 @@ const createStudyPlans = async studyPlan => {
   }
 }
 
+const deleteStudyPlan = async id => {
+  try {
+    const result = await db.query('DELETE FROM studyplans WHERE SPID = ?', [id])
+    return {
+      message: result.affectedRows ? 'Plan deleted' : 'Plan deletion failed'
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   getStudyPlans,
-  createStudyPlans
+  createStudyPlans,
+  deleteStudyPlan
 }

@@ -198,7 +198,7 @@ function App() {
               <Button onClick={() => console.log(record)}>Edit</Button>
               <Button
                 danger
-                onClick={() => requests.languages.delete(record?.SID)}
+                onClick={() => requests.languages.delete(record?.LanguageCode)}
               >
                 Delete
               </Button>
@@ -316,7 +316,7 @@ function App() {
               <Button onClick={() => console.log(record)}>Edit</Button>
               <Button
                 danger
-                onClick={() => requests.languages.delete(record?.SID)}
+                onClick={() => requests.studyplans.delete(record?.SPID)}
               >
                 Delete
               </Button>

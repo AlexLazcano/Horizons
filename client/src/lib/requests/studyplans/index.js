@@ -13,7 +13,6 @@ const studyPlanRequests = {
             })
     },
     create: async ({ Rubric, LanguageCode, SID }) => {
-        console.log("hello")
         if (!Rubric || !LanguageCode || !SID) {
             // see if you can add an error message to the screen later
         }
@@ -25,6 +24,16 @@ const studyPlanRequests = {
             })
             .then(res => {
                 console.log('post response', res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    },
+    delete: async id => {
+        await axios
+            .delete(`${BACKEND_URL}/studyplans/${id}`)
+            .then(res => {
+                console.log('delete response', res)
             })
             .catch(err => {
                 console.log(err)

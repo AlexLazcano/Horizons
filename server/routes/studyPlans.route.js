@@ -7,5 +7,7 @@ router.get('/', studyplans.get)
 
 router.post('/', studyplans.post)
 
+router.delete('/:id', studyplans.remove)
+
 
 module.exports = router
