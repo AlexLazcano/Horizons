@@ -35,14 +35,17 @@ const instructorsRequest = {
     return res
   },
   delete: async id => {
-    await axios
+    const res = await axios
       .delete(`${BACKEND_URL}/instructors/${id}`)
       .then(res => {
         console.log('delete response', res)
+        return res
       })
       .catch(err => {
         console.log(err)
       })
+
+    return res
   }
 }
 

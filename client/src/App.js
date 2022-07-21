@@ -19,7 +19,11 @@ function App() {
   }, [currentTable])
 
   const deleteRecord = id => {
-    requests[currentTable].delete(id)
+    requests[currentTable].delete(id).then(res => {
+      if (res.status === 200) {
+        getAll()
+      }
+    })
   }
   const updateRecord = (id, data) => {
     return requests[currentTable].update(id, data)
@@ -162,10 +166,7 @@ function App() {
           render: (text, record) => (
             <Space size='middle'>
               <Button onClick={() => console.log(record)}>Edit</Button>
-              <Button
-                danger
-                onClick={() => requests.instructors.delete(record?.IID)}
-              >
+              <Button danger onClick={() => deleteRecord(record?.IID)}>
                 Delete
               </Button>
             </Space>
@@ -197,10 +198,7 @@ function App() {
           render: (text, record) => (
             <Space size='middle'>
               <Button onClick={() => console.log(record)}>Edit</Button>
-              <Button
-                danger
-                onClick={() => requests.languages.delete(record?.LanguageCode)}
-              >
+              <Button danger onClick={() => deleteRecord(record?.LanguageCode)}>
                 Delete
               </Button>
             </Space>
@@ -260,10 +258,7 @@ function App() {
           render: (text, record) => (
             <Space size='middle'>
               <Button onClick={() => console.log(record)}>Edit</Button>
-              <Button
-                danger
-                onClick={() => requests.quizzes.delete(record?.QuizID)}
-              >
+              <Button danger onClick={() => deleteRecord(record?.QuizID)}>
                 Delete
               </Button>
             </Space>
@@ -271,9 +266,9 @@ function App() {
         }
       ]
     },
-    studyplans:{
+    studyplans: {
       TableName: 'Study Plans',
-      Columns:[
+      Columns: [
         {
           title: 'SPID',
           dataIndex: 'SPID',
@@ -315,10 +310,7 @@ function App() {
           render: (text, record) => (
             <Space size='middle'>
               <Button onClick={() => console.log(record)}>Edit</Button>
-              <Button
-                danger
-                onClick={() => requests.studyplans.delete(record?.SPID)}
-              >
+              <Button danger onClick={() => deleteRecord(record?.SPID)}>
                 Delete
               </Button>
             </Space>
@@ -433,10 +425,7 @@ function App() {
           render: (text, record) => (
             <Space size='middle'>
               <Button onClick={() => console.log(record)}>Edit</Button>
-              <Button
-                danger
-                onClick={() => requests.shortanswerqs.delete(record?.QID)}
-              >
+              <Button danger onClick={() => deleteRecord(record?.QID)}>
                 Delete
               </Button>
             </Space>

@@ -31,14 +31,16 @@ const languageRequests = {
       return res
   },
   delete: async code => {
-    await axios
+    const res = await axios
       .delete(`${BACKEND_URL}/languages/${code}`)
       .then(res => {
         console.log('delete response', res)
+        return res
       })
       .catch(err => {
         console.log(err)
       })
+      return res
   }
 }
 

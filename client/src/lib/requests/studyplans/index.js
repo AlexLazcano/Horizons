@@ -32,14 +32,16 @@ const studyPlanRequests = {
     return res
   },
   delete: async id => {
-    await axios
+    const res = await axios
       .delete(`${BACKEND_URL}/studyplans/${id}`)
       .then(res => {
         console.log('delete response', res)
+        return res
       })
       .catch(err => {
         console.log(err)
       })
+      return res
   }
 }
 
