@@ -18,7 +18,7 @@ const instructorsRequest = {
     if (!FirstName || !LastName || !Biography) {
       console.error('Missing required fields for instructor creation')
     }
-    await axios
+    const res = await axios
       .post(`${BACKEND_URL}/instructors`, {
         FirstName,
         LastName,
@@ -26,10 +26,13 @@ const instructorsRequest = {
       })
       .then(res => {
         console.log('post response', res)
+        return res
       })
       .catch(err => {
         console.log(err)
       })
+
+    return res
   },
   delete: async id => {
     await axios
