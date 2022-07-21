@@ -1,7 +1,7 @@
 import { Button, Col, Form } from 'antd'
 import moment from 'moment'
 import React from 'react'
-import { TABLE_COLUMNS, TABLE_NAMES } from '../lib/constants'
+import {  TABLE_NAMES } from '../lib/constants'
 import requests from '../lib/requests'
 import DynamicInput from './DynamicInput'
 
@@ -11,7 +11,8 @@ const Controls = ({
   currentTable,
   setTableData,
   setCurrentTable,
-  getAllUpdate
+  getAllUpdate,
+  columns
 }) => {
   const create = values => {
     console.log(currentTable)
@@ -36,7 +37,7 @@ const Controls = ({
       </Col>
       <Col span={8} className='form'>
         <Form onFinish={create} layout='vertical'>
-          {TABLE_COLUMNS[currentTable].Columns.map(
+          {columns.map(
             ({ title, dataIndex, key, hidden, type, inputProps, onChange }) => {
               return hidden ? null : (
                 <Form.Item key={key} label={title} name={dataIndex}>

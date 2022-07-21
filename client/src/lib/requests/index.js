@@ -4,6 +4,8 @@ import quizRequests from './quizzes'
 import instructorsRequest from './instructors'
 import groupRequests from './groups'
 import studyPlanRequests from './studyplans'
+import multipleChoiceQRequests from './multipleChoiceQ'
+import shortAnswerQRequests from './shortAnswerQ'
 
 
 const requests = {
@@ -24,7 +26,15 @@ const requests = {
   },
   studyPlanRequests: {
     ...studyPlanRequests
-  }
+  },
+  multiplechoiceqs: {
+    ...multipleChoiceQRequests
+  },
+  shortanswerqs: {
+    ...shortAnswerQRequests
+  },
+
+  
 }
 
 export default requests

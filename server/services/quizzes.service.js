@@ -12,10 +12,11 @@ const getQuizzes = async () => {
 const createQuiz = async quiz => {
   console.log('creating quiz', quiz)
   try {
-    quiz.DateCreated = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    quiz.DateCreated = new Date().toISOString().slice(0, 19).replace('T', ' ')
     const { LanguageCode, IID, DateCreated, DueDate } = quiz
+
     const result = await db.query(
-      'INSERT INTO quizzes( LanguageCode, IID, DateCreated, DueDate) VALUES (?, ?, ?, ?)',
+      'INSERT INTO horizons.quizzes( LanguageCode, IID, DateCreated, DueDate) VALUES (?, ?, ?, ?)',
       [LanguageCode, IID, DateCreated, DueDate]
     )
 
