@@ -1,7 +1,6 @@
 import { Button, Col, Form } from 'antd'
-import moment from 'moment'
 import React from 'react'
-import {  TABLE_NAMES } from '../lib/constants'
+import { TABLE_NAMES } from '../lib/constants'
 import requests from '../lib/requests'
 import DynamicInput from './DynamicInput'
 
@@ -15,14 +14,15 @@ const Controls = ({
   columns
 }) => {
   const create = values => {
-    console.log(requests[currentTable])
-    const { BirthDate } = values
-    const date = BirthDate ? moment(BirthDate)?.format('YYYY-MM-DD') : null
-
-    requests[currentTable].create({
-      ...values,
-      BirthDate: date
-    })
+    requests[currentTable]
+      .create({
+        ...values
+      })
+      .then(res => {
+        if (res.status === 200) {
+          getAllUpdate()
+        }
+      })
   }
 
   return (

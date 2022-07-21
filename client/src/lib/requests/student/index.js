@@ -19,19 +19,22 @@ const studentRequests = {
     if (!FirstName || !LastName || !BirthDate || !Timezone) {
       console.error('Missing required fields for student creation')
     }
-    await axios
+    const date = BirthDate ? moment(BirthDate)?.format('YYYY-MM-DD') : null
+    const res = await axios
       .post(`${BACKEND_URL}/students`, {
         FirstName,
         LastName,
-        BirthDate,
+        BirthDate: date,
         Timezone
       })
       .then(res => {
         console.log('post response', res)
+        return res
       })
       .catch(err => {
         console.log(err)
       })
+    return res
   },
   delete: async id => {
     await axios
