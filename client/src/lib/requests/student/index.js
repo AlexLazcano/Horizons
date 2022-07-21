@@ -1,4 +1,5 @@
 import axios from 'axios'
+import moment from 'moment'
 import { BACKEND_URL } from '../../constants'
 
 const studentRequests = {
@@ -41,6 +42,24 @@ const studentRequests = {
       .catch(err => {
         console.log(err)
       })
+  },
+  update: async (id, data) => {
+    const { FirstName, LastName, BirthDate, Timezone } = data
+    const res = await axios
+      .patch(`${BACKEND_URL}/students/${id}`, {
+        FirstName,
+        LastName,
+        BirthDate: BirthDate ? moment(BirthDate)?.format('YYYY-MM-DD') : null,
+        Timezone
+      })
+      .then(res => {
+        console.log('patch response', res)
+        return res.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    return res
   }
 }
 

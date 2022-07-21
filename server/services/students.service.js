@@ -37,9 +37,25 @@ const deleteStudent = async id => {
     console.log(error)
   }
 }
+const updateStudent = async (id, student) => {
+  try {
+    const { FirstName, LastName, BirthDate, Timezone } = student
+    const result = await db.query(
+      'UPDATE students SET FirstName = ?, LastName = ?, BirthDate = ?, Timezone = ? WHERE SID = ?',
+      [FirstName, LastName, BirthDate, Timezone, id]
+    )
+    return {
+      message: result.affectedRows ? 'Student updated' : 'Student not updated',
+      status: result.affectedRows ? 200 : 400
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 module.exports = {
   getStudents,
   createStudent,
-  deleteStudent
+  deleteStudent,
+  updateStudent
 }

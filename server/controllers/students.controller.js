@@ -31,8 +31,18 @@ const remove = async (req, res) => {
   }
 }
 
+const patch = async (req, res) => {
+  try {
+    const result = await students.updateStudent(req.params.id, req.body)
+    res.json(result)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   get,
   post,
-  remove
+  remove,
+  patch
 }
