@@ -3,6 +3,7 @@ import languageRequests from './languages'
 import quizRequests from './quizzes'
 import instructorsRequest from './instructors'
 import groupRequests from './groups'
+import studyPlanRequests from './studyplans'
 import multipleChoiceQRequests from './multipleChoiceQ'
 import shortAnswerQRequests from './shortAnswerQ'
 
@@ -22,6 +23,9 @@ const requests = {
   },
   groups: {
     ...groupRequests
+  },
+  studyplans: {
+    ...studyPlanRequests
   },
   multiplechoiceqs: {
     ...multipleChoiceQRequests

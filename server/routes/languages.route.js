@@ -7,7 +7,7 @@ router.get('/', languages.get)
 
 router.post('/', languages.post)
 
-router.delete('/:id', languages.remove)
+router.delete('/:code', languages.remove)
 
 
 module.exports = router

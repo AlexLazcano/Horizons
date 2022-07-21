@@ -4,10 +4,12 @@ const app = express()
 const students = require('./routes/students.route')
 const languages = require('./routes/languages.route')
 const quizzes = require('./routes/quizzes.route')
+const studyplans = require('./routes/studyPlans.route')
 const instructors = require('./routes/instructors.route')
 const groups = require('./routes/groups.route')
 const multipleChoiceQs = require('./routes/multipleChoiceQ.route')
 const shortAnswerQs = require('./routes/shortAnswerQ.route')
+
 
 const cors = require('cors')
 
@@ -21,6 +23,7 @@ app.use('/students', students)
 app.use('/languages', languages)
 app.use('/instructors', instructors)
 app.use('/groups', groups)
+app.use('/studyplans', studyplans)
 app.use('/multipleChoiceQ', multipleChoiceQs)
 app.use('/shortAnswerQ', shortAnswerQs)
 

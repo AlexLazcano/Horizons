@@ -7,5 +7,7 @@ router.get('/', quizzes.get)
 
 router.post('/', quizzes.post)
 
+router.delete('/:id', quizzes.remove)
+
 
 module.exports = router

@@ -192,13 +192,14 @@ function App() {
           title: 'Controls',
           key: 'key',
           dataIndex: 'key',
+          hidden: true,
           width: '10%',
           render: (text, record) => (
             <Space size='middle'>
               <Button onClick={() => console.log(record)}>Edit</Button>
               <Button
                 danger
-                onClick={() => requests.languages.delete(record?.SID)}
+                onClick={() => requests.languages.delete(record?.LanguageCode)}
               >
                 Delete
               </Button>
@@ -249,6 +250,79 @@ function App() {
           dataIndex: 'DueDate',
           key: 'DueDate',
           type: 'date'
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => (
+            <Space size='middle'>
+              <Button onClick={() => console.log(record)}>Edit</Button>
+              <Button
+                danger
+                onClick={() => requests.quizzes.delete(record?.QuizID)}
+              >
+                Delete
+              </Button>
+            </Space>
+          )
+        }
+      ]
+    },
+    studyplans:{
+      TableName: 'Study Plans',
+      Columns:[
+        {
+          title: 'SPID',
+          dataIndex: 'SPID',
+          key: 'SPID',
+          hidden: true
+        },
+        {
+          title: 'Rubric',
+          dataIndex: 'Rubric',
+          key: 'Rubric',
+          type: 'input'
+        },
+        {
+          title: 'LanguageCode',
+          dataIndex: 'LanguageCode',
+          key: 'LanguageCode',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: ['ES-ES']
+          }
+        },
+        {
+          title: 'SID',
+          dataIndex: 'SID',
+          key: 'SID',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: ['1']
+          }
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => (
+            <Space size='middle'>
+              <Button onClick={() => console.log(record)}>Edit</Button>
+              <Button
+                danger
+                onClick={() => requests.studyplans.delete(record?.SPID)}
+              >
+                Delete
+              </Button>
+            </Space>
+          )
         }
       ]
     },

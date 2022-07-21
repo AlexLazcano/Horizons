@@ -15,6 +15,7 @@ const Controls = ({
   columns
 }) => {
   const create = values => {
+    console.log(requests[currentTable])
     const { BirthDate } = values
     const date = BirthDate ? moment(BirthDate)?.format('YYYY-MM-DD') : null
 

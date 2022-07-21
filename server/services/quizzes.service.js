@@ -28,7 +28,19 @@ const createQuiz = async quiz => {
   }
 }
 
+const deleteQuiz = async id => {
+  try {
+    const result = await db.query('DELETE FROM quizzes WHERE QuizID = ?', [id])
+    return {
+      message: result.affectedRows ? 'Quiz deleted' : 'Quiz deletion failed'
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   getQuizzes,
-  createQuiz
+  createQuiz,
+  deleteQuiz
 }
