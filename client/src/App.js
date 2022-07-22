@@ -9,7 +9,7 @@ import requests from './lib/requests'
 
 function App() {
   // TODO: Add change currentTable functionality
-  const [currentTable, setCurrentTable] = useState('students','countries')
+  const [currentTable, setCurrentTable] = useState('students')
   const [data, setData] = useState()
   const [editingKey, setEditingKey] = useState('')
   const [form] = Form.useForm()
