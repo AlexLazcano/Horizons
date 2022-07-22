@@ -1,0 +1,15 @@
+const express = require('express')
+const router = express.Router()
+const lessons = require('../controllers/lessons.controller')
+
+//TODO: Add Create, Update, Delete
+router.get('/', lessons.get)
+
+router.post('/', lessons.post)
+
+router.delete('/:id', lessons.remove)
+
+router.patch('/:id', lessons.patch)
+
+
+module.exports = router
