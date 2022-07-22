@@ -432,7 +432,6 @@ function App() {
         }
       ]
     },
-
     countries: {
       TableName: 'Countries',
       Columns: [
@@ -475,6 +474,31 @@ function App() {
         }
       ]
     },
+    students_in_countries: {
+      TableName: "Students In Countries",
+      Columns: [
+        {
+          title: 'SID',
+          dataIndex: 'SID',
+          key: 'SID',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: ['1', '3']
+          }
+        },
+        {
+          title: 'CountryID',
+          dataIndex: 'CountryID',
+          key: 'CountryID',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: ['1']
+          }
+        }
+      ]
+    }
   }
 
   const columns = TABLE_COLUMNS[currentTable]?.Columns

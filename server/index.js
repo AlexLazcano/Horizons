@@ -10,6 +10,7 @@ const groups = require('./routes/groups.route')
 const quizzes = require('./routes/quizzes.route')
 const multipleChoiceQs = require('./routes/multipleChoiceQ.route')
 const shortAnswerQs = require('./routes/shortAnswerQ.route')
+const studentCountries = require('./routes/studentCountries.route')
 
 
 const cors = require('cors')
@@ -29,6 +30,7 @@ app.use('/groups', groups)
 app.use('/quizzes', quizzes)
 app.use('/multipleChoiceQ', multipleChoiceQs)
 app.use('/shortAnswerQ', shortAnswerQs)
+app.use('/studentsincountries', studentCountries)
 
 
 app.listen(PORT, () => {

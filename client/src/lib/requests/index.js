@@ -7,6 +7,7 @@ import groupRequests from './groups'
 import quizRequests from './quizzes'
 import multipleChoiceQRequests from './multipleChoiceQ'
 import shortAnswerQRequests from './shortAnswerQ'
+import studentCountryRequests from './studentsInCountries'
 
 
 const requests = {
@@ -37,6 +38,9 @@ const requests = {
   shortanswerqs: {
     ...shortAnswerQRequests
   },
+  students_in_countries:{
+    ...studentCountryRequests
+  }
 
   
 }

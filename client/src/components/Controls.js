@@ -3,7 +3,6 @@ import React from 'react'
 import { TABLE_NAMES } from '../lib/constants'
 import requests from '../lib/requests'
 import DynamicInput from './DynamicInput'
-
 import { StyledControls } from './styles'
 
 const Controls = ({
