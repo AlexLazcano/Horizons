@@ -15,8 +15,8 @@ export const TABLE_NAMES = [
     sqlTable: 'languages'
   },
   {
-    name: 'Quizzes',
-    sqlTable: 'quizzes'
+    name: 'Countries',
+    sqlTable: 'countries'
   },
   {
     name: 'Study Plans',
@@ -25,6 +25,10 @@ export const TABLE_NAMES = [
   {
     name: 'Groups',
     sqlTable: 'groups'
+  },
+  {
+    name: 'Quizzes',
+    sqlTable: 'quizzes'
   },
   {
     name: 'MultipleChoiceQ',
