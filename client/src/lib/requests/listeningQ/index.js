@@ -16,7 +16,7 @@ const listeningQRequests = {
     if (!QuizID || !Prompt || !Audio || !Text) {
       // see if you can add an error message to the screen later
     }
-    await axios
+    return axios
       .post(`${BACKEND_URL}/listeningQ`, {
         QuizID,
         Prompt,
@@ -25,16 +25,18 @@ const listeningQRequests = {
       })
       .then(res => {
         console.log('post response', res)
+        return res
       })
       .catch(err => {
         console.log(err)
       })
   },
   delete: async id => {
-    await axios
+    return axios
       .delete(`${BACKEND_URL}/listeningQ/${id}`)
       .then(res => {
         console.log('delete response', res)
+        return res
       })
       .catch(err => {
         console.log(err)

@@ -480,7 +480,7 @@ function App() {
               <Button onClick={() => console.log(record)}>Edit</Button>
               <Button
                 danger
-                onClick={() => requests.listeningqs.delete(record?.QID)}
+                onClick={() => deleteRecord(record?.QID)}
               >
                 Delete
               </Button>
@@ -530,7 +530,7 @@ function App() {
           }
         }
       ]
-    },
+    }
   }
 
   const columns = TABLE_COLUMNS[currentTable]?.Columns
