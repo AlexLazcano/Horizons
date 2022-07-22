@@ -337,7 +337,7 @@ function App() {
       ]
     },
     multiplechoiceqs: {
-      TableName: 'MultipleChoiceQ',
+      TableName: 'Multiple Choice Questions',
       Columns: [
         {
           title: 'QID',
@@ -390,7 +390,7 @@ function App() {
       ]
     },
     shortanswerqs: {
-      TableName: 'ShortAnswerQ',
+      TableName: 'Short Answer Questions',
       Columns: [
         {
           title: 'QID',
@@ -425,6 +425,63 @@ function App() {
             <Space size='middle'>
               <Button onClick={() => console.log(record)}>Edit</Button>
               <Button danger onClick={() => deleteRecord(record?.QID)}>
+                Delete
+              </Button>
+            </Space>
+          )
+        }
+      ]
+    },
+    listeningqs: {
+      TableName: 'Listening Questions',
+      Columns: [
+        {
+          title: 'QID',
+          dataIndex: 'QID',
+          key: 'qid',
+          hidden: true
+        },
+        {
+          title: 'QuizID',
+          dataIndex: 'QuizID',
+          key: 'QuizID',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: ['1', '3', '7']
+          }
+        },
+        {
+          title: 'Prompt',
+          dataIndex: 'Prompt',
+          key: 'Prompt',
+          type: 'input'
+        },
+        {
+          title: 'Audio',
+          dataIndex: 'Audio',
+          key: 'Audio',
+          type: 'input'
+        },
+        {
+          title: 'Text',
+          dataIndex: 'Text',
+          key: 'Text',
+          type: 'input'
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => (
+            <Space size='middle'>
+              <Button onClick={() => console.log(record)}>Edit</Button>
+              <Button
+                danger
+                onClick={() => deleteRecord(record?.QID)}
+              >
                 Delete
               </Button>
             </Space>

@@ -8,6 +8,7 @@ import quizRequests from './quizzes'
 import multipleChoiceQRequests from './multipleChoiceQ'
 import shortAnswerQRequests from './shortAnswerQ'
 import studentCountryRequests from './studentsInCountries'
+import listeningQRequests from './listeningQ'
 
 
 const requests = {
@@ -40,9 +41,10 @@ const requests = {
   },
   students_in_countries:{
     ...studentCountryRequests
-  }
-
-  
+  },  
+  listeningqs: {
+    ...listeningQRequests
+  } 
 }
 
 export default requests
