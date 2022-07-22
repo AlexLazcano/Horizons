@@ -38,5 +38,9 @@ export const TABLE_NAMES = [
     name: 'ShortAnswerQ',
     sqlTable: 'shortanswerqs'
   },
+  {
+    name: 'StudentsInCountries',
+    sqlTable: 'students_in_countries'
+  }
 ]
 

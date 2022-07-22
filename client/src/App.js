@@ -336,7 +336,6 @@ function App() {
         }
       ]
     },
-
     multiplechoiceqs: {
       TableName: 'MultipleChoiceQ',
       Columns: [
