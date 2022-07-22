@@ -7,6 +7,7 @@ import groupRequests from './groups'
 import quizRequests from './quizzes'
 import multipleChoiceQRequests from './multipleChoiceQ'
 import shortAnswerQRequests from './shortAnswerQ'
+import listeningQRequests from './listeningQ'
 
 
 const requests = {
@@ -37,8 +38,9 @@ const requests = {
   shortanswerqs: {
     ...shortAnswerQRequests
   },
-
-  
+  listeningqs: {
+    ...listeningQRequests
+  } 
 }
 
 export default requests
