@@ -18,16 +18,18 @@ const groupRequests = {
     if (!Name) {
       console.error('Missing required fields for group creation')
     }
-    await axios
+    const res = await axios
       .post(`${BACKEND_URL}/groups`, {
         Name
       })
       .then(res => {
         console.log('post response', res)
+        return res
       })
       .catch(err => {
         console.log(err)
       })
+    return res
   }
 }
 
