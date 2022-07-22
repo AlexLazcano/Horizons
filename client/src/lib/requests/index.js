@@ -9,6 +9,7 @@ import multipleChoiceQRequests from './multipleChoiceQ'
 import shortAnswerQRequests from './shortAnswerQ'
 import studentCountryRequests from './studentsInCountries'
 import listeningQRequests from './listeningQ'
+import taughtByRequests from './taughtBy'
 
 
 const requests = {
@@ -44,7 +45,10 @@ const requests = {
   },  
   listeningqs: {
     ...listeningQRequests
-  } 
+  },
+  taught_by:{
+    ...taughtByRequests
+  }
 }
 
 export default requests
