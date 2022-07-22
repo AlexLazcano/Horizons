@@ -16,27 +16,31 @@ const languageRequests = {
     if (!LanguageCode || !Name) {
       // see if you can add an error message to the screen later
     }
-    await axios
+    const res = await axios
       .post(`${BACKEND_URL}/languages`, {
         LanguageCode,
         Name
       })
       .then(res => {
         console.log('post response', res)
+        return res
       })
       .catch(err => {
         console.log(err)
       })
+      return res
   },
   delete: async code => {
-    await axios
+    const res = await axios
       .delete(`${BACKEND_URL}/languages/${code}`)
       .then(res => {
         console.log('delete response', res)
+        return res
       })
       .catch(err => {
         console.log(err)
       })
+      return res
   }
 }
 

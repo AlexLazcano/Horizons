@@ -19,7 +19,7 @@ const quizRequests = {
     }
     const DueDateFormatted = moment(DueDate)?.format('YYYY-MM-DD')
 
-    await axios
+    const res = await axios
       .post(`${BACKEND_URL}/quizzes`, {
         LanguageCode,
         IID,
@@ -27,20 +27,24 @@ const quizRequests = {
       })
       .then(res => {
         console.log('post response', res)
+        return res
       })
       .catch(err => {
         console.log(err)
       })
+      return res
   },
   delete: async id => {
-    await axios
+    const res = await axios
       .delete(`${BACKEND_URL}/quizzes/${id}`)
       .then(res => {
         console.log('delete response', res)
+        return res
       })
       .catch(err => {
         console.log(err)
       })
+      return res
   }
 }
 
