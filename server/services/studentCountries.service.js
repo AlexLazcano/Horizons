@@ -27,19 +27,19 @@ const createStudentCountry = async student_in_country => {
   }
 }
 
-// const deleteQuiz = async id => {
-//   try {
-//     const result = await db.query('DELETE FROM quizzes WHERE QuizID = ?', [id])
-//     return {
-//       message: result.affectedRows ? 'Quiz deleted' : 'Quiz deletion failed'
-//     }
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
+const deleteStudentCountry = async (id, id2) => {
+  try {
+    const result = await db.query('DELETE FROM students_in_countries WHERE SID = ? AND CountryID = ?', [id, id2])
+    return {
+      message: result.affectedRows ? 'Relation deleted' : 'Relation deletion failed'
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 module.exports = {
     getStudentCountries,
-    createStudentCountry
-  //deleteQuiz
+    createStudentCountry,
+    deleteStudentCountry
 }

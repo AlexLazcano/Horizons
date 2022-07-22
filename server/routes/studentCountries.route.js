@@ -7,7 +7,7 @@ router.get('/', studentCountries.get)
 
 router.post('/', studentCountries.post)
 
-//router.delete('/:id', quizzes.remove)
+router.delete('/:id/:id2', studentCountries.remove)
 
 
 module.exports = router

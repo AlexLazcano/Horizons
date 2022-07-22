@@ -22,18 +22,18 @@ const post = async (req, res) => {
     }
 }
 
-// const remove = async (req, res) => {
-//     try {
-//         const result = await quizzes.deleteQuiz(req.params.id)
+const remove = async (req, res) => {
+    try {
+        const result = await studentCountries.deleteStudentCountry(req.params.id, req.params.id2)
 
-//         res.json(result)
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+        res.json(result)
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 module.exports = {
     get,
-    post
-    //remove
+    post,
+    remove
 }

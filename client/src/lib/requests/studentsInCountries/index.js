@@ -30,18 +30,18 @@ const studentCountryRequests = {
       })
       return res
   },
-  // delete: async id => {
-  //   const res = await axios
-  //     .delete(`${BACKEND_URL}/quizzes/${id}`)
-  //     .then(res => {
-  //       console.log('delete response', res)
-  //       return res
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  //     return res
-  // }
+  delete: async (id, id2) => {
+    const res = await axios
+      .delete(`${BACKEND_URL}/studentsincountries/${id}/${id2}`)
+      .then(res => {
+        console.log('delete response', res)
+        return res
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      return res
+  }
 }
 
 export default studentCountryRequests
