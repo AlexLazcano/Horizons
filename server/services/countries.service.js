@@ -42,7 +42,7 @@ const updateCountry = async (id, country) => {
     const { Name } = country
     const result = await db.query(
       'UPDATE horizons.countries SET Name = ? WHERE CountryID = ?',
-      [Name]
+      [Name,id]
     )
     return {
       message: result.affectedRows ? 'Country updated' : 'Country not updated',
