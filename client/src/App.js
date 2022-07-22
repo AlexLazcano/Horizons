@@ -18,8 +18,8 @@ function App() {
     getAll()
   }, [currentTable])
 
-  const deleteRecord = id => {
-    requests[currentTable].delete(id).then(res => {
+  const deleteRecord = (id, id2) => {
+    requests[currentTable].delete.apply(this, (id2 != null ? [id, id2] : [id])).then(res => {
       if (res.status === 200) {
         getAll()
       }
@@ -448,7 +448,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: ['1', '3']
+            options: ['1', '3', '7']
           }
         },
         {
@@ -523,6 +523,56 @@ function App() {
               <Space size='middle'>
                 <Button onClick={() => editRow(record)}>Edit</Button>
                 <Button danger onClick={() => deleteRecord(record?.CountryID)}>
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
+        }
+      ]
+    },
+    students_in_countries: {
+      TableName: "Students In Countries",
+      Columns: [
+        {
+          title: 'SID',
+          dataIndex: 'SID',
+          key: 'SID',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: ['1', '3', '4']
+          }
+        },
+        {
+          title: 'CountryID',
+          dataIndex: 'CountryID',
+          key: 'CountryID',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: ['1']
+          }
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => {
+            const editable = isEditing(record)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button type='primary' onClick={() => saveEdit(record.CountryID)}>
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button danger onClick={() => deleteRecord(record?.SID, record?.CountryID)}>
                   Delete
                 </Button>
               </Space>
