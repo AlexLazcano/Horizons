@@ -6,6 +6,7 @@ import groupRequests from './groups'
 import studyPlanRequests from './studyplans'
 import multipleChoiceQRequests from './multipleChoiceQ'
 import shortAnswerQRequests from './shortAnswerQ'
+import listeningQRequests from './listeningQ'
 
 
 const requests = {
@@ -33,8 +34,9 @@ const requests = {
   shortanswerqs: {
     ...shortAnswerQRequests
   },
-
-  
+  listeningqs: {
+    ...listeningQRequests
+  } 
 }
 
 export default requests

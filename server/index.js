@@ -9,6 +9,7 @@ const instructors = require('./routes/instructors.route')
 const groups = require('./routes/groups.route')
 const multipleChoiceQs = require('./routes/multipleChoiceQ.route')
 const shortAnswerQs = require('./routes/shortAnswerQ.route')
+const listeningQs = require('./routes/listeningQ.route')
 
 
 const cors = require('cors')
@@ -26,8 +27,8 @@ app.use('/groups', groups)
 app.use('/studyplans', studyplans)
 app.use('/multipleChoiceQ', multipleChoiceQs)
 app.use('/shortAnswerQ', shortAnswerQs)
-
 app.use('/quizzes', quizzes)
+app.use('/listeningQ', listeningQs)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
