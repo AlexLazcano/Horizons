@@ -1,4 +1,3 @@
-
 export const BACKEND_URL = process.env.REACT_APP_BACKEND
 
 export const TABLE_NAMES = [
@@ -39,12 +38,16 @@ export const TABLE_NAMES = [
     sqlTable: 'shortanswerqs'
   },
   {
+    name: 'ListeningQ',
+    sqlTable: 'listeningqs'
+  },
+  {
     name: 'StudentsInCountries',
     sqlTable: 'students_in_countries'
   },
   {
-    name: 'ListeningQ',
-    sqlTable: 'listeningqs'
+    name: 'TaughtBy',
+    sqlTable: 'taught_by'
   }
 ]
 

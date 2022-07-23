@@ -109,6 +109,7 @@ function App() {
           title: 'Controls',
           key: 'key',
           dataIndex: 'key',
+          hidden: true,
           width: '10%',
           render: (text, record) => {
             const editable = isEditing(record)
@@ -162,6 +163,7 @@ function App() {
           title: 'Controls',
           key: 'key',
           dataIndex: 'key',
+          hidden: true,
           width: '10%',
           render: (text, record) => (
             <Space size='middle'>
@@ -420,6 +422,7 @@ function App() {
           title: 'Controls',
           key: 'key',
           dataIndex: 'key',
+          hidden: true,
           width: '10%',
           render: (text, record) => (
             <Space size='middle'>
@@ -509,6 +512,7 @@ function App() {
           title: 'Controls',
           key: 'key',
           dataIndex: 'key',
+          hidden: true,
           width: '10%',
           render: (text, record) => {
             const editable = isEditing(record)
@@ -573,6 +577,56 @@ function App() {
               <Space size='middle'>
                 <Button onClick={() => editRow(record)}>Edit</Button>
                 <Button danger onClick={() => deleteRecord(record?.SID, record?.CountryID)}>
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
+        }
+      ]
+    },
+    taught_by: {
+      TableName: "Taught By",
+      Columns: [
+        {
+          title: 'IID',
+          dataIndex: 'IID',
+          key: 'IID',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: ['1', '3', '4']
+          }
+        },
+        {
+          title: 'SID',
+          dataIndex: 'SID',
+          key: 'SID',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: ['1', '4']
+          }
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => {
+            const editable = isEditing(record)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button type='primary' onClick={() => saveEdit(record.CountryID)}>
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button danger onClick={() => deleteRecord(record?.IID, record?.SID)}>
                   Delete
                 </Button>
               </Space>
