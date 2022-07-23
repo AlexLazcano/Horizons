@@ -4,7 +4,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { StyledApp } from './app-styles'
 import Controls from './components/Controls'
 import EditableCell from './components/editableCell'
-// import { TABLE_COLUMNS } from './lib/constants'
+
+import { TABLE_DEPENDENCIES } from './lib/constants'
 import requests from './lib/requests'
 
 function App() {
@@ -17,9 +18,7 @@ function App() {
 
   useEffect(() => {
     getAll()
-    setIds('languages')
-    setIds('students')
-    console.log('ids', ids.current)
+    getDependencies(currentTable)
   }, [currentTable])
 
   const deleteRecord = (id, id2) => {
@@ -78,6 +77,12 @@ function App() {
       .catch(err => {
         console.log(err)
       })
+  }
+
+  const getDependencies = async table => {
+    TABLE_DEPENDENCIES[table].forEach(async dependency => {
+      await setIds(dependency)
+    })
   }
 
   // Memoize the columns
