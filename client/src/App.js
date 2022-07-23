@@ -362,6 +362,81 @@ function App() {
         }
       ]
     },
+    lessons: {
+      TableName: 'Lessons',
+      Columns: [
+        {
+          title: 'LID',
+          dataIndex: 'LID',
+          key: 'LID',
+          hidden: true,
+          type: 'input'
+        },
+        {
+          title: 'IID',
+          dataIndex: 'IID',
+          key: 'IID',
+          type: 'input',
+          editable: true
+        },
+        {
+          title: 'Time Zone',
+          dataIndex: 'Timezone',
+          key: 'Timezone',
+          type: 'select',
+          editable: true,
+          inputProps: {
+            showSearch: true,
+            options: ['America/New_York', 'America/Chicago', 'America/Denver']
+          }
+        },
+        {
+          title: 'Date',
+          dataIndex: 'Date',
+          key: 'Date',
+          type: 'date',
+          editable: true
+        },
+        {
+          title: 'Time',
+          dataIndex: 'Time',
+          key: 'Time',
+          type: 'time',
+          editable: true
+        },
+        {
+          title: 'Topic',
+          dataIndex: 'Topic',
+          key: 'Topic',
+          type: 'input',
+          editable: true
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          width: '10%',
+          render: (text, record) => {
+            const editable = isEditing(record)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button type='primary' onClick={() => saveEdit(record.LID)}>
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button danger onClick={() => deleteRecord(record?.LID)}>
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
+        }
+      ]
+    },
     multiplechoiceqs: {
       TableName: 'Multiple Choice Questions',
       Columns: [
