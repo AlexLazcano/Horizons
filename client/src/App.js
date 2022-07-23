@@ -358,7 +358,33 @@ function App() {
           title: 'Name',
           dataIndex: 'Name',
           key: 'Name',
-          type: 'input'
+          type: 'input',
+          editable: true
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => {
+            const editable = isEditing(record)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button type='primary' onClick={() => saveEdit(record.GID)}>
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button danger onClick={() => deleteRecord(record?.GID)}>
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
         }
       ]
     },

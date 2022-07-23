@@ -22,7 +22,39 @@ const post = async (req, res) => {
     }
 }
 
+const remove = async (req, res) => {
+    try {
+      const result = await groups.deleteGroup(req.params.id)
+  
+      res.json(result)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
+  const patch = async (req, res) => {
+    try {
+      const result = await groups.updateGroup(req.params.id, req.body)
+      res.json(result)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
+  const getIds = async (req, res) => {
+    try {
+      const result = await groups.getGIDs()
+  
+      res.json(result)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 module.exports = {
     get,
-    post
+    post,  
+    remove,
+    patch,
+    getIds
 } 

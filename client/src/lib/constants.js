@@ -3,6 +3,7 @@ export const TABLE_DEPENDENCIES = {
   student: [],
   instructor: [],
   countries: [],
+  groups: [],
   studyplans: ['students', 'languages'],
   quizzes: ['instructors', 'languages']
 }
