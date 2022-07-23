@@ -39,8 +39,18 @@ const deleteInstructor = async id => {
   }
 }
 
+const getIIDs = async () => {
+  try {
+    const result = await db.query('SELECT IID FROM instructors')
+    return result
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   getInstructors,
   createInstructor,
-  deleteInstructor
+  deleteInstructor,
+  getIIDs
 }

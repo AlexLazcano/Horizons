@@ -14,7 +14,7 @@ function App() {
   const [data, setData] = useState()
   const [editingKey, setEditingKey] = useState('')
   const [form] = Form.useForm()
-  const ids = useRef({})
+  const idsRef = useRef({})
 
   useEffect(() => {
     getAll()
@@ -66,11 +66,11 @@ function App() {
       console.log('Validate Failed:', errInfo)
     }
   }
-  const setIds = async table => {
+  const getIds = async table => {
     await requests[table]
       ?.getIds()
       .then(res => {
-        ids.current[table] = res?.data.map(id => {
+        idsRef.current[table] = res?.data.map(id => {
           return Object.values(id)[0]
         })
       })
@@ -80,8 +80,8 @@ function App() {
   }
 
   const getDependencies = async table => {
-    TABLE_DEPENDENCIES[table].forEach(async dependency => {
-      await setIds(dependency)
+    TABLE_DEPENDENCIES[table]?.forEach(async dependency => {
+      await getIds(dependency)
     })
   }
 
@@ -247,7 +247,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: ['ES-ES']
+            options: idsRef.current?.languages
           }
         },
         {
@@ -257,7 +257,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: ['1']
+            options: idsRef.current?.instructors
           }
         },
         {
@@ -312,7 +312,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: ids.current['languages']
+            options: idsRef.current['languages']
           }
         },
         {
@@ -322,7 +322,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: ids.current['students']
+            options: idsRef.current['students']
           }
         },
         {
