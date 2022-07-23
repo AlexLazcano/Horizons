@@ -11,5 +11,7 @@ router.delete('/:id', countries.remove)
 
 router.patch('/:id', countries.patch)
 
+router.get('/ids', countries.getIds)
+
 
 module.exports = router

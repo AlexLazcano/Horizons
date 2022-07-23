@@ -2,6 +2,7 @@ export const BACKEND_URL = process.env.REACT_APP_BACKEND
 export const TABLE_DEPENDENCIES = {
   student: [],
   instructor: [],
+  countries: [],
   studyplans: ['students', 'languages'],
   quizzes: ['instructors', 'languages']
 }
