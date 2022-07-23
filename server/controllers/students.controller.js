@@ -40,9 +40,20 @@ const patch = async (req, res) => {
   }
 }
 
+const getIds = async (req, res) => {
+  try {
+    const result = await students.getSIDs()
+
+    res.json(result)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   get,
   post,
   remove,
-  patch
+  patch,
+  getIds
 }

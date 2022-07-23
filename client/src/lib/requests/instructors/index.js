@@ -46,6 +46,18 @@ const instructorsRequest = {
       })
 
     return res
+  },
+  getIds: async () => {
+    const res = await axios
+      .get(`${BACKEND_URL}/instructors/ids`)
+      .then(res => {
+        return res
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+    return res
   }
 }
 

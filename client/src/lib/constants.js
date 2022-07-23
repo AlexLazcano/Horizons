@@ -1,9 +1,15 @@
 export const BACKEND_URL = process.env.REACT_APP_BACKEND
-
+export const TABLE_DEPENDENCIES = {
+  student: [],
+  instructor: [],
+  studyplans: ['students', 'languages'],
+  quizzes: ['instructors', 'languages']
+}
 export const TABLE_NAMES = [
   {
     name: 'Students',
-    sqlTable: 'students'
+    sqlTable: 'students',
+    dependencies: []
   },
   {
     name: 'Instructors',
@@ -50,4 +56,3 @@ export const TABLE_NAMES = [
     sqlTable: 'taught_by'
   }
 ]
-

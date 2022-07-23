@@ -53,9 +53,19 @@ const updateStudent = async (id, student) => {
   }
 }
 
+const getSIDs = async () => {
+  try {
+    const rows = db.query('SELECT SID FROM students')
+    return !rows ? [] : rows
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   getStudents,
   createStudent,
   deleteStudent,
-  updateStudent
+  updateStudent,
+  getSIDs
 }

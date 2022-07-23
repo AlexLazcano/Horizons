@@ -40,8 +40,18 @@ const deleteLanguage = async id => {
   }
 }
 
+const getLanguageCodes = async () => {
+  try {
+    const rows = db.query('SELECT LanguageCode FROM languages')
+    return !rows ? [] : rows
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 module.exports = {
   getLanguages,
   createLanguage,
-  deleteLanguage
+  deleteLanguage,
+  getLanguageCodes
 }

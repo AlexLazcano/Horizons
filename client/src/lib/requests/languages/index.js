@@ -28,7 +28,7 @@ const languageRequests = {
       .catch(err => {
         console.log(err)
       })
-      return res
+    return res
   },
   delete: async code => {
     const res = await axios
@@ -40,7 +40,17 @@ const languageRequests = {
       .catch(err => {
         console.log(err)
       })
-      return res
+    return res
+  },
+  getIds: async () => {
+    return await axios
+      .get(`${BACKEND_URL}/languages/ids`)
+      .then(res => {
+        return res
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 
