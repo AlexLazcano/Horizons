@@ -1,12 +1,13 @@
 import React from 'react'
-import { DatePicker, Input, Checkbox } from 'antd'
+import { DatePicker, Input, Checkbox, TimePicker } from 'antd'
 import DynamicSelect from './DynamicSelect'
 
 const INPUTS = {
   date: props => <DatePicker {...props} />,
   input: props => <Input {...props} />,
   checkbox: props => <Checkbox {...props} />,
-  select: props => <DynamicSelect {...props} />
+  select: props => <DynamicSelect {...props} />,
+  time: props => <TimePicker minuteStep={5} {...props} />
 }
 
 const DynamicInput = ({ inputType, onChange, inputProps }) => {

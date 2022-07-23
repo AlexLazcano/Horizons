@@ -401,7 +401,7 @@ function App() {
           title: 'Time',
           dataIndex: 'Time',
           key: 'Time',
-          type: 'input',
+          type: 'time',
           editable: true
         },
         {

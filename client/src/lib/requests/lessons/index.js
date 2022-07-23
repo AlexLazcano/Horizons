@@ -14,20 +14,21 @@ const lessonRequests = {
       })
     return res
   },
-  create: async ({  IID, Timezone, Date, Time, Topic }) => {
+  create: async ({ IID, Timezone, Date, Time, Topic }) => {
     console.log('create', { IID, Timezone, Date, Time, Topic })
     if (!IID || !Timezone || !Date || !Time || !Topic) {
       console.error('Missing required fields for student creation')
     }
     const date = Date ? moment(Date)?.format('YYYY-MM-DD') : null
+    // format time to HH:mm:ss
+    const time = Time ? moment(Time).format('HH:mm') : null
     const res = await axios
       .post(`${BACKEND_URL}/lessons`, {
         IID,
         Timezone,
         Date: date,
-        Time, //////ASK
+        Time: time,
         Topic
-        
       })
       .then(res => {
         console.log('post response', res)
@@ -53,12 +54,15 @@ const lessonRequests = {
   },
   update: async (id, data) => {
     const { IID, Timezone, Date, Time, Topic } = data
+
+    // format time to HH:mm:ss
+    const time = Time ? moment(Time).format('HH:mm') : null
     const res = await axios
       .patch(`${BACKEND_URL}/lessons/${id}`, {
         IID,
         Timezone,
         Date: Date ? moment(Date)?.format('YYYY-MM-DD') : null,
-        Time,
+        Time: time,
         Topic
       })
       .then(res => {
