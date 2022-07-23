@@ -358,7 +358,33 @@ function App() {
           title: 'Name',
           dataIndex: 'Name',
           key: 'Name',
-          type: 'input'
+          type: 'input',
+          editable: true
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => {
+            const editable = isEditing(record)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button type='primary' onClick={() => saveEdit(record.GID)}>
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button danger onClick={() => deleteRecord(record?.GID)}>
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
         }
       ]
     },
@@ -450,43 +476,75 @@ function App() {
           title: 'CorrectChoice',
           dataIndex: 'CorrectChoice',
           key: 'CorrectChoice',
-          type: 'input'
+          type: 'input',
+          editable: true
         },
         {
           title: 'QuizID',
           dataIndex: 'QuizID',
           key: 'QuizID',
-          type: 'input'
+          type: 'input',
+          editable: true
         },
         {
           title: 'Prompt',
           dataIndex: 'Prompt',
           key: 'Prompt',
-          type: 'input'
+          type: 'input',
+          editable: true
         },
         {
           title: 'Choice1',
           dataIndex: 'Choice1',
           key: 'Choice1',
-          type: 'input'
+          type: 'input',
+          editable: true
         },
         {
           title: 'Choice2',
           dataIndex: 'Choice2',
           key: 'Choice2',
-          type: 'input'
+          type: 'input',
+          editable: true
         },
         {
           title: 'Choice3',
           dataIndex: 'Choice3',
           key: 'Choice3',
-          type: 'input'
+          type: 'input',
+          editable: true
         },
         {
           title: 'Choice4',
           dataIndex: 'Choice4',
           key: 'Choice4',
-          type: 'input'
+          type: 'input',
+          editable: true
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => {
+            const editable = isEditing(record)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button type='primary' onClick={() => saveEdit(record.QID)}>
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button danger onClick={() => deleteRecord(record?.QID)}>
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
         }
       ]
     },

@@ -7,5 +7,11 @@ router.get('/', multipleChoiceQs.get)
 
 router.post('/', multipleChoiceQs.post)
 
+router.delete('/:id', multipleChoiceQs.remove)
+
+router.patch('/:id', multipleChoiceQs.patch)
+
+router.get('/ids', multipleChoiceQs.getIds)
+
 
 module.exports = router

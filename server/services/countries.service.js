@@ -53,9 +53,19 @@ const updateCountry = async (id, country) => {
   }
 }
 
+const getCountryIDs = async () => {
+  try {
+    const rows = db.query('SELECT CountryID FROM countries')
+    return !rows ? [] : rows
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
     getCountries,
     createCountry,
     deleteCountry,
-    updateCountry
+    updateCountry,
+    getCountryIDs
 }

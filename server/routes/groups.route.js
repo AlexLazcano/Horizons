@@ -7,5 +7,11 @@ router.get('/', groups.get)
 
 router.post('/', groups.post)
 
+router.delete('/:id', groups.remove)
+
+router.patch('/:id', groups.patch)
+
+router.get('/ids', groups.getIds)
+
 
 module.exports = router 

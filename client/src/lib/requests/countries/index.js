@@ -19,26 +19,31 @@ const countryRequests = {
     if (!Name) {
       console.error('Missing required fields for country creation')
     }
-    await axios
+    const res = await axios
       .post(`${BACKEND_URL}/countries`, {
         Name
       })
       .then(res => {
         console.log('post response', res)
+        return res
       })
       .catch(err => {
         console.log(err)
       })
+    return res
   },
   delete: async id => {
-    await axios
+    const res = await axios
       .delete(`${BACKEND_URL}/countries/${id}`)
       .then(res => {
         console.log('delete response', res)
+        return res
       })
       .catch(err => {
         console.log(err)
       })
+
+      return res
   },
   update: async (id, data) => {
     const { Name } = data
@@ -49,6 +54,17 @@ const countryRequests = {
       .then(res => {
         console.log('patch response', res)
         return res.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    return res
+  },
+  getIds: async () => {
+    const res = await axios
+      .get(`${BACKEND_URL}/countries/ids`)
+      .then(res => {
+        return res
       })
       .catch(err => {
         console.log(err)

@@ -3,7 +3,7 @@ import { BACKEND_URL } from '../../constants'
 
 const MultipleChoiceQRequests = {
   getAll: async () => {
-    return axios
+    const res = await axios
       .get(`${BACKEND_URL}/multiplechoiceq`)
       .then(res => {
         return res.data
@@ -11,6 +11,7 @@ const MultipleChoiceQRequests = {
       .catch(err => {
         console.log(err)
       })
+    return res
   },
   create: async ({
     CorrectChoice,
@@ -50,7 +51,61 @@ const MultipleChoiceQRequests = {
         console.log(err)
       })
     return res
+  },
+  delete: async id => {
+    const res = await axios
+      .delete(`${BACKEND_URL}/multiplechoiceq/${id}`)
+      .then(res => {
+        console.log('delete response', res)
+        return res
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+    return res
+  },
+  update: async (id, data) => {
+    const {         
+      CorrectChoice,
+      QuizID,
+      Prompt,
+      Choice1,
+      Choice2,
+      Choice3,
+      Choice4 } = data
+      
+    const res = await axios
+      .patch(`${BACKEND_URL}/multiplechoiceq/${id}`, {
+        CorrectChoice,
+        QuizID,
+        Prompt,
+        Choice1,
+        Choice2,
+        Choice3,
+        Choice4
+      })
+      .then(res => {
+        console.log('patch response', res)
+        return res.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    return res
+  },
+  getIds: async () => {
+    const res = await axios
+      .get(`${BACKEND_URL}/multiplechoiceq/ids`)
+      .then(res => {
+        return res
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    return res
   }
+
 }
 
 export default MultipleChoiceQRequests
