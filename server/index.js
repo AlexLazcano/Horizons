@@ -13,6 +13,7 @@ const shortAnswerQs = require('./routes/shortAnswerQ.route')
 const studentCountries = require('./routes/studentCountries.route')
 const taughtBy = require('./routes/taughtBy.route')
 const listeningQs = require('./routes/listeningQ.route')
+const lessonsContainStudents = require('./routes/lessonStudents.route')
 
 
 const cors = require('cors')
@@ -36,6 +37,7 @@ app.use('/studentsincountries', studentCountries)
 app.use('/quizzes', quizzes)
 app.use('/listeningQ', listeningQs)
 app.use('/taughtby', taughtBy)
+app.use('/lessonscontainstudents', lessonsContainStudents)
 
 
 app.listen(PORT, () => {

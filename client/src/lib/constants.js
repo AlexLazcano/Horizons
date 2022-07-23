@@ -54,5 +54,9 @@ export const TABLE_NAMES = [
   {
     name: 'TaughtBy',
     sqlTable: 'taught_by'
+  },
+  {
+    name: 'LessonsContainStudents',
+    sqlTable: 'lessons_contain_students'
   }
 ]
