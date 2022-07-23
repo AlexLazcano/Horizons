@@ -32,7 +32,7 @@ const quizRequests = {
       .catch(err => {
         console.log(err)
       })
-      return res
+    return res
   },
   delete: async id => {
     const res = await axios
@@ -44,7 +44,18 @@ const quizRequests = {
       .catch(err => {
         console.log(err)
       })
-      return res
+    return res
+  },
+  getIds: async () => {
+    const res = await axios
+      .get(`${BACKEND_URL}/quizzes/ids`)
+      .then(res => {
+        return res
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    return res
   }
 }
 

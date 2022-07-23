@@ -29,7 +29,10 @@ const createLesson = async lesson => {
 
 const deleteLesson = async id => {
   try {
-    const result = await db.query('DELETE FROM horizons.lessons WHERE LID = ?', [id])
+    const result = await db.query(
+      'DELETE FROM horizons.lessons WHERE LID = ?',
+      [id]
+    )
     return {
       message: result.affectedRows ? 'Lesson deleted' : 'Lesson not deleted'
     }
@@ -53,9 +56,18 @@ const updateLesson = async (id, lesson) => {
   }
 }
 
+const getLessonIDs = async () => {
+  try {
+    const rows = db.query('SELECT LID FROM horizons.lessons')
+    return !rows ? [] : rows
+  } catch (error) {
+    console.log(error)
+  }
+}
 module.exports = {
-    getLessons,
-    createLesson,
-    deleteLesson,
-    updateLesson
-    }
+  getLessons,
+  createLesson,
+  deleteLesson,
+  updateLesson,
+  getLessonIDs
+}

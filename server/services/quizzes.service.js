@@ -39,8 +39,18 @@ const deleteQuiz = async id => {
   }
 }
 
+const getQuizIds = async () => {
+  try {
+    const rows = db.query('SELECT QuizID FROM quizzes')
+    return !rows ? [] : rows
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   getQuizzes,
   createQuiz,
-  deleteQuiz
+  deleteQuiz,
+  getQuizIds
 }

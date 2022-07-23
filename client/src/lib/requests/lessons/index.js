@@ -73,6 +73,18 @@ const lessonRequests = {
         console.log(err)
       })
     return res
+  },
+  getIds: async () => {
+    const res = await axios
+      .get(`${BACKEND_URL}/lessons/ids`)
+      .then(res => {
+        return res
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    console.log('getIDs response', res)
+    return res
   }
 }
 

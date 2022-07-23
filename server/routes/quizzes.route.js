@@ -9,5 +9,6 @@ router.post('/', quizzes.post)
 
 router.delete('/:id', quizzes.remove)
 
+router.get('/ids', quizzes.getIDs)
 
 module.exports = router

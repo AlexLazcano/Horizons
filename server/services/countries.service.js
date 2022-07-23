@@ -29,7 +29,10 @@ const createCountry = async country => {
 
 const deleteCountry = async id => {
   try {
-    const result = await db.query('DELETE FROM horizons.countries WHERE CountryID = ?', [id])
+    const result = await db.query(
+      'DELETE FROM horizons.countries WHERE CountryID = ?',
+      [id]
+    )
     return {
       message: result.affectedRows ? 'Country deleted' : 'Country not deleted'
     }
@@ -42,7 +45,7 @@ const updateCountry = async (id, country) => {
     const { Name } = country
     const result = await db.query(
       'UPDATE horizons.countries SET Name = ? WHERE CountryID = ?',
-      [Name,id]
+      [Name, id]
     )
     return {
       message: result.affectedRows ? 'Country updated' : 'Country not updated',
@@ -52,15 +55,15 @@ const updateCountry = async (id, country) => {
     console.log(error)
   }
 }
-
 const getCountryIDs = async () => {
   try {
-    const rows = db.query('SELECT CountryID FROM countries')
+    const rows = db.query('SELECT CountryID FROM horizons.countries')
     return !rows ? [] : rows
   } catch (error) {
     console.log(error)
   }
 }
+
 
 module.exports = {
     getCountries,

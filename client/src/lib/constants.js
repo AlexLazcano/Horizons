@@ -5,7 +5,14 @@ export const TABLE_DEPENDENCIES = {
   countries: [],
   groups: [],
   studyplans: ['students', 'languages'],
-  quizzes: ['instructors', 'languages']
+  quizzes: ['instructors', 'languages'],
+  lessons: ['instructors'],
+  multiplechoiceqs: ['quizzes'],
+  shortanswerqs: ['quizzes'],
+  listeningqs: ['quizzes'],
+  students_in_countries: ['students', 'countries'],
+  taught_by: ['instructors', 'students'],
+  lessons_contain_students: ['lessons', 'students'],
 }
 export const TABLE_NAMES = [
   {
