@@ -2,7 +2,7 @@ const countries = require('../services/countries.service')
 
 //TODO: Add Create, Update, Delete
 const get = async (req, res) => {
-  try {   
+  try {
     const result = await countries.getCountries()
 
     res.json(result)

@@ -11,5 +11,6 @@ router.delete('/:id', lessons.remove)
 
 router.patch('/:id', lessons.patch)
 
+router.get('/ids', lessons.getIDs)
 
 module.exports = router

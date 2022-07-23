@@ -314,7 +314,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: idsRef.current['languages']
+            options: idsRef.current.languages
           }
         },
         {
@@ -324,7 +324,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: idsRef.current['students']
+            options: idsRef.current.students
           }
         },
         {
@@ -402,7 +402,11 @@ function App() {
           title: 'IID',
           dataIndex: 'IID',
           key: 'IID',
-          type: 'input',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: idsRef.current.instructors
+          },
           editable: true
         },
         {
@@ -608,7 +612,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: ['1', '3', '7']
+            options: idsRef.current.quizzes
           }
         },
         {
@@ -702,7 +706,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: ['1', '3', '4']
+            options: idsRef.current.students
           }
         },
         {
@@ -712,7 +716,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: ['1']
+            options: idsRef.current.countries
           }
         },
         {
@@ -749,7 +753,7 @@ function App() {
       ]
     },
     taught_by: {
-      TableName: "Taught By",
+      TableName: 'Taught By',
       Columns: [
         {
           title: 'IID',
@@ -758,7 +762,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: ['1', '3', '4']
+            options: idsRef.current.instructors
           }
         },
         {
@@ -768,7 +772,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: ['1', '4']
+            options: idsRef.current.students
           }
         },
         {
@@ -782,14 +786,20 @@ function App() {
             return editable ? (
               <Space size='middle'>
                 <Button onClick={cancelEdit}>Cancel</Button>
-                <Button type='primary' onClick={() => saveEdit(record.CountryID)}>
+                <Button
+                  type='primary'
+                  onClick={() => saveEdit(record.CountryID)}
+                >
                   Save
                 </Button>
               </Space>
             ) : (
               <Space size='middle'>
                 <Button onClick={() => editRow(record)}>Edit</Button>
-                <Button danger onClick={() => deleteRecord(record?.IID, record?.SID)}>
+                <Button
+                  danger
+                  onClick={() => deleteRecord(record?.IID, record?.SID)}
+                >
                   Delete
                 </Button>
               </Space>
@@ -798,7 +808,7 @@ function App() {
         }
       ]
     },
-    lessons_contain_students:{
+    lessons_contain_students: {
       TableName: 'Lessons Contain Students',
       Columns: [
         {
@@ -808,7 +818,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: ['1', '2', '3', '4']
+            options: idsRef.current.students
           }
         },
         {
@@ -818,7 +828,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: ['1', '4']
+            options: idsRef.current.lessons
           }
         },
         {
@@ -832,14 +842,20 @@ function App() {
             return editable ? (
               <Space size='middle'>
                 <Button onClick={cancelEdit}>Cancel</Button>
-                <Button type='primary' onClick={() => saveEdit(record.CountryID)}>
+                <Button
+                  type='primary'
+                  onClick={() => saveEdit(record.CountryID)}
+                >
                   Save
                 </Button>
               </Space>
             ) : (
               <Space size='middle'>
                 <Button onClick={() => editRow(record)}>Edit</Button>
-                <Button danger onClick={() => deleteRecord(record?.SID, record?.LID)}>
+                <Button
+                  danger
+                  onClick={() => deleteRecord(record?.SID, record?.LID)}
+                >
                   Delete
                 </Button>
               </Space>
