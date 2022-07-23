@@ -10,6 +10,7 @@ import shortAnswerQRequests from './shortAnswerQ'
 import studentCountryRequests from './studentsInCountries'
 import listeningQRequests from './listeningQ'
 import taughtByRequests from './taughtBy'
+import lessonsStudentsRequests from './lessonsContainStudents'
 
 
 const requests = {
@@ -48,6 +49,9 @@ const requests = {
   },
   taught_by:{
     ...taughtByRequests
+  },
+  lessons_contain_students: {
+    ...lessonsStudentsRequests
   }
 }
 
