@@ -1,6 +1,6 @@
 import { Button, Form, Row, Space, Table } from 'antd'
 import 'antd/dist/antd.min.css'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { StyledApp } from './app-styles'
 import Controls from './components/Controls'
 import EditableCell from './components/editableCell'
@@ -13,17 +13,23 @@ function App() {
   const [data, setData] = useState()
   const [editingKey, setEditingKey] = useState('')
   const [form] = Form.useForm()
+  const ids = useRef({})
 
   useEffect(() => {
     getAll()
+    setIds('languages')
+    setIds('students')
+    console.log('ids', ids.current)
   }, [currentTable])
 
   const deleteRecord = (id, id2) => {
-    requests[currentTable].delete.apply(this, (id2 != null ? [id, id2] : [id])).then(res => {
-      if (res.status === 200) {
-        getAll()
-      }
-    })
+    requests[currentTable].delete
+      .apply(this, id2 != null ? [id, id2] : [id])
+      .then(res => {
+        if (res.status === 200) {
+          getAll()
+        }
+      })
   }
   const updateRecord = (id, data) => {
     return requests[currentTable].update(id, data)
@@ -61,6 +67,19 @@ function App() {
       console.log('Validate Failed:', errInfo)
     }
   }
+  const setIds = async table => {
+    await requests[table]
+      ?.getIds()
+      .then(res => {
+        ids.current[table] = res?.data.map(id => {
+          return Object.values(id)[0]
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   // Memoize the columns
   const TABLE_COLUMNS = {
     students: {
@@ -288,7 +307,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: ['ES-ES']
+            options: ids.current['languages']
           }
         },
         {
@@ -298,7 +317,7 @@ function App() {
           type: 'select',
           inputProps: {
             showSearch: true,
-            options: ['1']
+            options: ids.current['students']
           }
         },
         {
@@ -478,10 +497,7 @@ function App() {
           render: (text, record) => (
             <Space size='middle'>
               <Button onClick={() => console.log(record)}>Edit</Button>
-              <Button
-                danger
-                onClick={() => deleteRecord(record?.QID)}
-              >
+              <Button danger onClick={() => deleteRecord(record?.QID)}>
                 Delete
               </Button>
             </Space>
@@ -515,7 +531,10 @@ function App() {
             return editable ? (
               <Space size='middle'>
                 <Button onClick={cancelEdit}>Cancel</Button>
-                <Button type='primary' onClick={() => saveEdit(record.CountryID)}>
+                <Button
+                  type='primary'
+                  onClick={() => saveEdit(record.CountryID)}
+                >
                   Save
                 </Button>
               </Space>
@@ -532,7 +551,7 @@ function App() {
       ]
     },
     students_in_countries: {
-      TableName: "Students In Countries",
+      TableName: 'Students In Countries',
       Columns: [
         {
           title: 'SID',
@@ -565,14 +584,20 @@ function App() {
             return editable ? (
               <Space size='middle'>
                 <Button onClick={cancelEdit}>Cancel</Button>
-                <Button type='primary' onClick={() => saveEdit(record.CountryID)}>
+                <Button
+                  type='primary'
+                  onClick={() => saveEdit(record.CountryID)}
+                >
                   Save
                 </Button>
               </Space>
             ) : (
               <Space size='middle'>
                 <Button onClick={() => editRow(record)}>Edit</Button>
-                <Button danger onClick={() => deleteRecord(record?.SID, record?.CountryID)}>
+                <Button
+                  danger
+                  onClick={() => deleteRecord(record?.SID, record?.CountryID)}
+                >
                   Delete
                 </Button>
               </Space>
