@@ -564,6 +564,67 @@ function App() {
         }
       ]
     },
+    fillblankqs: {
+      TableName: 'Fill in the Blanks Questions',
+      Columns: [
+        {
+          title: 'QID',
+          dataIndex: 'QID',
+          key: 'qid',
+          hidden: true
+        },
+        {
+          title: 'QuizID',
+          dataIndex: 'QuizID',
+          key: 'QuizID',
+          type: 'select',
+          editable: true,
+          inputProps: {
+            showSearch: true,
+            options: idsRef.current.quizzes
+          }
+        },
+        {
+          title: 'Prompt',
+          dataIndex: 'Prompt',
+          key: 'Prompt',
+          type: 'input',
+          editable: true
+        },
+        {
+          title: 'Text',
+          dataIndex: 'Text',
+          key: 'Text',
+          type: 'input',
+          editable: true
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => {
+            const editable = isEditing(record)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button type='primary' onClick={() => saveEdit(record.QID)}>
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button danger onClick={() => deleteRecord(record?.QID)}>
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
+        }
+      ]
+    },
     shortanswerqs: {
       TableName: 'Short Answer Questions',
       Columns: [

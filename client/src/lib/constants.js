@@ -8,6 +8,7 @@ export const TABLE_DEPENDENCIES = {
   quizzes: ['instructors', 'languages'],
   lessons: ['instructors'],
   multiplechoiceqs: ['quizzes'],
+  fillblankqs: ['quizzes'],
   shortanswerqs: ['quizzes'],
   listeningqs: ['quizzes'],
   students_in_countries: ['students', 'countries'],
@@ -51,6 +52,10 @@ export const TABLE_NAMES = [
   {
     name: 'MultipleChoiceQ',
     sqlTable: 'multiplechoiceqs'
+  },
+  {
+    name: 'FillBlankQ',
+    sqlTable: 'fillblankqs'
   },
   {
     name: 'ShortAnswerQ',
