@@ -11,4 +11,6 @@ router.delete('/:id', instructors.remove)
 
 router.get('/ids', instructors.getIds)
 
+router.get('/rows', instructors.getRows)
+
 module.exports = router

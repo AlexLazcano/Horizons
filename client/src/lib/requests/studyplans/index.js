@@ -42,6 +42,16 @@ const studyPlanRequests = {
         console.log(err)
       })
       return res
+  },
+  getTotalRows: async () => {
+    return axios
+      .get(`${BACKEND_URL}/studyplans/rows`)
+      .then(res => {
+        return res.data[0].rowCount
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 

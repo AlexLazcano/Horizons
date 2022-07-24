@@ -9,5 +9,7 @@ router.post('/', taughtBy.post)
 
 router.delete('/:id/:id2', taughtBy.remove)
 
+router.get('/rows', taughtBy.getRows)
+
 
 module.exports = router

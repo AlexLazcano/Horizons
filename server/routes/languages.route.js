@@ -11,4 +11,6 @@ router.post('/', languages.post)
 
 router.delete('/:code', languages.remove)
 
+router.get('/rows', languages.getRows)
+
 module.exports = router

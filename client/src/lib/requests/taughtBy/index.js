@@ -41,6 +41,16 @@ const taughtByRequests = {
         console.log(err)
       })
       return res
+  },
+  getTotalRows: async () => {
+    return axios
+      .get(`${BACKEND_URL}/taughtby/rows`)
+      .then(res => {
+        return res.data[0].rowCount
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 

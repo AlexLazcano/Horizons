@@ -64,10 +64,22 @@ const getLessonIDs = async () => {
     console.log(error)
   }
 }
+
+const getRows = async () => {
+  try {
+    const rows = db.query('SELECT COUNT(*) AS rowCount FROM lessons')
+    return !rows ? [] : rows
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
+
 module.exports = {
   getLessons,
   createLesson,
   deleteLesson,
   updateLesson,
-  getLessonIDs
+  getLessonIDs,
+  getRows
 }

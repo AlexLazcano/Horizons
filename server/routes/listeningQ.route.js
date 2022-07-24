@@ -9,5 +9,7 @@ router.post('/', listeningqs.post)
 
 router.delete('/:id', listeningqs.remove)
 
+router.get('/rows', listeningqs.getRows)
+
 
 module.exports = router

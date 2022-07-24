@@ -49,9 +49,20 @@ const getLanguageCodes = async () => {
   }
 }
 
+const getRows = async () => {
+  try {
+    const rows = db.query('SELECT COUNT(*) AS rowCount FROM languages')
+    return !rows ? [] : rows
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
+
 module.exports = {
   getLanguages,
   createLanguage,
   deleteLanguage,
-  getLanguageCodes
+  getLanguageCodes,
+  getRows
 }

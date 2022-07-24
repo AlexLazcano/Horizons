@@ -9,5 +9,7 @@ router.post('/', studyplans.post)
 
 router.delete('/:id', studyplans.remove)
 
+router.get('/rows', studyplans.getRows)
+
 
 module.exports = router

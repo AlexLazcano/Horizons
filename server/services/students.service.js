@@ -62,10 +62,21 @@ const getSIDs = async () => {
   }
 }
 
+const getRows = async () => {
+  try {
+    const rows = db.query('SELECT COUNT(*) AS rowCount FROM students')
+    return !rows ? [] : rows
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
+
 module.exports = {
   getStudents,
   createStudent,
   deleteStudent,
   updateStudent,
-  getSIDs
+  getSIDs,
+  getRows
 }

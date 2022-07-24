@@ -9,4 +9,6 @@ router.post('/', shortAnswerQs.post)
 
 router.delete('/:id', shortAnswerQs.remove)
 
+router.get('/rows', shortAnswerQs.getRows)
+
 module.exports = router

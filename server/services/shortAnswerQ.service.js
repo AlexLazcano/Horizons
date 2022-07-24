@@ -36,12 +36,23 @@ const deleteShortAnswerQ = async id => {
     } catch (error) {
       console.log(error)
     }
-  }
+}
+
+const getRows = async () => {
+    try {
+      const rows = db.query('SELECT COUNT(*) AS rowCount FROM shortanswerq')
+      return !rows ? [] : rows
+    }
+    catch (err) {
+      console.log(err)
+    }
+}  
 
 module.exports = {
     getShortAnswerQs,
     createShortAnswerQ,
-    deleteShortAnswerQ
+    deleteShortAnswerQ,
+    getRows
 }
 
 

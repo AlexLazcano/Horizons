@@ -69,6 +69,16 @@ const groupRequests = {
         console.log(err)
       })
     return res
+  },
+  getTotalRows: async () => {
+    return axios
+      .get(`${BACKEND_URL}/groups/rows`)
+      .then(res => {
+        return res.data[0].rowCount
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 

@@ -41,6 +41,16 @@ const listeningQRequests = {
       .catch(err => {
         console.log(err)
       })
+  },
+  getTotalRows: async () => {
+    return axios
+      .get(`${BACKEND_URL}/listeningQ/rows`)
+      .then(res => {
+        return res.data[0].rowCount
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 

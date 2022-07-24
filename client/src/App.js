@@ -14,6 +14,7 @@ function App() {
   const [data, setData] = useState()
   const [editingKey, setEditingKey] = useState('')
   const [form] = Form.useForm()
+  const [totalRows, setTotalRows] = useState('...')
   const idsRef = useRef({})
 
   useEffect(() => {
@@ -83,6 +84,17 @@ function App() {
     TABLE_DEPENDENCIES[table]?.forEach(async dependency => {
       await getIds(dependency)
     })
+  }
+
+  const getTotalRows = () => {
+    requests[currentTable]
+      ?.getTotalRows()
+      .then(res => {
+        setTotalRows(res + " total " + currentTable.toLowerCase())
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   // Memoize the columns
@@ -888,7 +900,11 @@ function App() {
   return (
     <StyledApp>
       <header>Horizons</header>
-      <h1 className='header'>{currentTable}</h1>
+      <h1 className='header'>{TABLE_COLUMNS[currentTable]?.TableName}</h1>
+      <Row className='count-label'>
+        <Button onClick={() => getTotalRows()}>Get Total Rows</Button>
+        <h2>{totalRows}</h2>
+      </Row>
       <Row className='grid'>
         <Form form={form} component={false}>
           <Table
