@@ -13,6 +13,7 @@ import listeningQRequests from './listeningQ'
 import taughtByRequests from './taughtBy'
 import lessonsStudentsRequests from './lessonsContainStudents'
 import studentsTakeQuizzesRequests from './studentsTakeQuizzes'
+import interestedInRequests from './interestedIn'
 
 const requests = {
   students: {
@@ -59,6 +60,9 @@ const requests = {
   },
   students_take_quizzes: {
     ...studentsTakeQuizzesRequests
+  },
+  interested_in: {
+    ...interestedInRequests
   }
 }
 
