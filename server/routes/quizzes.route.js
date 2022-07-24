@@ -11,4 +11,6 @@ router.delete('/:id', quizzes.remove)
 
 router.get('/ids', quizzes.getIDs)
 
+router.get('/rows', quizzes.getRows)
+
 module.exports = router

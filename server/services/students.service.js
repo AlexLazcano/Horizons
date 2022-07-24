@@ -64,7 +64,7 @@ const getSIDs = async () => {
 
 const getRows = async () => {
   try {
-    const rows = db.query('SELECT COUNT(SID) AS rowCount FROM students')
+    const rows = db.query('SELECT COUNT(*) AS rowCount FROM students')
     return !rows ? [] : rows
   }
   catch (err) {

@@ -50,11 +50,23 @@ const remove = async (req, res) => {
       console.log(error)
     }
   }
+
+  const getRows = async(req, res) => {
+    try{
+      const result = await multipleChoiceQs.getRows()
+  
+      res.json(result)
+    }
+    catch (err){
+      console.log(err)
+    }
+  }
   
   module.exports = {
     get,
     post,
     remove,
     patch,
-    getIds
+    getIds,
+    getRows
   }

@@ -58,6 +58,16 @@ const instructorsRequest = {
       })
 
     return res
+  },
+  getTotalRows: async () => {
+    return axios
+      .get(`${BACKEND_URL}/instructors/rows`)
+      .then(res => {
+        return res.data[0].rowCount
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 

@@ -13,5 +13,6 @@ router.patch('/:id', countries.patch)
 
 router.get('/ids', countries.getIds)
 
+router.get('/rows', countries.getRows)
 
 module.exports = router

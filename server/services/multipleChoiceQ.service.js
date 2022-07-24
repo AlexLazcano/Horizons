@@ -62,14 +62,23 @@ const deleteMultipleChoiceQ = async id => {
     }
   }
 
+  const getRows = async () => {
+    try {
+      const rows = db.query('SELECT COUNT(*) AS rowCount FROM multiplechoiceq')
+      return !rows ? [] : rows
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+
 module.exports = {
     getMultipleChoiceQs,
     createMultipleChoiceQ,
     deleteMultipleChoiceQ,
     updateMultipleChoiceQ,
-    getQIDs
-
-
+    getQIDs,
+    getRows
 }
 
 

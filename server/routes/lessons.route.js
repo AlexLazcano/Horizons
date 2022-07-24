@@ -13,4 +13,6 @@ router.patch('/:id', lessons.patch)
 
 router.get('/ids', lessons.getIDs)
 
+router.get('/rows', lessons.getRows)
+
 module.exports = router

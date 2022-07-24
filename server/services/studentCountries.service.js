@@ -38,8 +38,19 @@ const deleteStudentCountry = async (id, id2) => {
   }
 }
 
+const getRows = async () => {
+  try {
+    const rows = db.query('SELECT COUNT(*) AS rowCount FROM students_in_countries')
+    return !rows ? [] : rows
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
+
 module.exports = {
     getStudentCountries,
     createStudentCountry,
-    deleteStudentCountry
+    deleteStudentCountry,
+    getRows
 }

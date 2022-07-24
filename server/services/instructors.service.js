@@ -48,9 +48,20 @@ const getIIDs = async () => {
   }
 }
 
+const getRows = async () => {
+  try {
+    const rows = db.query('SELECT COUNT(*) AS rowCount FROM instructors')
+    return !rows ? [] : rows
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
+
 module.exports = {
   getInstructors,
   createInstructor,
   deleteInstructor,
-  getIIDs
+  getIIDs,
+  getRows
 }

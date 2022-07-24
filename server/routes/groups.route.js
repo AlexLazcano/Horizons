@@ -13,5 +13,7 @@ router.patch('/:id', groups.patch)
 
 router.get('/ids', groups.getIds)
 
+router.get('/rows', groups.getRows)
+
 
 module.exports = router 

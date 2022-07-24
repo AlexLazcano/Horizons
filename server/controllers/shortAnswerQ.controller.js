@@ -33,8 +33,20 @@ const remove = async (req, res) => {
     }
   }
 
+  const getRows = async(req, res) => {
+    try{
+      const result = await shortAnswerQs.getRows()
+  
+      res.json(result)
+    }
+    catch (err){
+      console.log(err)
+    }
+  }
+
 module.exports = {
     get,
     post,
-    remove
+    remove,
+    getRows
 }

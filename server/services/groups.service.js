@@ -65,10 +65,21 @@ const deleteGroup = async id => {
     }
   }
 
+  const getRows = async () => {
+    try {
+      const rows = db.query('SELECT COUNT(*) AS rowCount FROM groups')
+      return !rows ? [] : rows
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+
 module.exports = {
     getGroups,
     createGroup,
     deleteGroup,
     updateGroup,
-    getGIDs
+    getGIDs,
+    getRows
 } 

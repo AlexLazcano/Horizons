@@ -51,10 +51,22 @@ const remove = async (req, res) => {
     }
   }
 
+  const getRows = async(req, res) => {
+    try{
+      const result = await groups.getRows()
+  
+      res.json(result)
+    }
+    catch (err){
+      console.log(err)
+    }
+  }
+
 module.exports = {
     get,
     post,  
     remove,
     patch,
-    getIds
+    getIds,
+    getRows
 } 

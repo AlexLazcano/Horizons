@@ -13,5 +13,7 @@ router.patch('/:id', multipleChoiceQs.patch)
 
 router.get('/ids', multipleChoiceQs.getIds)
 
+router.get('/rows', multipleChoiceQs.getRows)
+
 
 module.exports = router

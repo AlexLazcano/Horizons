@@ -48,9 +48,20 @@ const getQuizIds = async () => {
   }
 }
 
+const getRows = async () => {
+  try {
+    const rows = db.query('SELECT COUNT(*) AS rowCount FROM quizzes')
+    return !rows ? [] : rows
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
+
 module.exports = {
   getQuizzes,
   createQuiz,
   deleteQuiz,
-  getQuizIds
+  getQuizIds,
+  getRows
 }

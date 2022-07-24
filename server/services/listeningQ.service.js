@@ -40,8 +40,19 @@ const deleteListeningQ = async id => {
   }
 }
 
+const getRows = async () => {
+  try {
+    const rows = db.query('SELECT COUNT(*) AS rowCount FROM listeningq')
+    return !rows ? [] : rows
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
+
 module.exports = {
   getListeningQs,
   createListeningQ,
-  deleteListeningQ
+  deleteListeningQ,
+  getRows
 }

@@ -64,11 +64,22 @@ const getCountryIDs = async () => {
   }
 }
 
+const getRows = async () => {
+  try {
+    const rows = db.query('SELECT COUNT(*) AS rowCount FROM countries')
+    return !rows ? [] : rows
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
+
 
 module.exports = {
     getCountries,
     createCountry,
     deleteCountry,
     updateCountry,
-    getCountryIDs
+    getCountryIDs,
+    getRows
 }
