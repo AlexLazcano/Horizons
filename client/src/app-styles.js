@@ -30,6 +30,11 @@ export const StyledApp = styled.div`
     border: 1px solid #282c34;
     background-color: #dfe6e9;
   }
+
+  .count-label{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
   
 `
 

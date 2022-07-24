@@ -9,6 +9,7 @@ const Controls = ({
   currentTable,
   setTableData,
   setCurrentTable,
+  setTotalRows,
   getAllUpdate,
   columns
 }) => {
