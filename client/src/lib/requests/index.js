@@ -12,7 +12,7 @@ import studentCountryRequests from './studentsInCountries'
 import listeningQRequests from './listeningQ'
 import taughtByRequests from './taughtBy'
 import lessonsStudentsRequests from './lessonsContainStudents'
-
+import studentsTakeQuizzesRequests from './studentsTakeQuizzes'
 
 const requests = {
   students: {
@@ -45,17 +45,20 @@ const requests = {
   shortanswerqs: {
     ...shortAnswerQRequests
   },
-  students_in_countries:{
+  students_in_countries: {
     ...studentCountryRequests
-  },  
+  },
   listeningqs: {
     ...listeningQRequests
   },
-  taught_by:{
+  taught_by: {
     ...taughtByRequests
   },
   lessons_contain_students: {
     ...lessonsStudentsRequests
+  },
+  students_take_quizzes: {
+    ...studentsTakeQuizzesRequests
   }
 }
 
