@@ -577,7 +577,7 @@ function App() {
           title: 'QuizID',
           dataIndex: 'QuizID',
           key: 'QuizID',
-          type: 'input',
+          type: 'select',
           editable: true,
           inputProps: {
             showSearch: true,
@@ -595,7 +595,7 @@ function App() {
           title: 'Text',
           dataIndex: 'Text',
           key: 'Text',
-          type: 'Text',
+          type: 'input',
           editable: true
         },
         {

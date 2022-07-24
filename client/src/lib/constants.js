@@ -55,7 +55,7 @@ export const TABLE_NAMES = [
   },
   {
     name: 'FillBlankQ',
-    sqlTable: 'fillblankq'
+    sqlTable: 'fillblankqs'
   },
   {
     name: 'ShortAnswerQ',
