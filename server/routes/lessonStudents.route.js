@@ -9,7 +9,8 @@ router.post('/', lessonStudents.post)
 
 router.delete('/:id/:id2', lessonStudents.remove)
 
-router.get('/rows', lessonStudents.getRows)
+router.patch('/:SID/:LID', lessonStudents.patch)
 
+router.get('/rows', lessonStudents.getRows)
 
 module.exports = router

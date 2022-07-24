@@ -51,6 +51,18 @@ const lessonStudentRequests = {
       .catch(err => {
         console.log(err)
       })
+  },
+  update: async (SID, LID, data) => {
+    const res = await axios
+      .patch(`${BACKEND_URL}/lessonscontainstudents/${SID}/${LID}`, data)
+      .then(res => {
+        console.log('patch response', res)
+        return res
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      return res
   }
 }
 
