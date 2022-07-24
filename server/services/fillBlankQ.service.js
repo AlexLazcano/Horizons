@@ -12,14 +12,16 @@ const getFillBlankQs = async () => {
 
 const createFillBlankQ = async fillBlankQ => {
     try {
-        const {CorrectChoice, QuizID, Prompt, Text} = fillBlankQ
+        const {QuizID, Prompt, Text} = fillBlankQ
         const res = await db.query(
-            'INSERT INTO horizons.fillblankq (CorrectChoice, QuizID, Prompt, Text) VALUES (?, ?, ?, ?)',
-            [CorrectChoice, QuizID, Prompt, Text]
+            'INSERT INTO horizons.fillblankq (QuizID, Prompt, Text) VALUES (?, ?, ?)',
+            [QuizID, Prompt, Text]
         )
 
         return {
-            message: res.affectedRows ? 'FillBlankQ Created' : 'FillBlankQ Creation Failed'
+            message: res.affectedRows
+                ? 'FillBlankQ Created' 
+                : 'FillBlankQ Creation Failed'
         }
     }
     catch (err){
@@ -29,20 +31,25 @@ const createFillBlankQ = async fillBlankQ => {
 
 const deleteFillBlankQ = async id => {
     try {
-            const result = await db.query('DELETE FROM horizons.fillblankq WHERE QID = ?', [id])
+            const result = await db.query(
+                'DELETE FROM horizons.fillblankq WHERE QID = ?',
+                [id]
+            )
         return {
-            message: result.affectedRows ? 'FillBlankQ deleted' : 'FillBlankQ not deleted'
+            message: result.affectedRows
+                ? 'FillBlankQ deleted' 
+                : 'FillBlankQ not deleted'
       }
     } catch (error) {
         console.log(error)
     }
   }
-  const updateFillBlankQs = async (id, fillBlankQ) => {
+  const updateFillBlankQ = async (id, fillBlankQ) => {
     try {
-        const { CorrectChoice, QuizID, Prompt,Text } = fillBlankQ
+        const {QuizID, Prompt,Text } = fillBlankQ
         const result = await db.query(
-            'UPDATE horizons.fillblankq SET CorrectChoice = ?, QuizID = ?, Prompt = ?, Text = ? WHERE QID = ?',
-            [CorrectChoice, QuizID, Prompt, Text, id]
+            'UPDATE horizons.fillblankq SET QuizID = ?, Prompt = ?, Text = ? WHERE QID = ?',
+            [QuizID, Prompt, Text, id]
         )
       return {
             message: result.affectedRows ? 'FillBlankQ updated' : 'FillBlankQ not updated',
@@ -66,7 +73,7 @@ module.exports = {
     getFillBlankQs,
     createFillBlankQ,
     deleteFillBlankQ,
-    updateFillBlankQs,
+    updateFillBlankQ,
     getQIDs
 
 

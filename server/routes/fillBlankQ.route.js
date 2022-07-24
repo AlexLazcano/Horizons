@@ -1,17 +1,17 @@
 const express = require('express')
 const router = express.Router()
-const fillBlankQs = require('../controllers/fillBlankQ.controller')
+const fillblankqs = require('../controllers/fillBlankQ.controller')
 
 //TODO: Add Create, Update, Delete
-router.get('/', fillBlankQs.get)
+router.get('/', fillblankqs.get)
 
-router.post('/', fillBlankQs.post)
+router.post('/', fillblankqs.post)
 
-router.delete('/:id', fillBlankQs.remove)
+router.delete('/:id', fillblankqs.remove)
 
-router.patch('/:id', fillBlankQs.patch)
+router.patch('/:id', fillblankqs.patch)
 
-router.get('/ids', fillBlankQs.getIds)
+router.get('/ids', fillblankqs.getIds)
 
 
 module.exports = router

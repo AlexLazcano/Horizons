@@ -7,6 +7,7 @@ import groupRequests from './groups'
 import lessonRequests from './lessons'
 import quizRequests from './quizzes'
 import multipleChoiceQRequests from './multipleChoiceQ'
+import fillBlankQRequests from './fillBlankQ'
 import shortAnswerQRequests from './shortAnswerQ'
 import studentCountryRequests from './studentsInCountries'
 import listeningQRequests from './listeningQ'
@@ -41,6 +42,9 @@ const requests = {
   },
   multiplechoiceqs: {
     ...multipleChoiceQRequests
+  },
+  fillblankqs: {
+    ...fillBlankQRequests
   },
   shortanswerqs: {
     ...shortAnswerQRequests

@@ -1,8 +1,8 @@
-const fillBlankQs = require('../services/fillBlankQ.service')
+const fillblankqs = require('../services/fillBlankQ.service')
 
 const get = async (req, res) => {
     try{
-        const result = await fillBlankQs.getFillBlankQs()
+        const result = await fillblankqs.getFillBlankQs()
 
         res.json(result)
     }
@@ -13,7 +13,7 @@ const get = async (req, res) => {
 
 const post = async (req, res) => {
     try {
-        const result = await fillBlankQs.createFillBlankQ(req.body)
+        const result = await fillblankqs.createFillBlankQ(req.body)
 
         res.json(result)
     }
@@ -24,7 +24,7 @@ const post = async (req, res) => {
 
 const remove = async (req, res) => {
     try {
-      const result = await fillBlankQs.deleteFillBlankQ(req.params.id)
+      const result = await fillblankqs.deleteFillBlankQ(req.params.id)
   
       res.json(result)
     } catch (error) {
@@ -34,7 +34,7 @@ const remove = async (req, res) => {
   
   const patch = async (req, res) => {
     try {
-      const result = await fillBlankQs.updateFillBlankQs(req.params.id, req.body)
+      const result = await fillblankqs.updateFillBlankQ(req.params.id, req.body)
       res.json(result)
     } catch (error) {
       console.log(error)
@@ -43,7 +43,7 @@ const remove = async (req, res) => {
   
   const getIds = async (req, res) => {
     try {
-      const result = await fillBlankQs.getQIDs()
+      const result = await fillblankqs.getQIDs()
   
       res.json(result)
     } catch (error) {
