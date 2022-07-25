@@ -70,11 +70,13 @@ const getRows = async () => {
     console.log(error)
   }
 }
+const divide = async GID => {}
 
 module.exports = {
   getStudentsInGroups,
   createStudentsInGroups,
   deleteStudentsInGroups,
   updateStudentInGroups,
-  getRows
+  getRows,
+  divide
 }

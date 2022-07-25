@@ -56,11 +56,21 @@ const getRows = async (req, res) => {
     console.log(error)
   }
 }
+const divide = async (req, res) => {
+  try {
+    const result = await studentsInGroups.divide(req.params.GID)
+
+    res.json(result)
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 module.exports = {
   get,
   post,
-  remove, 
+  remove,
   patch,
-  getRows
+  getRows,
+  divide
 }

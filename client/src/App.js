@@ -1232,6 +1232,34 @@ function App() {
           }
         }
       ]
+    },
+    division_groups: {
+      TableName: 'Division Groups',
+      Columns: [
+        {
+          title: 'GID',
+          dataIndex: 'GID',
+          key: 'GID',
+          hidden: true,
+          type: 'select',
+          editable: true,
+          inputProps: {
+            showSearch: true,
+            options: idsRef.current.groups
+          }
+        },
+        {
+          title: 'SID',
+          dataIndex: 'SID',
+          key: 'SID',
+          hidden: true,
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: idsRef.current.students
+          }
+        }
+      ]
     }
   }
 
