@@ -87,6 +87,40 @@ const studentRequests = {
       .catch(err => {
         console.log(err)
       })
+  },
+  getProjections: async ({ SID, FirstName, LastName, BirthDate, Timezone }) => {
+    const SIDvalue = SID?.target.checked || false
+    const FirstNameValue = FirstName?.target.checked || false
+    const LastNameValue = LastName?.target.checked || false
+    const BirthDateValue = BirthDate?.target.checked || false
+    const TimezoneValue = Timezone?.target.checked || false
+    if (
+      !SIDvalue &&
+      !FirstNameValue &&
+      !LastNameValue &&
+      !BirthDateValue &&
+      !TimezoneValue
+    ) {
+      return []
+    }
+
+    const res = await axios
+      .get(`${BACKEND_URL}/students/projections`, {
+        params: {
+          SID: SIDvalue,
+          FirstName: FirstNameValue,
+          LastName: LastNameValue,
+          BirthDate: BirthDateValue,
+          Timezone: TimezoneValue
+        }
+      })
+      .then(res => {
+        return res.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    return res
   }
 }
 

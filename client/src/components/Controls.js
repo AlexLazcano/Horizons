@@ -1,4 +1,4 @@
-import { Button, Col, Form } from 'antd'
+import { Button, Col, Form, Row, Popover } from 'antd'
 import React from 'react'
 import { TABLE_NAMES } from '../lib/constants'
 import requests from '../lib/requests'
@@ -23,7 +23,12 @@ const Controls = ({
         }
       })
   }
-
+  const onProject = values => {
+    console.log('onProject', values)
+    requests[currentTable].getProjections(values).then(res => {
+      setTableData(res)
+    })
+  }
   return (
     <StyledControls>
       <Col span={8} className='buttons'>
@@ -33,6 +38,30 @@ const Controls = ({
         <Button type='primary' onClick={getAllUpdate} block>
           Get Data
         </Button>
+        <Popover
+          content={
+            <Form layout='vertical' onFinish={onProject}>
+              {columns.map(({ dataIndex, key, onChange, title }) => {
+                return title === 'Controls' ? null : (
+                  <Form.Item
+                    key={key}
+                    label={title}
+                    name={dataIndex}
+                    valuePropName={dataIndex}
+                  >
+                    <DynamicInput inputType='checkbox' onChange={onChange} />
+                  </Form.Item>
+                )
+              })}
+              <Button type='primary' htmlType='submit'>
+                Submit
+              </Button>
+            </Form>
+          }
+          trigger='click'
+        >
+          <Button>Projection</Button>
+        </Popover>
       </Col>
       <Col span={8} className='form'>
         <Form onFinish={create} layout='vertical'>

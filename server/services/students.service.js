@@ -8,6 +8,48 @@ const getStudents = async () => {
     console.log(error)
   }
 }
+const getProjections = async (
+  SID,
+  FirstName,
+  LastName,
+  BirthDate,
+  Timezone
+) => {
+  try {
+    const columns = [
+      {
+        name: 'SID',
+        enabled: SID
+      },
+      {
+        name: 'FirstName',
+        enabled: FirstName
+      },
+      {
+        name: 'LastName',
+        enabled: LastName
+      },
+      {
+        name: 'BirthDate',
+        enabled: BirthDate
+      },
+      {
+        name: 'Timezone',
+        enabled: Timezone
+      }
+    ]
+
+    const enabled = columns
+      .filter(column => column.enabled)
+      .map(column => column.name)
+      .join(', ')
+
+    const rows = db.query(`SELECT DISTINCT ${enabled} FROM students`)
+    return !rows ? [] : rows
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 const createStudent = async student => {
   try {
@@ -66,8 +108,7 @@ const getRows = async () => {
   try {
     const rows = db.query('SELECT COUNT(*) AS rowCount FROM students')
     return !rows ? [] : rows
-  }
-  catch (err) {
+  } catch (err) {
     console.log(err)
   }
 }
@@ -78,5 +119,6 @@ module.exports = {
   deleteStudent,
   updateStudent,
   getSIDs,
-  getRows
+  getRows,
+  getProjections
 }
