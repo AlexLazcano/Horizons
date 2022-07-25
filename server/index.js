@@ -17,6 +17,7 @@ const taughtBy = require('./routes/taughtBy.route')
 const listeningQs = require('./routes/listeningQ.route')
 const lessonsContainStudents = require('./routes/lessonStudents.route')
 const studentsTakeQuizzes = require('./routes/studentsTakeQuizzes.route')
+const interestedIn = require('./routes/interestedIn.route')
 
 const cors = require('cors')
 
@@ -43,6 +44,7 @@ app.use('/listeningQ', listeningQs)
 app.use('/taughtby', taughtBy)
 app.use('/lessonscontainstudents', lessonsContainStudents)
 app.use('/studentstakequizzes', studentsTakeQuizzes)
+app.use('/interestedin', interestedIn)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
