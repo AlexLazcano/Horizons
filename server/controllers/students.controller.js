@@ -50,22 +50,34 @@ const getIds = async (req, res) => {
   }
 }
 
-const getRows = async(req, res) => {
-  try{
+const getRows = async (req, res) => {
+  try {
     const result = await students.getRows()
 
     res.json(result)
-  }
-  catch (err){
+  } catch (err) {
     console.log(err)
   }
 }
 
+const getProjections = async (req, res) => {
+  try {
+    const { columns } = req.query
+    console.log('columns', JSON.parse(columns))
+
+    const result = await students.getProjections(JSON.parse(columns))
+
+    res.json(result)
+  } catch (err) {
+    console.log(err)
+  }
+}
 module.exports = {
   get,
   post,
   remove,
   patch,
   getIds,
-  getRows
+  getRows,
+  getProjections
 }

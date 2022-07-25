@@ -15,5 +15,6 @@ router.get('/ids', students.getIds)
 
 router.get('/rows', students.getRows)
 
+router.get('/projections', students.getProjections)
 
 module.exports = router
