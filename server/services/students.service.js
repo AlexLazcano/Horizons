@@ -8,37 +8,8 @@ const getStudents = async () => {
     console.log(error)
   }
 }
-const getProjections = async (
-  SID,
-  FirstName,
-  LastName,
-  BirthDate,
-  Timezone
-) => {
+const getProjections = async columns => {
   try {
-    const columns = [
-      {
-        name: 'SID',
-        enabled: SID
-      },
-      {
-        name: 'FirstName',
-        enabled: FirstName
-      },
-      {
-        name: 'LastName',
-        enabled: LastName
-      },
-      {
-        name: 'BirthDate',
-        enabled: BirthDate
-      },
-      {
-        name: 'Timezone',
-        enabled: Timezone
-      }
-    ]
-
     const enabled = columns
       .filter(column => column.enabled)
       .map(column => column.name)

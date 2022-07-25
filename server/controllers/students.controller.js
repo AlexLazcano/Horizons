@@ -61,16 +61,11 @@ const getRows = async (req, res) => {
 }
 
 const getProjections = async (req, res) => {
-  console.log('getProjections', req.query)
   try {
-    const { SID, FirstName, LastName, BirthDate, Timezone } = req.query
-    const result = await students.getProjections(
-      SID == 'true',
-      FirstName == 'true',
-      LastName == 'true',
-      BirthDate == 'true',
-      Timezone == 'true'
-    )
+    const { columns } = req.query
+    console.log('columns', JSON.parse(columns))
+
+    const result = await students.getProjections(JSON.parse(columns))
 
     res.json(result)
   } catch (err) {

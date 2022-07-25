@@ -104,14 +104,33 @@ const studentRequests = {
       return []
     }
 
+    const columns = [
+      {
+        name: 'SID',
+        enabled: SIDvalue
+      },
+      {
+        name: 'FirstName',
+        enabled: FirstNameValue
+      },
+      {
+        name: 'LastName',
+        enabled: LastNameValue
+      },
+      {
+        name: 'BirthDate',
+        enabled: BirthDateValue
+      },
+      {
+        name: 'Timezone',
+        enabled: TimezoneValue
+      }
+    ]
+
     const res = await axios
       .get(`${BACKEND_URL}/students/projections`, {
         params: {
-          SID: SIDvalue,
-          FirstName: FirstNameValue,
-          LastName: LastNameValue,
-          BirthDate: BirthDateValue,
-          Timezone: TimezoneValue
+          columns: JSON.stringify(columns)
         }
       })
       .then(res => {
