@@ -15,6 +15,7 @@ import taughtByRequests from './taughtBy'
 import lessonsStudentsRequests from './lessonsContainStudents'
 import studentsTakeQuizzesRequests from './studentsTakeQuizzes'
 import interestedInRequests from './interestedIn'
+import studentsInGroupsRequests from './studentsInGroups'
 
 const requests = {
   students: {
@@ -67,6 +68,9 @@ const requests = {
   },
   interested_in: {
     ...interestedInRequests
+  },
+  students_in_groups: {
+    ...studentsInGroupsRequests
   }
 }
 
