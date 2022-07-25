@@ -12,7 +12,10 @@ function App() {
   // TODO: Add change currentTable functionality
   const [currentTable, setCurrentTable] = useState('students')
   const [data, setData] = useState()
-  const [editingKey, setEditingKey] = useState('')
+  const [editingKey, setEditingKey] = useState({
+    key1: '',
+    key2: ''
+  })
   const [form] = Form.useForm()
   const [totalRows, setTotalRows] = useState('...')
   const idsRef = useRef({})
@@ -33,10 +36,11 @@ function App() {
   }
 
   const editRow = record => {
+    console.log(record)
     form.setFieldsValue({
       ...record
     })
-    setEditingKey(record.key)
+    setEditingKey({ key1: record?.key1, key2: record?.key2 })
   }
   const getAll = () => {
     requests[currentTable]
@@ -48,8 +52,16 @@ function App() {
         console.log(err)
       })
   }
-  const isEditing = record => record.key === editingKey
-  const cancelEdit = () => setEditingKey('')
+  const isEditing = (key1, key2) => {
+    return key2 != null
+      ? editingKey.key1 === key1 && editingKey.key2 === key2
+      : editingKey.key1 === key1
+  }
+  const cancelEdit = () =>
+    setEditingKey({
+      key1: '',
+      key2: ''
+    })
   const saveEdit = async (id, id2) => {
     try {
       const row = await form.validateFields()
@@ -62,7 +74,10 @@ function App() {
           }
         })
 
-      setEditingKey('')
+      setEditingKey({
+        key1: '',
+        key2: ''
+      })
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo)
     }
@@ -148,7 +163,8 @@ function App() {
           hidden: true,
           width: '10%',
           render: (text, record) => {
-            const editable = isEditing(record)
+            record.key1 = record.SID
+            const editable = isEditing(record.key1)
             return editable ? (
               <Space size='middle'>
                 <Button onClick={cancelEdit}>Cancel</Button>
@@ -181,19 +197,22 @@ function App() {
           title: 'First Name',
           dataIndex: 'FirstName',
           key: 'FirstName',
-          type: 'input'
+          type: 'input',
+          editable: true
         },
         {
           title: 'Last Name',
           dataIndex: 'LastName',
           type: 'input',
-          key: 'LastName'
+          key: 'LastName',
+          editable: true
         },
         {
           title: 'Biography',
           dataIndex: 'Biography',
           key: 'Biography',
-          type: 'input'
+          type: 'input',
+          editable: true
         },
         {
           title: 'Controls',
@@ -201,14 +220,25 @@ function App() {
           dataIndex: 'key',
           hidden: true,
           width: '10%',
-          render: (text, record) => (
-            <Space size='middle'>
-              <Button onClick={() => console.log(record)}>Edit</Button>
-              <Button danger onClick={() => deleteRecord(record?.IID)}>
-                Delete
-              </Button>
-            </Space>
-          )
+          render: (text, record) => {
+            record.key1 = record.IID
+            const editable = isEditing(record.key1)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button type='primary' onClick={() => saveEdit(record.IID)}>
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button danger onClick={() => deleteRecord(record?.IID)}>
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
         }
       ]
     },
@@ -225,7 +255,9 @@ function App() {
           title: 'Name',
           dataIndex: 'Name',
           key: 'Name',
-          type: 'input'
+          type: 'input',
+          // TODO: EDIT functionality
+          editable: false
         },
         {
           title: 'Controls',
@@ -233,14 +265,31 @@ function App() {
           dataIndex: 'key',
           hidden: true,
           width: '10%',
-          render: (text, record) => (
-            <Space size='middle'>
-              <Button onClick={() => console.log(record)}>Edit</Button>
-              <Button danger onClick={() => deleteRecord(record?.LanguageCode)}>
-                Delete
-              </Button>
-            </Space>
-          )
+          render: (text, record) => {
+            record.key1 = record.LanguageCode
+            const editable = isEditing(record.key1)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button
+                  type='primary'
+                  onClick={() => saveEdit(record.LanguageCode)}
+                >
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button
+                  danger
+                  onClick={() => deleteRecord(record?.LanguageCode)}
+                >
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
         }
       ]
     },
@@ -269,6 +318,8 @@ function App() {
           dataIndex: 'IID',
           key: 'IID',
           type: 'select',
+          // TODO: EDIT functionality
+          editable: false,
           inputProps: {
             showSearch: true,
             options: idsRef.current?.instructors
@@ -293,14 +344,25 @@ function App() {
           dataIndex: 'key',
           hidden: true,
           width: '10%',
-          render: (text, record) => (
-            <Space size='middle'>
-              <Button onClick={() => console.log(record)}>Edit</Button>
-              <Button danger onClick={() => deleteRecord(record?.QuizID)}>
-                Delete
-              </Button>
-            </Space>
-          )
+          render: (text, record) => {
+            record.key1 = record.QuizID
+            const editable = isEditing(record.key1)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button type='primary' onClick={() => saveEdit(record.QuizID)}>
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button danger onClick={() => deleteRecord(record?.QuizID)}>
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
         }
       ]
     },
@@ -605,7 +667,9 @@ function App() {
           hidden: true,
           width: '10%',
           render: (text, record) => {
-            const editable = isEditing(record)
+            record.key1 = record.QID
+            record.key2 = record.QuizID
+            const editable = isEditing(record.key1, record.key2)
             return editable ? (
               <Space size='middle'>
                 <Button onClick={cancelEdit}>Cancel</Button>
@@ -638,19 +702,26 @@ function App() {
           title: 'QuizID',
           dataIndex: 'QuizID',
           key: 'QuizID',
-          type: 'input'
+          type: 'select',
+          editable: true,
+          inputProps: {
+            showSearch: true,
+            options: idsRef.current.quizzes
+          }
         },
         {
           title: 'Prompt',
           dataIndex: 'Prompt',
           key: 'Prompt',
-          type: 'input'
+          type: 'input',
+          editable: true
         },
         {
           title: 'Answer',
           dataIndex: 'Answer',
           key: 'Answer',
-          type: 'input'
+          type: 'input',
+          editable: true
         },
         {
           title: 'Controls',
@@ -658,14 +729,26 @@ function App() {
           dataIndex: 'key',
           hidden: true,
           width: '10%',
-          render: (text, record) => (
-            <Space size='middle'>
-              <Button onClick={() => console.log(record)}>Edit</Button>
-              <Button danger onClick={() => deleteRecord(record?.QID)}>
-                Delete
-              </Button>
-            </Space>
-          )
+          render: (text, record) => {
+            record.key1 = record.QID
+            record.key2 = record.QuizID
+            const editable = isEditing(record.key1, record.key2)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button type='primary' onClick={() => saveEdit(record.QID)}>
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button danger onClick={() => deleteRecord(record?.QID)}>
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
         }
       ]
     },
@@ -683,6 +766,7 @@ function App() {
           dataIndex: 'QuizID',
           key: 'QuizID',
           type: 'select',
+          editable: true,
           inputProps: {
             showSearch: true,
             options: idsRef.current.quizzes
@@ -692,18 +776,21 @@ function App() {
           title: 'Prompt',
           dataIndex: 'Prompt',
           key: 'Prompt',
+          editable: false,
           type: 'input'
         },
         {
           title: 'Audio',
           dataIndex: 'Audio',
           key: 'Audio',
+          editable: false,
           type: 'input'
         },
         {
           title: 'Text',
           dataIndex: 'Text',
           key: 'Text',
+          editable: false,
           type: 'input'
         },
         {
@@ -712,14 +799,27 @@ function App() {
           dataIndex: 'key',
           hidden: true,
           width: '10%',
-          render: (text, record) => (
-            <Space size='middle'>
-              <Button onClick={() => console.log(record)}>Edit</Button>
-              <Button danger onClick={() => deleteRecord(record?.QID)}>
-                Delete
-              </Button>
-            </Space>
-          )
+          render: (text, record) => {
+            record.key1 = record.QID
+            record.key2 = record.QuizID
+            // TODO: Editable Functionality
+            const editable = isEditing(record.key1, record.key2)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button type='primary' onClick={() => saveEdit(record.QID)}>
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button danger onClick={() => deleteRecord(record?.QID)}>
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
         }
       ]
     },
@@ -746,7 +846,8 @@ function App() {
           hidden: true,
           width: '10%',
           render: (text, record) => {
-            const editable = isEditing(record)
+            record.key1 = record.CountryID
+            const editable = isEditing(record.key1)
             return editable ? (
               <Space size='middle'>
                 <Button onClick={cancelEdit}>Cancel</Button>
@@ -783,6 +884,7 @@ function App() {
           }
         },
         {
+          // TODO: EDIT Functionality
           title: 'CountryID',
           dataIndex: 'CountryID',
           key: 'CountryID',
@@ -799,7 +901,9 @@ function App() {
           hidden: true,
           width: '10%',
           render: (text, record) => {
-            const editable = isEditing(record)
+            record.key1 = record.SID
+            record.key2 = record.CountryID
+            const editable = isEditing(record.key1, record.key2)
             return editable ? (
               <Space size='middle'>
                 <Button onClick={cancelEdit}>Cancel</Button>
@@ -843,6 +947,7 @@ function App() {
           dataIndex: 'SID',
           key: 'SID',
           type: 'select',
+          editable: true,
           inputProps: {
             showSearch: true,
             options: idsRef.current.students
@@ -855,13 +960,15 @@ function App() {
           hidden: true,
           width: '10%',
           render: (text, record) => {
-            const editable = isEditing(record)
+            record.key1 = record.IID
+            record.key2 = record.SID
+            const editable = isEditing(record.key1, record.key2)
             return editable ? (
               <Space size='middle'>
                 <Button onClick={cancelEdit}>Cancel</Button>
                 <Button
                   type='primary'
-                  onClick={() => saveEdit(record.CountryID)}
+                  onClick={() => saveEdit(record.IID, record.SID)}
                 >
                   Save
                 </Button>
@@ -912,7 +1019,9 @@ function App() {
           hidden: true,
           width: '10%',
           render: (text, record) => {
-            const editable = isEditing(record)
+            record.key1 = record.SID
+            record.key2 = record.LID
+            const editable = isEditing(record.key1, record.key2)
             return editable ? (
               <Space size='middle'>
                 <Button onClick={cancelEdit}>Cancel</Button>
@@ -969,7 +1078,9 @@ function App() {
           hidden: true,
           width: '10%',
           render: (text, record) => {
-            const editable = isEditing(record)
+            record.key1 = record.SID
+            record.key2 = record.QuizID
+            const editable = isEditing(record.key1, record.key2)
             return editable ? (
               <Space size='middle'>
                 <Button onClick={cancelEdit}>Cancel</Button>
@@ -1033,7 +1144,9 @@ function App() {
           hidden: true,
           width: '10%',
           render: (text, record) => {
-            const editable = isEditing(record)
+            record.key1 = record.SID
+            record.key2 = record.LanguageCode
+            const editable = isEditing(record.key1, record.key2)
             return editable ? (
               <Space size='middle'>
                 <Button onClick={cancelEdit}>Cancel</Button>
@@ -1092,7 +1205,9 @@ function App() {
           hidden: true,
           width: '10%',
           render: (text, record) => {
-            const editable = isEditing(record)
+            record.key1 = record.SID
+            record.key2 = record.GID
+            const editable = isEditing(record.key1, record.key2)
             return editable ? (
               <Space size='middle'>
                 <Button onClick={cancelEdit}>Cancel</Button>
@@ -1126,16 +1241,19 @@ function App() {
     if (!col.editable) {
       return col
     }
+
     return {
       ...col,
-      onCell: record => ({
-        record,
-        inputType: col.type,
-        dataIndex: col.dataIndex,
-        title: col.title,
-        editing: isEditing(record),
-        inputProps: col.inputProps
-      })
+      onCell: (record, row) => {
+        return {
+          record,
+          inputType: col.type,
+          dataIndex: col.dataIndex,
+          title: col.title,
+          editing: isEditing(record.key1, record.key2),
+          inputProps: col.inputProps
+        }
+      }
     }
   })
 
