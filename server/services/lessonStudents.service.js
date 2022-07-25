@@ -20,7 +20,9 @@ const createLessonStudent = async student_in_lesson => {
     )
 
     return {
-      message: result.affectedRows ? 'Relation created' : 'Relation creation failed'
+      message: result.affectedRows
+        ? 'Relation created'
+        : 'Relation creation failed'
     }
   } catch (error) {
     console.log(error)
@@ -29,9 +31,31 @@ const createLessonStudent = async student_in_lesson => {
 
 const deleteLessonStudent = async (id, id2) => {
   try {
-    const result = await db.query('DELETE FROM lessons_contain_students WHERE SID = ? AND LID = ?', [id, id2])
+    const result = await db.query(
+      'DELETE FROM lessons_contain_students WHERE SID = ? AND LID = ?',
+      [id, id2]
+    )
     return {
-      message: result.affectedRows ? 'Relation deleted' : 'Relation deletion failed'
+      message: result.affectedRows
+        ? 'Relation deleted'
+        : 'Relation deletion failed'
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const updateLessonStudent = async (SID, LID, data) => {
+  try {
+    const newLID = data.LID
+    const result = await db.query(
+      'UPDATE lessons_contain_students SET LID = ? WHERE SID = ? AND LID = ?',
+      [newLID, SID, LID]
+    )
+    return {
+      message: result.affectedRows
+        ? 'Relation updated'
+        : 'Relation update failed'
     }
   } catch (error) {
     console.log(error)
@@ -40,17 +64,19 @@ const deleteLessonStudent = async (id, id2) => {
 
 const getRows = async () => {
   try {
-    const rows = db.query('SELECT COUNT(*) AS rowCount FROM lessons_contain_students')
+    const rows = db.query(
+      'SELECT COUNT(*) AS rowCount FROM lessons_contain_students'
+    )
     return !rows ? [] : rows
-  }
-  catch (err) {
+  } catch (err) {
     console.log(err)
   }
 }
 
 module.exports = {
-    getLessonStudents,
-    createLessonStudent,
-    deleteLessonStudent,
-    getRows
+  getLessonStudents,
+  createLessonStudent,
+  deleteLessonStudent,
+  getRows,
+  updateLessonStudent
 }

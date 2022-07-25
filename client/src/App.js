@@ -31,9 +31,7 @@ function App() {
         }
       })
   }
-  const updateRecord = (id, data) => {
-    return requests[currentTable].update(id, data)
-  }
+
   const editRow = record => {
     form.setFieldsValue({
       ...record
@@ -52,15 +50,17 @@ function App() {
   }
   const isEditing = record => record.key === editingKey
   const cancelEdit = () => setEditingKey('')
-  const saveEdit = async key => {
+  const saveEdit = async (id, id2) => {
     try {
       const row = await form.validateFields()
 
-      updateRecord(key, row).then(res => {
-        if (res?.status === 200) {
-          getAll()
-        }
-      })
+      requests[currentTable].update
+        .apply(this, id2 != null ? [id, id2, row] : [id, row])
+        .then(res => {
+          if (res?.status === 200) {
+            getAll()
+          }
+        })
 
       setEditingKey('')
     } catch (errInfo) {
@@ -90,7 +90,7 @@ function App() {
     requests[currentTable]
       ?.getTotalRows()
       .then(res => {
-        setTotalRows(res + " total " + currentTable.toLowerCase())
+        setTotalRows(res + ' total ' + currentTable.toLowerCase())
       })
       .catch(err => {
         console.log(err)
@@ -898,6 +898,7 @@ function App() {
           title: 'LID',
           dataIndex: 'LID',
           key: 'LID',
+          editable: true,
           type: 'select',
           inputProps: {
             showSearch: true,
@@ -917,7 +918,7 @@ function App() {
                 <Button onClick={cancelEdit}>Cancel</Button>
                 <Button
                   type='primary'
-                  onClick={() => saveEdit(record.CountryID)}
+                  onClick={() => saveEdit(record.SID, record.LID)}
                 >
                   Save
                 </Button>
@@ -928,6 +929,63 @@ function App() {
                 <Button
                   danger
                   onClick={() => deleteRecord(record?.SID, record?.LID)}
+                >
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
+        }
+      ]
+    },
+    students_take_quizzes: {
+      TableName: 'Students Take Quizzes',
+      Columns: [
+        {
+          title: 'SID',
+          dataIndex: 'SID',
+          key: 'SID',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: idsRef.current.students
+          }
+        },
+        {
+          title: 'QuizID',
+          dataIndex: 'QuizID',
+          editable: true,
+          key: 'QuizID',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: idsRef.current.quizzes
+          }
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => {
+            const editable = isEditing(record)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button
+                  type='primary'
+                  onClick={() => saveEdit(record.SID, record.QuizID)}
+                >
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button
+                  danger
+                  onClick={() => deleteRecord(record?.SID, record?.QuizID)}
                 >
                   Delete
                 </Button>
