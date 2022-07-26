@@ -1337,7 +1337,87 @@ function App() {
           hidden: true
         }
       ]
-    }
+    },
+
+    instructor_grade_student_quiz: {
+      TableName: 'Instructor Grade Student Quiz',
+      Columns: [
+        {
+          title: 'SID',
+          dataIndex: 'SID',
+          key: 'SID',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: idsRef.current.students
+          }
+        },
+        {
+          title: 'IID',
+          dataIndex: 'IID',
+          key: 'IID',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: idsRef.current.instructors
+          }
+        },
+        {
+          title: 'QuizID',
+          dataIndex: 'QuizID',
+          key: 'QuizID',
+          type: 'select',
+          editable: true,
+          inputProps: {
+            showSearch: true,
+            options: idsRef.current.quizzes
+          }
+        },
+        {
+          title: 'Score',
+          dataIndex: 'Score',
+          key: 'Score',
+          type: 'input',
+          editable: true,
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => {
+            record.key1 = record.SID
+            record.key2 = record.IID
+            record.key3 = record.QuizID
+            const editable = isEditing(record.key1, record.key2, record.key3)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button
+                  type='primary'
+                  onClick={() => saveEdit(record?.SID, record?.IID, record?.QuizID)}
+                >
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button
+                  danger
+                  onClick={() =>
+                    deleteRecord(record?.SID, record?.IID, record?.QuizID)
+                  }
+                >
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
+        }
+      ]
+    },
   }
 
   const columns = TABLE_COLUMNS[currentTable]?.Columns

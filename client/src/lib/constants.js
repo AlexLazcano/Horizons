@@ -17,7 +17,8 @@ export const TABLE_DEPENDENCIES = {
   students_take_quizzes: ['students', 'quizzes'],
   interested_in: ['students', 'languages'],
   students_in_groups: ['students', 'groups'],
-  students_connected_with: ['students']
+  students_connected_with: ['students'],
+  instructor_grade_student_quiz: ['students','instructors', 'quizzes']
 }
 export const TABLE_NAMES = [
   {
@@ -96,6 +97,10 @@ export const TABLE_NAMES = [
   {
     name: 'StudentsConnectedWith',
     sqlTable: 'students_connected_with'
+  },
+  {
+    name: 'InstructorGradeStudentQuiz',
+    sqlTable: 'instructor_grade_student_quiz'
   }
 ]
 
