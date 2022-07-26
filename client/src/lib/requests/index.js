@@ -19,6 +19,7 @@ import studentsInGroupsRequests from './studentsInGroups'
 import divisionGroupsRequests from './divisionGroups'
 import studentsConnectedWithRequests from './studentsConnectedWith'
 import studentJoinCountryRequests from './studentJoinCountries'
+import instructorGradeStudentQuizRequests from './instructorGradeStudentQuiz'
 
 const requests = {
   students: {
@@ -83,7 +84,10 @@ const requests = {
   },
   students_join_countries: {
     ...studentJoinCountryRequests
-  }
+  },
+  instructor_grade_student_quiz: {
+    ...instructorGradeStudentQuizRequests
+  },
 }
 
 export default requests

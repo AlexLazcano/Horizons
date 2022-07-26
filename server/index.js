@@ -51,6 +51,7 @@ app.use('/interestedin', interestedIn)
 app.use('/studentsingroups', studentsInGroups)
 app.use('/studentsconnectedwith', studentsConnectedWith)
 app.use('/studentjoincountries', studentJoinCountries)
+app.use('/instructorgradestudentquiz', instructorGradeStudentQuiz)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
