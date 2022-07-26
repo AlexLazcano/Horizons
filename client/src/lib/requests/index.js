@@ -21,6 +21,7 @@ import studentsConnectedWithRequests from './studentsConnectedWith'
 import studentJoinCountryRequests from './studentJoinCountries'
 import instructorGradeStudentQuizRequests from './instructorGradeStudentQuiz'
 import instructorKnowLanguageRequests from './instructorKnowLanguage'
+import avgScorePerInstructorRequests from './avgScorePerInstructor'
 
 const requests = {
   students: {
@@ -92,6 +93,9 @@ const requests = {
   instructor_know_language: {
     ...instructorKnowLanguageRequests
   },
+  avg_score_per_instructor: {
+    ...avgScorePerInstructorRequests
+  }
 }
 
 export default requests

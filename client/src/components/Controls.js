@@ -3,6 +3,7 @@ import React from 'react'
 import {
   DIVISION_TABLE_NAMES,
   JOINED_TABLE_NAMES,
+  NESTED_TABLE_NAMES,
   PROJECTION_TABLE_NAMES,
   TABLE_NAMES
 } from '../lib/constants'
@@ -70,6 +71,10 @@ const Controls = ({
 
   const defaultEnabled = TABLE_NAMES.find(t => t.sqlTable === currentTable)
 
+  const nestedEnabled = NESTED_TABLE_NAMES.find(
+    t => t.sqlTable === currentTable
+  )
+
   return (
     <StyledControls>
       <Col span={8} className='buttons'>
@@ -121,28 +126,38 @@ const Controls = ({
         )}
       </Col>
       <Col span={8} className='form'>
-        <Form onFinish={create} layout='vertical'>
-          {columns.map(
-            ({ title, dataIndex, key, hidden, type, inputProps, onChange }) => {
-              return hidden ? null : (
-                <Form.Item key={key} label={title} name={dataIndex}>
-                  <DynamicInput
-                    inputType={type}
-                    inputProps={inputProps}
-                    onChange={onChange}
-                  />
-                </Form.Item>
-              )
-            }
-          )}
-          <Form.Item>
-            {defaultEnabled && (
-              <Button type='primary' htmlType='submit'>
-                Create
-              </Button>
+        {defaultEnabled && (
+          <Form onFinish={create} layout='vertical'>
+            {columns.map(
+              ({
+                title,
+                dataIndex,
+                key,
+                hidden,
+                type,
+                inputProps,
+                onChange
+              }) => {
+                return hidden ? null : (
+                  <Form.Item key={key} label={title} name={dataIndex}>
+                    <DynamicInput
+                      inputType={type}
+                      inputProps={inputProps}
+                      onChange={onChange}
+                    />
+                  </Form.Item>
+                )
+              }
             )}
-          </Form.Item>
-        </Form>
+            <Form.Item>
+              {defaultEnabled && (
+                <Button type='primary' htmlType='submit'>
+                  Create
+                </Button>
+              )}
+            </Form.Item>
+          </Form>
+        )}
       </Col>
       <Col span={8} className='table-buttons'>
         <div>
@@ -162,6 +177,14 @@ const Controls = ({
         <div>
           <h3>Joined Tables</h3>
           {JOINED_TABLE_NAMES.map(({ sqlTable, name }) => (
+            <Button onClick={() => onTableChange(sqlTable)} key={name}>
+              {name}
+            </Button>
+          ))}
+        </div>
+        <div>
+          <h3>Nested Aggregation Tables</h3>
+          {NESTED_TABLE_NAMES.map(({ sqlTable, name }) => (
             <Button onClick={() => onTableChange(sqlTable)} key={name}>
               {name}
             </Button>
