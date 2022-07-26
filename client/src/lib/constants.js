@@ -111,3 +111,10 @@ export const JOINED_TABLE_NAMES = [
     sqlTable: 'students_join_countries'
   }
 ]
+
+export const PROJECTION_TABLE_NAMES = [
+  {
+    name: 'Students',
+    sqlTable: 'students'
+  }
+]
