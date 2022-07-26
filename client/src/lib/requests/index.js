@@ -20,6 +20,7 @@ import divisionGroupsRequests from './divisionGroups'
 import studentsConnectedWithRequests from './studentsConnectedWith'
 import studentJoinCountryRequests from './studentJoinCountries'
 import instructorGradeStudentQuizRequests from './instructorGradeStudentQuiz'
+import instructorsKnowLanguageRequests from './instructorsKnowLanguage'
 
 const requests = {
   students: {
@@ -87,6 +88,9 @@ const requests = {
   },
   instructor_grade_student_quiz: {
     ...instructorGradeStudentQuizRequests
+  },
+  instructor_know_language: {
+    ...instructorsKnowLanguageRequests
   },
 }
 
