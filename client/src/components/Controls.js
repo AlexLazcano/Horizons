@@ -3,6 +3,7 @@ import React from 'react'
 import {
   DIVISION_TABLE_NAMES,
   JOINED_TABLE_NAMES,
+  PROJECTION_TABLE_NAMES,
   TABLE_NAMES
 } from '../lib/constants'
 import requests from '../lib/requests'
@@ -15,7 +16,9 @@ const Controls = ({
   setCurrentTable,
   setTotalRows,
   getAllUpdate,
-  columns
+  columns,
+  setFilters,
+  clearFilters
 }) => {
   const create = values => {
     requests[currentTable]
@@ -28,10 +31,23 @@ const Controls = ({
         }
       })
   }
+
+  const onFilterChange = values => {
+    if (values.length === 0) {
+      getAllUpdate()
+      clearFilters()
+      return
+    }
+
+    // get property names
+    const propertyNames = Object.keys(values[0]) || []
+    setFilters(propertyNames)
+  }
   const onProject = values => {
     console.log('onProject', values)
     requests[currentTable].getProjections(values).then(res => {
       setTableData(res)
+      onFilterChange(res)
     })
   }
 
@@ -46,6 +62,14 @@ const Controls = ({
     setTotalRows('...')
   }
 
+  const projEnabled = PROJECTION_TABLE_NAMES.find(
+    t => t.sqlTable === currentTable
+  )
+
+  const divEnabled = DIVISION_TABLE_NAMES.find(t => t.sqlTable === currentTable)
+
+  const defaultEnabled = TABLE_NAMES.find(t => t.sqlTable === currentTable)
+
   return (
     <StyledControls>
       <Col span={8} className='buttons'>
@@ -55,33 +79,33 @@ const Controls = ({
         <Button type='primary' onClick={getAllUpdate} block>
           Get Data
         </Button>
-        {currentTable === 'students' && (
-        <Popover
-          content={
-            <Form layout='vertical' onFinish={onProject}>
-              {columns.map(({ dataIndex, key, onChange, title }) => {
-                return title === 'Controls' ? null : (
-                  <Form.Item
-                    key={key}
-                    label={title}
-                    name={dataIndex}
-                    valuePropName={dataIndex}
-                  >
-                    <DynamicInput inputType='checkbox' onChange={onChange} />
-                  </Form.Item>
-                )
-              })}
-              <Button type='primary' htmlType='submit'>
-                Submit
-              </Button>
-            </Form>
-          }
-          trigger='click'
-        >
-          <Button>Projection</Button>
-        </Popover>
+        {projEnabled && (
+          <Popover
+            content={
+              <Form layout='vertical' onFinish={onProject}>
+                {columns.map(({ dataIndex, key, onChange, title }) => {
+                  return title === 'Controls' ? null : (
+                    <Form.Item
+                      key={key}
+                      label={title}
+                      name={dataIndex}
+                      valuePropName={dataIndex}
+                    >
+                      <DynamicInput inputType='checkbox' onChange={onChange} />
+                    </Form.Item>
+                  )
+                })}
+                <Button type='primary' htmlType='submit'>
+                  Submit
+                </Button>
+              </Form>
+            }
+            trigger='click'
+          >
+            <Button>Projection</Button>
+          </Popover>
         )}
-        {currentTable === 'division_groups' && (
+        {divEnabled && (
           <Popover
             content={
               <Form layout='vertical' onFinish={onDivide}>
@@ -112,7 +136,7 @@ const Controls = ({
             }
           )}
           <Form.Item>
-            {TABLE_NAMES.find(({ sqlTable }) => sqlTable === currentTable) && (
+            {defaultEnabled && (
               <Button type='primary' htmlType='submit'>
                 Create
               </Button>
