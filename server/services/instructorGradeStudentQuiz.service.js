@@ -51,12 +51,12 @@ const updateInstructorGradeStudentQuiz = async (
   SID,
   IID,
   QuizID,
-  Score
+  //Score
 ) => {
   try {
     const result = await db.query(
-      'UPDATE instructor_grade_student_quiz SET SID = ?, LanguageCode = ?, SkillLevel = ? WHERE SID = ? AND LanguageCode = ?',
-      [SID, newScore, IID, QuizID, Score]
+      'UPDATE instructor_grade_student_quiz SET SID = ?, IID = ?, QuizID = ?, Score = ?  WHERE SID = ? AND IID = ? AND QuizID = ?',
+      [SID, IID, QuizID, newScore, SID, IID, QuizID ]
     )
     return {
       message: result.affectedRows
