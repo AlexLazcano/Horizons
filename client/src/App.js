@@ -37,10 +37,6 @@ function App() {
       })
   }
 
-  const setDefaultFilters = () => {
-    console.log('setDefaultFilters')
-  }
-
   const editRow = record => {
     console.log(record)
     form.setFieldsValue({
@@ -1345,7 +1341,6 @@ function App() {
   }
 
   const columns = TABLE_COLUMNS[currentTable]?.Columns
-  console.log(filters)
 
   const mergedColumns = columns
     ?.filter(col => {
@@ -1402,6 +1397,7 @@ function App() {
         columns={columns}
         setFilters={setFilters}
         filters={filters}
+        clearFilters={clearFilters}
       />
     </StyledApp>
   )

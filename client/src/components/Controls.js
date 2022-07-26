@@ -16,8 +16,8 @@ const Controls = ({
   setTotalRows,
   getAllUpdate,
   columns,
-  filters,
-  setFilters
+  setFilters,
+  clearFilters
 }) => {
   const create = values => {
     requests[currentTable]
@@ -32,8 +32,14 @@ const Controls = ({
   }
 
   const onFilterChange = values => {
+    if (values.length === 0) {
+      getAllUpdate()
+      clearFilters()
+      return
+    }
+
     // get property names
-    const propertyNames = Object.keys(values[0])
+    const propertyNames = Object.keys(values[0]) || []
     setFilters(propertyNames)
   }
   const onProject = values => {
