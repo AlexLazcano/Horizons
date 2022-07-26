@@ -21,6 +21,7 @@ const interestedIn = require('./routes/interestedIn.route')
 const studentsInGroups = require('./routes/studentsInGroups.route')
 const studentsConnectedWith = require('./routes/studentsConnectedWith.route')
 const studentJoinCountries = require('./routes/studentJoinCountries.route')
+const instructorGradeStudentQuiz = require('./routes/instructorGradeStudentQuiz.route')
 
 const cors = require('cors')
 
