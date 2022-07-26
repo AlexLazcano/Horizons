@@ -1378,7 +1378,7 @@ function App() {
           dataIndex: 'Score',
           key: 'Score',
           type: 'input',
-          editable: true,
+          editable: true
         },
         {
           title: 'Controls',
@@ -1396,7 +1396,9 @@ function App() {
                 <Button onClick={cancelEdit}>Cancel</Button>
                 <Button
                   type='primary'
-                  onClick={() => saveEdit(record?.SID, record?.IID, record?.QuizID)}
+                  onClick={() =>
+                    saveEdit(record?.SID, record?.IID, record?.QuizID)
+                  }
                 >
                   Save
                 </Button>
@@ -1478,6 +1480,31 @@ function App() {
         }
       ]
     },
+    avg_score_per_instructor: {
+      TableName: 'Avg Student Score Per Instructor',
+      Columns: [
+        {
+          title: 'IID',
+          dataIndex: 'IID',
+          key: 'IID'
+        },
+        {
+          title: 'First Name',
+          dataIndex: 'FirstName',
+          key: 'FirstName'
+        },
+        {
+          title: 'Last Name',
+          dataIndex: 'LastName',
+          key: 'LastName'
+        },
+        {
+          title: 'Student AVG Score',
+          dataIndex: 'avg_score',
+          key: 'avg_score'
+        }
+      ]
+    }
   }
 
   const columns = TABLE_COLUMNS[currentTable]?.Columns

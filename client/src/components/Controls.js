@@ -3,6 +3,7 @@ import React from 'react'
 import {
   DIVISION_TABLE_NAMES,
   JOINED_TABLE_NAMES,
+  NESTED_TABLE_NAMES,
   PROJECTION_TABLE_NAMES,
   TABLE_NAMES
 } from '../lib/constants'
@@ -61,6 +62,14 @@ const Controls = ({
     setCurrentTable(sqlTable)
     setTotalRows('...')
   }
+  const onNested = values => {
+    const min = Number(values.min)
+
+    requests[currentTable].getNested(min).then(res => {
+      console.log('onNested', res)
+      setTableData(res)
+    })
+  }
 
   const projEnabled = PROJECTION_TABLE_NAMES.find(
     t => t.sqlTable === currentTable
@@ -69,6 +78,10 @@ const Controls = ({
   const divEnabled = DIVISION_TABLE_NAMES.find(t => t.sqlTable === currentTable)
 
   const defaultEnabled = TABLE_NAMES.find(t => t.sqlTable === currentTable)
+
+  const nestedEnabled = NESTED_TABLE_NAMES.find(
+    t => t.sqlTable === currentTable
+  )
 
   return (
     <StyledControls>
@@ -119,30 +132,77 @@ const Controls = ({
             <Button>Division</Button>
           </Popover>
         )}
+        {nestedEnabled && (
+          <Popover
+            content={
+              <Form layout='vertical' onFinish={onNested}>
+                <Form.Item
+                  name='min'
+                  label='Minimum'
+                  rules={[
+                    {
+                      required: true,
+                      pattern: /^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/,
+                      message: 'Please enter a number Or Decimal',
+                      validator: (rule, value) => {
+                        if (value === '') {
+                          return Promise.reject('Please enter a number')
+                        }
+                        if (!rule.pattern.test(value)) {
+                          return Promise.reject('Please enter a number')
+                        }
+
+                        return Promise.resolve()
+                      }
+                    }
+                  ]}
+                >
+                  <DynamicInput inputType='input' />
+                </Form.Item>
+                <Button type='primary' htmlType='submit'>
+                  Get Instructors with student average greater than Minimum
+                </Button>
+              </Form>
+            }
+            trigger='click'
+          >
+            <Button>Nested Aggregation</Button>
+          </Popover>
+        )}
       </Col>
       <Col span={8} className='form'>
-        <Form onFinish={create} layout='vertical'>
-          {columns.map(
-            ({ title, dataIndex, key, hidden, type, inputProps, onChange }) => {
-              return hidden ? null : (
-                <Form.Item key={key} label={title} name={dataIndex}>
-                  <DynamicInput
-                    inputType={type}
-                    inputProps={inputProps}
-                    onChange={onChange}
-                  />
-                </Form.Item>
-              )
-            }
-          )}
-          <Form.Item>
-            {defaultEnabled && (
-              <Button type='primary' htmlType='submit'>
-                Create
-              </Button>
+        {defaultEnabled && (
+          <Form onFinish={create} layout='vertical'>
+            {columns.map(
+              ({
+                title,
+                dataIndex,
+                key,
+                hidden,
+                type,
+                inputProps,
+                onChange
+              }) => {
+                return hidden ? null : (
+                  <Form.Item key={key} label={title} name={dataIndex}>
+                    <DynamicInput
+                      inputType={type}
+                      inputProps={inputProps}
+                      onChange={onChange}
+                    />
+                  </Form.Item>
+                )
+              }
             )}
-          </Form.Item>
-        </Form>
+            <Form.Item>
+              {defaultEnabled && (
+                <Button type='primary' htmlType='submit'>
+                  Create
+                </Button>
+              )}
+            </Form.Item>
+          </Form>
+        )}
       </Col>
       <Col span={8} className='table-buttons'>
         <div>
@@ -162,6 +222,14 @@ const Controls = ({
         <div>
           <h3>Joined Tables</h3>
           {JOINED_TABLE_NAMES.map(({ sqlTable, name }) => (
+            <Button onClick={() => onTableChange(sqlTable)} key={name}>
+              {name}
+            </Button>
+          ))}
+        </div>
+        <div>
+          <h3>Nested Aggregation Tables</h3>
+          {NESTED_TABLE_NAMES.map(({ sqlTable, name }) => (
             <Button onClick={() => onTableChange(sqlTable)} key={name}>
               {name}
             </Button>

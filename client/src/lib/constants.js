@@ -128,3 +128,10 @@ export const PROJECTION_TABLE_NAMES = [
     sqlTable: 'students'
   }
 ]
+
+export const NESTED_TABLE_NAMES = [
+  {
+    name: 'Avg Student Score Per Instructor',
+    sqlTable: 'avg_score_per_instructor'
+  }
+]
