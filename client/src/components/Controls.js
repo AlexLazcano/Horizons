@@ -15,7 +15,9 @@ const Controls = ({
   setCurrentTable,
   setTotalRows,
   getAllUpdate,
-  columns
+  columns,
+  filters,
+  setFilters
 }) => {
   const create = values => {
     requests[currentTable]
@@ -28,10 +30,20 @@ const Controls = ({
         }
       })
   }
+
+  const onFilterChange = values => {
+    console.log('onFilterChange', values)
+    // get property names
+    const propertyNames = Object.keys(values[0])
+    console.log('propertyNames', propertyNames)
+
+    setFilters(propertyNames)
+  }
   const onProject = values => {
     console.log('onProject', values)
     requests[currentTable].getProjections(values).then(res => {
       setTableData(res)
+      onFilterChange(res)
     })
   }
 

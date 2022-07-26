@@ -18,11 +18,13 @@ function App() {
   })
   const [form] = Form.useForm()
   const [totalRows, setTotalRows] = useState('...')
+  const [filters, setFilters] = useState([])
   const idsRef = useRef({})
 
   useEffect(() => {
     getAll()
     getDependencies(currentTable)
+    clearFilters()
   }, [currentTable])
 
   const deleteRecord = (id, id2) => {
@@ -33,6 +35,10 @@ function App() {
           getAll()
         }
       })
+  }
+
+  const setDefaultFilters = () => {
+    console.log('setDefaultFilters')
   }
 
   const editRow = record => {
@@ -110,6 +116,10 @@ function App() {
       .catch(err => {
         console.log(err)
       })
+  }
+
+  const clearFilters = () => {
+    setFilters([])
   }
 
   // Memoize the columns
@@ -1335,26 +1345,33 @@ function App() {
   }
 
   const columns = TABLE_COLUMNS[currentTable]?.Columns
+  console.log(filters)
 
-  const mergedColumns = columns?.map(col => {
-    if (!col.editable) {
-      return col
-    }
+  const mergedColumns = columns
+    ?.filter(col => {
+      if (filters.length === 0) return true
 
-    return {
-      ...col,
-      onCell: (record, row) => {
-        return {
-          record,
-          inputType: col.type,
-          dataIndex: col.dataIndex,
-          title: col.title,
-          editing: isEditing(record.key1, record.key2),
-          inputProps: col.inputProps
+      return filters.includes(col.dataIndex)
+    })
+    ?.map(col => {
+      if (!col.editable) {
+        return col
+      }
+
+      return {
+        ...col,
+        onCell: (record, row) => {
+          return {
+            record,
+            inputType: col.type,
+            dataIndex: col.dataIndex,
+            title: col.title,
+            editing: isEditing(record.key1, record.key2),
+            inputProps: col.inputProps
+          }
         }
       }
-    }
-  })
+    })
 
   return (
     <StyledApp>
@@ -1383,6 +1400,8 @@ function App() {
         setTotalRows={setTotalRows}
         getAllUpdate={getAll}
         columns={columns}
+        setFilters={setFilters}
+        filters={filters}
       />
     </StyledApp>
   )
