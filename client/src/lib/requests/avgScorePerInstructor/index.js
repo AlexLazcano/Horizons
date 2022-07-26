@@ -6,7 +6,17 @@ const avgScorePerInstructorRequests = {
     const res = await axios
       .get(`${BACKEND_URL}/avgscoreperinstructor`)
       .then(res => {
-        console.log('avgScorePerInstructorRequests.getAll', res.data)
+        return res.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    return res
+  },
+  getNested: async min => {
+    const res = await axios
+      .get(`${BACKEND_URL}/avgscoreperinstructor/${min}`)
+      .then(res => {
         return res.data
       })
       .catch(err => {

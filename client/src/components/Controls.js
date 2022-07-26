@@ -62,6 +62,14 @@ const Controls = ({
     setCurrentTable(sqlTable)
     setTotalRows('...')
   }
+  const onNested = values => {
+    const min = Number(values.min)
+
+    requests[currentTable].getNested(min).then(res => {
+      console.log('onNested', res)
+      setTableData(res)
+    })
+  }
 
   const projEnabled = PROJECTION_TABLE_NAMES.find(
     t => t.sqlTable === currentTable
@@ -122,6 +130,43 @@ const Controls = ({
             trigger='click'
           >
             <Button>Division</Button>
+          </Popover>
+        )}
+        {nestedEnabled && (
+          <Popover
+            content={
+              <Form layout='vertical' onFinish={onNested}>
+                <Form.Item
+                  name='min'
+                  label='Minimum'
+                  rules={[
+                    {
+                      required: true,
+                      pattern: /^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/,
+                      message: 'Please enter a number Or Decimal',
+                      validator: (rule, value) => {
+                        if (value === '') {
+                          return Promise.reject('Please enter a number')
+                        }
+                        if (!rule.pattern.test(value)) {
+                          return Promise.reject('Please enter a number')
+                        }
+
+                        return Promise.resolve()
+                      }
+                    }
+                  ]}
+                >
+                  <DynamicInput inputType='input' />
+                </Form.Item>
+                <Button type='primary' htmlType='submit'>
+                  Get Instructors with student average greater than Minimum
+                </Button>
+              </Form>
+            }
+            trigger='click'
+          >
+            <Button>Nested Aggregation</Button>
           </Popover>
         )}
       </Col>

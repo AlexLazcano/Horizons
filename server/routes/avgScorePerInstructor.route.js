@@ -4,4 +4,6 @@ const avgScorePerInstructor = require('../controllers/avgScorePerInstructor.cont
 
 router.get('/', avgScorePerInstructor.get)
 
+router.get('/:min', avgScorePerInstructor.getHigherThanMin)
+
 module.exports = router
