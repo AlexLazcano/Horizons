@@ -14,7 +14,8 @@ function App() {
   const [data, setData] = useState()
   const [editingKey, setEditingKey] = useState({
     key1: '',
-    key2: ''
+    key2: '',
+    key3: ''
   })
   const [form] = Form.useForm()
   const [totalRows, setTotalRows] = useState('...')
@@ -38,11 +39,14 @@ function App() {
   }
 
   const editRow = record => {
-    console.log(record)
     form.setFieldsValue({
       ...record
     })
-    setEditingKey({ key1: record?.key1, key2: record?.key2 })
+    setEditingKey({
+      key1: record?.key1,
+      key2: record?.key2,
+      key3: record?.key3
+    })
   }
   const getAll = () => {
     requests[currentTable]
@@ -54,15 +58,24 @@ function App() {
         console.log(err)
       })
   }
-  const isEditing = (key1, key2) => {
-    return key2 != null
-      ? editingKey.key1 === key1 && editingKey.key2 === key2
-      : editingKey.key1 === key1
+  const isEditing = (key1, key2, key3) => {
+    if (key3) {
+      return (
+        editingKey.key1 === key1 &&
+        editingKey.key2 === key2 &&
+        editingKey.key3 === key3
+      )
+    }
+    if (key2) {
+      return editingKey.key1 === key1 && editingKey.key2 === key2
+    }
+    return editingKey.key1 === key1
   }
   const cancelEdit = () =>
     setEditingKey({
       key1: '',
-      key2: ''
+      key2: '',
+      key3: ''
     })
   const saveEdit = async (id, id2) => {
     try {
@@ -78,7 +91,8 @@ function App() {
 
       setEditingKey({
         key1: '',
-        key2: ''
+        key2: '',
+        key3: ''
       })
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo)
@@ -1366,12 +1380,7 @@ function App() {
           title: 'QuizID',
           dataIndex: 'QuizID',
           key: 'QuizID',
-          type: 'select',
-          editable: true,
-          inputProps: {
-            showSearch: true,
-            options: idsRef.current.quizzes
-          }
+          type: 'select'
         },
         {
           title: 'Score',
@@ -1454,6 +1463,7 @@ function App() {
           render: (text, record) => {
             record.key1 = record.IID
             record.key2 = record.LanguageCode
+            record.key3 = record.QuizID
             const editable = isEditing(record.key1, record.key2)
             return editable ? (
               <Space size='middle'>
@@ -1470,7 +1480,9 @@ function App() {
                 <Button onClick={() => editRow(record)}>Edit</Button>
                 <Button
                   danger
-                  onClick={() => deleteRecord(record?.IID, record?.LanguageCode)}
+                  onClick={() =>
+                    deleteRecord(record?.IID, record?.LanguageCode)
+                  }
                 >
                   Delete
                 </Button>
@@ -1528,7 +1540,7 @@ function App() {
             inputType: col.type,
             dataIndex: col.dataIndex,
             title: col.title,
-            editing: isEditing(record.key1, record.key2),
+            editing: isEditing(record.key1, record.key2, record.key3),
             inputProps: col.inputProps
           }
         }
