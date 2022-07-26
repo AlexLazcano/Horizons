@@ -1241,23 +1241,14 @@ function App() {
           dataIndex: 'GID',
           key: 'GID',
           hidden: true,
-          type: 'select',
-          editable: true,
-          inputProps: {
-            showSearch: true,
-            options: idsRef.current.groups
-          }
+          type: 'select'
         },
         {
           title: 'SID',
           dataIndex: 'SID',
           key: 'SID',
           hidden: true,
-          type: 'select',
-          inputProps: {
-            showSearch: true,
-            options: idsRef.current.students
-          }
+          type: 'select'
         }
       ]
     }
