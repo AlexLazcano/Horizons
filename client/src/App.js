@@ -1308,6 +1308,29 @@ function App() {
           }
         }
       ]
+    },
+    students_join_countries: {
+      TableName: 'Students Join Countries',
+      Columns: [
+        {
+          title: 'First Name',
+          dataIndex: 'FirstName',
+          key: 'FirstName',
+          hidden: true
+        },
+        {
+          title: 'Last Name',
+          dataIndex: 'LastName',
+          key: 'LastName',
+          hidden: true
+        },
+        {
+          title: 'Country',
+          dataIndex: 'Country',
+          key: 'Country',
+          hidden: true
+        }
+      ]
     }
   }
 
@@ -1357,6 +1380,7 @@ function App() {
         setTableData={setData}
         currentTable={currentTable}
         setCurrentTable={setCurrentTable}
+        setTotalRows={setTotalRows}
         getAllUpdate={getAll}
         columns={columns}
       />

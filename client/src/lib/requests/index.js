@@ -18,6 +18,7 @@ import interestedInRequests from './interestedIn'
 import studentsInGroupsRequests from './studentsInGroups'
 import divisionGroupsRequests from './divisionGroups'
 import studentsConnectedWithRequests from './studentsConnectedWith'
+import studentJoinCountryRequests from './studentJoinCountries'
 
 const requests = {
   students: {
@@ -79,6 +80,9 @@ const requests = {
   },
   students_connected_with: {
     ...studentsConnectedWithRequests
+  },
+  students_join_countries: {
+    ...studentJoinCountryRequests
   }
 }
 
