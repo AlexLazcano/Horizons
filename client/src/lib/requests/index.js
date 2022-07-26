@@ -17,6 +17,7 @@ import studentsTakeQuizzesRequests from './studentsTakeQuizzes'
 import interestedInRequests from './interestedIn'
 import studentsInGroupsRequests from './studentsInGroups'
 import divisionGroupsRequests from './divisionGroups'
+import studentsConnectedWithRequests from './studentsConnectedWith'
 
 const requests = {
   students: {
@@ -75,6 +76,9 @@ const requests = {
   },
   division_groups: {
     ...divisionGroupsRequests
+  },
+  students_connected_with: {
+    ...studentsConnectedWithRequests
   }
 }
 

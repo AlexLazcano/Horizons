@@ -1251,6 +1251,63 @@ function App() {
           type: 'select'
         }
       ]
+    },
+    students_connected_with: {
+      TableName: 'Students Connected With',
+      Columns: [
+        {
+          title: 'SIDA',
+          dataIndex: 'SIDA',
+          key: 'SIDA',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: idsRef.current.students
+          }
+        },
+        {
+          title: 'SIDB',
+          dataIndex: 'SIDB',
+          key: 'SIDB',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: idsRef.current.students
+          }
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => {
+            record.key1 = record.SIDA
+            record.key2 = record.SIDB
+            const editable = isEditing(record.key1, record.key2)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button
+                  type='primary'
+                  onClick={() => saveEdit(record.SIDA, record.SIDB)}
+                >
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button
+                  danger
+                  onClick={() => deleteRecord(record?.SIDA, record?.SIDB)}
+                >
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
+        }
+      ]
     }
   }
 
