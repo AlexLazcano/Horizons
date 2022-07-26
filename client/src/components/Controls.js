@@ -55,6 +55,7 @@ const Controls = ({
         <Button type='primary' onClick={getAllUpdate} block>
           Get Data
         </Button>
+        {currentTable === 'students' && (
         <Popover
           content={
             <Form layout='vertical' onFinish={onProject}>
@@ -79,6 +80,7 @@ const Controls = ({
         >
           <Button>Projection</Button>
         </Popover>
+        )}
         {currentTable === 'division_groups' && (
           <Popover
             content={
