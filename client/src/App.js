@@ -1481,17 +1481,27 @@ function App() {
       ]
     },
     avg_score_per_instructor: {
-      TableName: 'Avg Score Per Student',
+      TableName: 'Avg Student Score Per Instructor',
       Columns: [
-        {
-          title: 'SID',
-          dataIndex: 'SID',
-          key: 'SID'
-        },
         {
           title: 'IID',
           dataIndex: 'IID',
           key: 'IID'
+        },
+        {
+          title: 'First Name',
+          dataIndex: 'FirstName',
+          key: 'FirstName'
+        },
+        {
+          title: 'Last Name',
+          dataIndex: 'LastName',
+          key: 'LastName'
+        },
+        {
+          title: 'Student AVG Score',
+          dataIndex: 'avg_score',
+          key: 'avg_score'
         }
       ]
     }
