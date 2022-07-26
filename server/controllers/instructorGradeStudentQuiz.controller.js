@@ -42,7 +42,7 @@ const patch = async (req, res) => {
       req.params.GID,
       req.params.QuizID,
       req.body.Score,
-      req.body.NewScore
+      req.body.newScore
 
     )
 
