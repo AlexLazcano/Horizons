@@ -29,6 +29,13 @@ const Controls = ({
       setTableData(res)
     })
   }
+
+  const onDivide = () => {
+    requests[currentTable].divide().then(res => {
+      console.log('onDivide', res)
+      setTableData(res)
+    })
+  }
   return (
     <StyledControls>
       <Col span={8} className='buttons'>
@@ -62,6 +69,20 @@ const Controls = ({
         >
           <Button>Projection</Button>
         </Popover>
+        {currentTable === 'division_groups' && (
+          <Popover
+            content={
+              <Form layout='vertical' onFinish={onDivide}>
+                <Button type='primary' htmlType='submit'>
+                  Get Students that are in ALL Groups
+                </Button>
+              </Form>
+            }
+            trigger='click'
+          >
+            <Button>Division</Button>
+          </Popover>
+        )}
       </Col>
       <Col span={8} className='form'>
         <Form onFinish={create} layout='vertical'>
@@ -79,19 +100,29 @@ const Controls = ({
             }
           )}
           <Form.Item>
-            <Button type='primary' htmlType='submit'>
-              Create
-            </Button>
+            {currentTable === 'division_groups' ? null : (
+              <Button type='primary' htmlType='submit'>
+                Create
+              </Button>
+            )}
           </Form.Item>
         </Form>
       </Col>
       <Col span={8} className='table-buttons'>
-        <div>Tables</div>
-        {TABLE_NAMES.map(({ sqlTable, name }) => (
-          <Button onClick={() => setCurrentTable(sqlTable)} key={name}>
-            {name}
+        <div>
+          <div>Tables</div>
+          {TABLE_NAMES.map(({ sqlTable, name }) => (
+            <Button onClick={() => setCurrentTable(sqlTable)} key={name}>
+              {name}
+            </Button>
+          ))}
+        </div>
+        <div>
+          <div>Division</div>
+          <Button onClick={() => setCurrentTable('division_groups')}>
+            Groups
           </Button>
-        ))}
+        </div>
       </Col>
     </StyledControls>
   )

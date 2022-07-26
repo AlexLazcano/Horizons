@@ -1,5 +1,4 @@
 import axios from 'axios'
-import moment from 'moment'
 import { BACKEND_URL } from '../../constants'
 
 const countryRequests = {

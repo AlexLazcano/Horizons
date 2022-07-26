@@ -56,11 +56,26 @@ const getRows = async (req, res) => {
     console.log(error)
   }
 }
+const divide = async (req, res) => {
+  try {
+    const result = await studentsInGroups.divide()
+
+    const edited = result.map(row => ({
+      SID: row.SID,
+      GID: 'In All Groups'
+    }))
+
+    res.json(edited)
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 module.exports = {
   get,
   post,
-  remove, 
+  remove,
   patch,
-  getRows
+  getRows,
+  divide
 }

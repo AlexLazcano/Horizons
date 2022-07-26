@@ -1232,6 +1232,25 @@ function App() {
           }
         }
       ]
+    },
+    division_groups: {
+      TableName: 'Division Groups',
+      Columns: [
+        {
+          title: 'GID',
+          dataIndex: 'GID',
+          key: 'GID',
+          hidden: true,
+          type: 'select'
+        },
+        {
+          title: 'SID',
+          dataIndex: 'SID',
+          key: 'SID',
+          hidden: true,
+          type: 'select'
+        }
+      ]
     }
   }
 
