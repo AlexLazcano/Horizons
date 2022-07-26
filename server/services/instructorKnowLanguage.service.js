@@ -1,6 +1,6 @@
 const db = require('./db')
 
-const getInstructorsKnowLanguage = async () => {
+const getInstructorKnowLanguage = async () => {
   try {
     const rows = db.query('SELECT * FROM instructor_know_language')
     return !rows ? [] : rows
@@ -9,11 +9,11 @@ const getInstructorsKnowLanguage = async () => {
   }
 }
 
-const createInstructorsKnowLanguage = async instructorsKnowLanguage => {
+const createInstructorKnowLanguage = async instructorKnowLanguage => {
   try {
-    console.log('creating instructor_know_language', instructorsKnowLanguage)
+    console.log('creating instructor_know_language', instructorKnowLanguage)
 
-    const { IID, LanguageCode } = instructorsKnowLanguage
+    const { IID, LanguageCode } = instructorKnowLanguage
     const result = await db.query(
       'INSERT INTO instructor_know_language (IID, LanguageCode) VALUES (?, ?)',
       [IID, LanguageCode]
@@ -21,15 +21,15 @@ const createInstructorsKnowLanguage = async instructorsKnowLanguage => {
 
     return {
       message: result.affectedRows
-        ? 'InstructorsKnowLanguage created'
-        : 'InstructorsKnowLanguage not created'
+        ? 'InstructorKnowLanguage created'
+        : 'InstructorKnowLanguage not created'
     }
   } catch (error) {
     console.log(error)
   }
 }
 
-const deleteInstructorsKnowLanguage = async (IID, LanguageCode) => {
+const deleteInstructorKnowLanguage = async (IID, LanguageCode) => {
   try {
     const result = await db.query(
       'DELETE FROM instructor_know_language WHERE IID = ? AND LanguageCode = ?',
@@ -37,15 +37,15 @@ const deleteInstructorsKnowLanguage = async (IID, LanguageCode) => {
     )
     return {
       message: result.affectedRows
-        ? 'InstructorsKnowLanguage deleted'
-        : 'InstructorsKnowLanguage not deleted'
+        ? 'InstructorKnowLanguage deleted'
+        : 'InstructorKnowLanguage not deleted'
     }
   } catch (error) {
     console.log(error)
   }
 }
 
-const updateInstructorsKnowLanguage = async (IID, LanguageCode, newLanguageCode) => {
+const updateInstructorKnowLanguage = async (IID, LanguageCode, newLanguageCode) => {
   try {
     const result = await db.query(
       'UPDATE instructor_know_language SET IID = ?, LanguageCode = ? WHERE IID = ? AND LanguageCode = ?',
@@ -53,8 +53,8 @@ const updateInstructorsKnowLanguage = async (IID, LanguageCode, newLanguageCode)
     )
     return {
       message: result.affectedRows
-        ? 'InstructorsKnowLanguage updated'
-        : 'InstructorsKnowLanguage not updated',
+        ? 'InstructorKnowLanguage updated'
+        : 'InstructorKnowLanguage not updated',
       status: result.affectedRows ? 200 : 400
     }
   } catch (error) {
@@ -74,9 +74,9 @@ const getRows = async () => {
 
 
 module.exports = {
-    getInstructorsKnowLanguage,
-    createInstructorsKnowLanguage,
-    deleteInstructorsKnowLanguage,
-    updateInstructorsKnowLanguage,
+    getInstructorKnowLanguage,
+    createInstructorKnowLanguage,
+    deleteInstructorKnowLanguage,
+    updateInstructorKnowLanguage,
     getRows
 }

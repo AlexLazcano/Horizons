@@ -22,7 +22,7 @@ const studentsInGroups = require('./routes/studentsInGroups.route')
 const studentsConnectedWith = require('./routes/studentsConnectedWith.route')
 const studentJoinCountries = require('./routes/studentJoinCountries.route')
 const instructorGradeStudentQuiz = require('./routes/instructorGradeStudentQuiz.route')
-const instructorsKnowLanguage = require('./routes/instructorsKnowLanguage.route')
+const instructorKnowLanguage = require('./routes/instructorKnowLanguage.route')
 
 const cors = require('cors')
 
@@ -54,7 +54,7 @@ app.use('/studentsingroups', studentsInGroups)
 app.use('/studentsconnectedwith', studentsConnectedWith)
 app.use('/studentjoincountries', studentJoinCountries)
 app.use('/instructorgradestudentquiz', instructorGradeStudentQuiz)
-app.use('/instructorsknowlanguage', instructorsKnowLanguage)
+app.use('/instructorknowlanguage', instructorKnowLanguage)
 
 
 app.listen(PORT, () => {

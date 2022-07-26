@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { BACKEND_URL } from '../../constants'
 
-const instructorsKnowLanguageRequests = {
+const instructorKnowLanguageRequests = {
   getAll: async () => {
     const res = await axios
       .get(`${BACKEND_URL}/instructorknowlanguage`)
@@ -78,4 +78,4 @@ const instructorsKnowLanguageRequests = {
   }
 }
 
-export default instructorsKnowLanguageRequests
+export default instructorKnowLanguageRequests

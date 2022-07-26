@@ -104,7 +104,7 @@ export const TABLE_NAMES = [
     sqlTable: 'instructor_grade_student_quiz'
   },
   {
-    name: 'InstructorsKnowLanguage',
+    name: 'InstructorKnowLanguage',
     sqlTable: 'instructor_know_language'
   }
 ]

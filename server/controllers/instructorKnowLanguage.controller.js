@@ -1,8 +1,8 @@
-const instructorsKnowLanguage = require('../services/instructorsKnowLanguage.service')
+const instructorKnowLanguage = require('../services/instructorKnowLanguage.service')
 
 const get = async (req, res) => {
   try {
-    const result = await instructorsKnowLanguage.getInstructorsKnowLanguage()
+    const result = await instructorKnowLanguage.getInstructorKnowLanguage()
 
     res.json(result)
   } catch (error) {
@@ -12,7 +12,7 @@ const get = async (req, res) => {
 
 const post = async (req, res) => {
   try {
-    const result = await instructorsKnowLanguage.createInstructorsKnowLanguage(req.body)
+    const result = await instructorKnowLanguage.createInstructorKnowLanguage(req.body)
 
     res.json(result)
   } catch (error) {
@@ -22,7 +22,7 @@ const post = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
-    const result = await instructorsKnowLanguage.deleteInstructorsKnowLanguage(
+    const result = await instructorKnowLanguage.deleteInstructorKnowLanguage(
       req.params.IID,
       req.params.LanguageCode
     )
@@ -35,7 +35,7 @@ const remove = async (req, res) => {
 
 const patch = async (req, res) => {
   try {
-    const result = await instructorsKnowLanguage.updateInstructorsKnowLanguage(
+    const result = await instructorKnowLanguage.updateInstructorKnowLanguage(
       req.params.IID,
       req.params.LanguageCode,
       req.body.newLanguageCode
@@ -49,7 +49,7 @@ const patch = async (req, res) => {
 
 const getRows = async (req, res) => {
   try {
-    const result = await instructorsKnowLanguage.getRows()
+    const result = await instructorKnowLanguage.getRows()
 
     res.json(result)
   } catch (error) {
