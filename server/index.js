@@ -19,6 +19,7 @@ const lessonsContainStudents = require('./routes/lessonStudents.route')
 const studentsTakeQuizzes = require('./routes/studentsTakeQuizzes.route')
 const interestedIn = require('./routes/interestedIn.route')
 const studentsInGroups = require('./routes/studentsInGroups.route')
+const studentsConnectedWith = require('./routes/studentsConnectedWith.route')
 
 const cors = require('cors')
 
@@ -47,6 +48,7 @@ app.use('/lessonscontainstudents', lessonsContainStudents)
 app.use('/studentstakequizzes', studentsTakeQuizzes)
 app.use('/interestedin', interestedIn)
 app.use('/studentsingroups', studentsInGroups)
+app.use('/studentsconnectedwith', studentsConnectedWith)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
