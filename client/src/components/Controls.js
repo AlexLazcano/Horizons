@@ -1,6 +1,10 @@
-import { Button, Col, Form, Row, Popover } from 'antd'
+import { Button, Col, Form, Popover } from 'antd'
 import React from 'react'
-import { TABLE_NAMES, JOINED_TABLE_NAMES } from '../lib/constants'
+import {
+  DIVISION_TABLE_NAMES,
+  JOINED_TABLE_NAMES,
+  TABLE_NAMES
+} from '../lib/constants'
 import requests from '../lib/requests'
 import DynamicInput from './DynamicInput'
 import { StyledControls } from './styles'
@@ -41,10 +45,7 @@ const Controls = ({
     setCurrentTable(sqlTable)
     setTotalRows('...')
   }
-  const testFunction = () => {
-    const temp = 'studentJoinCountries'
-    requests[temp]?.getAll()
-  }
+
   return (
     <StyledControls>
       <Col span={8} className='buttons'>
@@ -109,7 +110,7 @@ const Controls = ({
             }
           )}
           <Form.Item>
-            {currentTable === 'division_groups' ? null : (
+            {TABLE_NAMES.find(({ sqlTable }) => sqlTable === currentTable) && (
               <Button type='primary' htmlType='submit'>
                 Create
               </Button>
@@ -128,9 +129,9 @@ const Controls = ({
         </div>
         <div>
           <h3>Division</h3>
-          <Button onClick={() => onTableChange('division_groups')}>
-            Groups
-          </Button>
+          {DIVISION_TABLE_NAMES.map(({ sqlTable, name }) => (
+            <Button onClick={() => onTableChange(sqlTable)}>{name}</Button>
+          ))}
         </div>
         <div>
           <h3>Joined Tables</h3>

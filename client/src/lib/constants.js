@@ -99,6 +99,12 @@ export const TABLE_NAMES = [
   }
 ]
 
+export const DIVISION_TABLE_NAMES = [
+  {
+    name: 'Groups',
+    sqlTable: 'division_groups'
+  }
+]
 export const JOINED_TABLE_NAMES = [
   {
     name: 'StudentsJoinCountries',
