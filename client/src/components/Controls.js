@@ -1,6 +1,6 @@
 import { Button, Col, Form, Row, Popover } from 'antd'
 import React from 'react'
-import { TABLE_NAMES } from '../lib/constants'
+import { TABLE_NAMES, JOINED_TABLE_NAMES } from '../lib/constants'
 import requests from '../lib/requests'
 import DynamicInput from './DynamicInput'
 import { StyledControls } from './styles'
@@ -9,6 +9,7 @@ const Controls = ({
   currentTable,
   setTableData,
   setCurrentTable,
+  setTotalRows,
   getAllUpdate,
   columns
 }) => {
@@ -35,6 +36,14 @@ const Controls = ({
       console.log('onDivide', res)
       setTableData(res)
     })
+  }
+  const onTableChange = sqlTable => {
+    setCurrentTable(sqlTable)
+    setTotalRows('...')
+  }
+  const testFunction = () => {
+    const temp = 'studentJoinCountries'
+    requests[temp]?.getAll()
   }
   return (
     <StyledControls>
@@ -110,18 +119,26 @@ const Controls = ({
       </Col>
       <Col span={8} className='table-buttons'>
         <div>
-          <div>Tables</div>
+          <h3>Tables</h3>
           {TABLE_NAMES.map(({ sqlTable, name }) => (
-            <Button onClick={() => setCurrentTable(sqlTable)} key={name}>
+            <Button onClick={() => onTableChange(sqlTable)} key={name}>
               {name}
             </Button>
           ))}
         </div>
         <div>
-          <div>Division</div>
-          <Button onClick={() => setCurrentTable('division_groups')}>
+          <h3>Division</h3>
+          <Button onClick={() => onTableChange('division_groups')}>
             Groups
           </Button>
+        </div>
+        <div>
+          <h3>Joined Tables</h3>
+          {JOINED_TABLE_NAMES.map(({ sqlTable, name }) => (
+            <Button onClick={() => onTableChange(sqlTable)} key={name}>
+              {name}
+            </Button>
+          ))}
         </div>
       </Col>
     </StyledControls>

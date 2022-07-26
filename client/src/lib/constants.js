@@ -98,3 +98,10 @@ export const TABLE_NAMES = [
     sqlTable: 'students_connected_with'
   }
 ]
+
+export const JOINED_TABLE_NAMES = [
+  {
+    name: 'StudentsJoinCountries',
+    sqlTable: 'students_join_countries'
+  }
+]

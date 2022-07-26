@@ -1311,6 +1311,10 @@ function App() {
     }
   }
 
+  const JOINED_TABLE_COLUMNS = {
+    
+  }
+
   const columns = TABLE_COLUMNS[currentTable]?.Columns
 
   const mergedColumns = columns?.map(col => {
@@ -1357,6 +1361,7 @@ function App() {
         setTableData={setData}
         currentTable={currentTable}
         setCurrentTable={setCurrentTable}
+        setTotalRows={setTotalRows}
         getAllUpdate={getAll}
         columns={columns}
       />
