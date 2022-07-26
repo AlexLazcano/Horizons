@@ -32,11 +32,8 @@ const Controls = ({
   }
 
   const onFilterChange = values => {
-    console.log('onFilterChange', values)
     // get property names
     const propertyNames = Object.keys(values[0])
-    console.log('propertyNames', propertyNames)
-
     setFilters(propertyNames)
   }
   const onProject = values => {
