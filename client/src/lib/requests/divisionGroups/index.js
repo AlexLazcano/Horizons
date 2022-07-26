@@ -13,14 +13,12 @@ const divisionGroupsRequests = {
       })
     return res
   },
-  divide: async GID => {
+  divide: async () => {
     const res = await axios
-      .post(`${BACKEND_URL}/studentsingroups/divide`, {
-        GID
-      })
+      .get(`${BACKEND_URL}/studentsingroups/divide`)
       .then(res => {
         console.log('post response', res)
-        return res
+        return res.data
       })
       .catch(err => {
         console.log(err)

@@ -70,7 +70,33 @@ const getRows = async () => {
     console.log(error)
   }
 }
-const divide = async GID => {}
+const divide = async () => {
+  try {
+    const rows = db.query(`SElECT DISTINCT *
+    FROM (
+            SELECT SID
+            FROM students_in_groups
+        ) AS ALLSIDS
+    WHERE (SID) NOT IN (
+            SELECT SID
+            FROM (
+                    SELECT B.GID AS GID,
+                        A.SID AS SID
+                    FROM (horizons.students_in_groups as A)
+                        CROSS JOIN (horizons.groups AS B)
+                ) AS CR
+            WHERE NOT EXISTS (
+                    SELECT *
+                    FROM students_in_groups
+                    WHERE students_in_groups.SID = CR.SID
+                        AND students_in_groups.GID = CR.GID
+                )
+        )`)
+    return !rows ? [] : rows
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 module.exports = {
   getStudentsInGroups,

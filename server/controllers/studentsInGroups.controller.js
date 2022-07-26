@@ -58,9 +58,14 @@ const getRows = async (req, res) => {
 }
 const divide = async (req, res) => {
   try {
-    const result = await studentsInGroups.divide(req.params.GID)
+    const result = await studentsInGroups.divide()
 
-    res.json(result)
+    const edited = result.map(row => ({
+      SID: row.SID,
+      GID: 'In All Groups'
+    }))
+
+    res.json(edited)
   } catch (error) {
     console.log(error)
   }

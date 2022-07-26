@@ -30,9 +30,9 @@ const Controls = ({
     })
   }
 
-  const onDivide = values => {
-    console.log('onDivide', values)
-    requests[currentTable].getDivisions(values).then(res => {
+  const onDivide = () => {
+    requests[currentTable].divide().then(res => {
+      console.log('onDivide', res)
       setTableData(res)
     })
   }
@@ -72,34 +72,9 @@ const Controls = ({
         {currentTable === 'division_groups' && (
           <Popover
             content={
-              <Form layout='vertical' onFinish={onProject}>
-                {columns.map(
-                  ({
-                    dataIndex,
-                    key,
-                    onChange,
-                    title,
-                    editable,
-                    inputProps
-                  }) => {
-                    return title === 'Controls' || !editable ? null : (
-                      <Form.Item
-                        key={key}
-                        label={title}
-                        name={dataIndex}
-                        valuePropName={dataIndex}
-                      >
-                        <DynamicInput
-                          inputType='select'
-                          onChange={onChange}
-                          inputProps={inputProps}
-                        />
-                      </Form.Item>
-                    )
-                  }
-                )}
+              <Form layout='vertical' onFinish={onDivide}>
                 <Button type='primary' htmlType='submit'>
-                  Get All Students in Group
+                  Get Students that are in ALL Groups
                 </Button>
               </Form>
             }
