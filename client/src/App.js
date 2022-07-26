@@ -1418,6 +1418,66 @@ function App() {
         }
       ]
     },
+
+    instructor_know_language: {
+      TableName: 'Instructor Know Language',
+      Columns: [
+        {
+          title: 'IID',
+          dataIndex: 'IID',
+          key: 'IID',
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: idsRef.current.instructors
+          }
+        },
+        {
+          title: 'LanguageCode',
+          dataIndex: 'LanguageCode',
+          key: 'LanguageCode',
+          editable: true,
+          type: 'select',
+          inputProps: {
+            showSearch: true,
+            options: idsRef.current.languages
+          }
+        },
+        {
+          title: 'Controls',
+          key: 'key',
+          dataIndex: 'key',
+          hidden: true,
+          width: '10%',
+          render: (text, record) => {
+            record.key1 = record.IID
+            record.key2 = record.LanguageCode
+            const editable = isEditing(record.key1, record.key2)
+            return editable ? (
+              <Space size='middle'>
+                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button
+                  type='primary'
+                  onClick={() => saveEdit(record.IID, record.LanguageCode)}
+                >
+                  Save
+                </Button>
+              </Space>
+            ) : (
+              <Space size='middle'>
+                <Button onClick={() => editRow(record)}>Edit</Button>
+                <Button
+                  danger
+                  onClick={() => deleteRecord(record?.IID, record?.LanguageCode)}
+                >
+                  Delete
+                </Button>
+              </Space>
+            )
+          }
+        }
+      ]
+    },
   }
 
   const columns = TABLE_COLUMNS[currentTable]?.Columns
