@@ -77,6 +77,24 @@ const getRows = async () => {
   }
 }
 
+const select = async () => {
+  try {
+    const rows = db.query(`SElECT DISTINCT *
+    FROM (
+          SELECT 
+          Score, SID
+      FROM
+          students_in_groups
+      WHERE
+          Score Between${min} AND ${max};
+  
+        )`)
+    return !rows ? [] : rows
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   getInstructorGradeStudentQuiz,
   createInstructorGradeStudentQuiz,

@@ -66,10 +66,29 @@ const getRows = async (req, res) => {
   }
 }
 
+const select = async (req, res) => {
+  try {
+    const result = await instructorGradeStudentQuiz.select()
+
+    const edited = result.map(row => ({
+      SID: row.SID,
+      GID: row.GID,
+      QuizID: row.QuizID,
+      Score: 'Score In Range'
+    }))
+
+    res.json(edited)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
 module.exports = {
   get,
   post,
   remove,
   patch,
-  getRows
+  getRows,
+  select
 }
