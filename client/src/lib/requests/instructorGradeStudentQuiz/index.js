@@ -90,6 +90,18 @@ const instructorGradeStudentQuizRequests = {
         console.log(err)
       })
     return res
+  },
+  getSelect: async (min, max) => {
+    console.log('getSelect', { min, max })
+    const res = await axios
+      .get(`${BACKEND_URL}/instructorgradestudentquiz/select/${min}/${max}`)
+      .then(res => {
+        return res.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    return res
   }
 }
 

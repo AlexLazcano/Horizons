@@ -135,3 +135,10 @@ export const NESTED_TABLE_NAMES = [
     sqlTable: 'avg_score_per_instructor'
   }
 ]
+
+export const SELECT_TABLE_NAMES = [
+  {
+    name: 'InstructorGradeStudentQuiz',
+    sqlTable: 'instructor_grade_student_quiz'
+  }
+]
