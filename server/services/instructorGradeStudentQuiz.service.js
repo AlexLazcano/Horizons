@@ -11,7 +11,10 @@ const getInstructorGradeStudentQuiz = async () => {
 
 const createInstructorGradeStudentQuiz = async instructorGradeStudentQuiz => {
   try {
-    console.log('creating instructor_grade_student_quiz', instructorGradeStudentQuiz)
+    console.log(
+      'creating instructor_grade_student_quiz',
+      instructorGradeStudentQuiz
+    )
 
     const { SID, IID, QuizID, Score } = instructorGradeStudentQuiz
     const result = await db.query(
@@ -47,16 +50,11 @@ const deleteInstructorGradeStudentQuiz = async (SID, IID, QuizID) => {
   }
 }
 
-const updateInstructorGradeStudentQuiz = async (
-  SID,
-  IID,
-  QuizID,
-  //Score
-) => {
+const updateInstructorGradeStudentQuiz = async (SID, IID, QuizID, newScore) => {
   try {
     const result = await db.query(
       'UPDATE instructor_grade_student_quiz SET SID = ?, IID = ?, QuizID = ?, Score = ?  WHERE SID = ? AND IID = ? AND QuizID = ?',
-      [SID, IID, QuizID, newScore, SID, IID, QuizID ]
+      [SID, IID, QuizID, newScore, SID, IID, QuizID]
     )
     return {
       message: result.affectedRows
@@ -80,9 +78,9 @@ const getRows = async () => {
 }
 
 module.exports = {
-    getInstructorGradeStudentQuiz,
-    createInstructorGradeStudentQuiz,
-    deleteInstructorGradeStudentQuiz,
-    updateInstructorGradeStudentQuiz,
-    getRows
+  getInstructorGradeStudentQuiz,
+  createInstructorGradeStudentQuiz,
+  deleteInstructorGradeStudentQuiz,
+  updateInstructorGradeStudentQuiz,
+  getRows
 }

@@ -16,8 +16,10 @@ const instructorGradeStudentQuizRequests = {
 
   create: async ({ SID, IID, QuizID, Score }) => {
     console.log('create', { SID, IID, QuizID, Score })
-    if (!SID || !IID || !QuizID || !Score ) {
-      console.error('Missing required fields for instructorGradeStudentQuiz creation')
+    if (!SID || !IID || !QuizID || !Score) {
+      console.error(
+        'Missing required fields for instructorGradeStudentQuiz creation'
+      )
     }
     const res = await axios
       .post(`${BACKEND_URL}/instructorgradestudentquiz`, {
@@ -35,13 +37,17 @@ const instructorGradeStudentQuizRequests = {
       })
     return res
   },
-  delete: async (SID, IID, QuizID,) => {
+  delete: async (SID, IID, QuizID) => {
     console.log('delete', { SID, IID, QuizID })
     if (!SID || !IID || !QuizID) {
-      console.error('Missing required fields for instructorGradeStudentQuiz deletion')
+      console.error(
+        'Missing required fields for instructorGradeStudentQuiz deletion'
+      )
     }
     const res = await axios
-      .delete(`${BACKEND_URL}/instructorgradestudentquiz/${SID}/${IID}/${QuizID}`)
+      .delete(
+        `${BACKEND_URL}/instructorgradestudentquiz/${SID}/${IID}/${QuizID}`
+      )
       .then(res => {
         console.log('delete response', res)
         return res
@@ -57,9 +63,12 @@ const instructorGradeStudentQuizRequests = {
     console.log('update', { SID, IID, QuizID, newScore })
 
     const res = await axios
-      .patch(`${BACKEND_URL}/instructorgradestudentquiz/${SID}/${IID}/${QuizID}`, {
-        newScore
-      })
+      .patch(
+        `${BACKEND_URL}/instructorgradestudentquiz/${SID}/${IID}/${QuizID}`,
+        {
+          newScore
+        }
+      )
       .then(res => {
         console.log('patch response', res)
         return res
@@ -83,6 +92,5 @@ const instructorGradeStudentQuizRequests = {
     return res
   }
 }
-
 
 export default instructorGradeStudentQuizRequests

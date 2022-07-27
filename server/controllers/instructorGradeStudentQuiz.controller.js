@@ -2,7 +2,8 @@ const instructorGradeStudentQuiz = require('../services/instructorGradeStudentQu
 
 const get = async (req, res) => {
   try {
-    const result = await instructorGradeStudentQuiz.getInstructorGradeStudentQuiz()
+    const result =
+      await instructorGradeStudentQuiz.getInstructorGradeStudentQuiz()
 
     res.json(result)
   } catch (error) {
@@ -12,7 +13,10 @@ const get = async (req, res) => {
 
 const post = async (req, res) => {
   try {
-    const result = await instructorGradeStudentQuiz.createInstructorGradeStudentQuiz(req.body)
+    const result =
+      await instructorGradeStudentQuiz.createInstructorGradeStudentQuiz(
+        req.body
+      )
 
     res.json(result)
   } catch (error) {
@@ -22,12 +26,13 @@ const post = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
-    const result = await instructorGradeStudentQuiz.deleteInstructorGradeStudentQuiz(
-      req.params.SID,
-      req.params.IID,
-      req.params.QuizID,
-      req.params.Score
-    )
+    const result =
+      await instructorGradeStudentQuiz.deleteInstructorGradeStudentQuiz(
+        req.params.SID,
+        req.params.IID,
+        req.params.QuizID,
+        req.params.Score
+      )
 
     res.json(result)
   } catch (error) {
@@ -37,14 +42,13 @@ const remove = async (req, res) => {
 
 const patch = async (req, res) => {
   try {
-    const result = await instructorGradeStudentQuiz.updateInstructorGradeStudentQuiz(
-      req.params.SID,
-      req.params.GID,
-      req.params.QuizID,
-      req.body.Score,
-      req.body.newScore
-
-    )
+    const result =
+      await instructorGradeStudentQuiz.updateInstructorGradeStudentQuiz(
+        req.params.SID,
+        req.params.IID,
+        req.params.QuizID,
+        req.body.newScore
+      )
 
     res.json(result)
   } catch (error) {
@@ -62,11 +66,10 @@ const getRows = async (req, res) => {
   }
 }
 
-
 module.exports = {
   get,
   post,
   remove,
   patch,
-  getRows,
+  getRows
 }
