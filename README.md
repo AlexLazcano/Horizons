@@ -65,7 +65,7 @@ To run client use:
 Runs on localhost:3000
 
 ### Server
-To run client use:
+To run server use:
 <code>yarn start</code>
 
 Uses nodemon so you if changes occur to server it will automatically restart. 

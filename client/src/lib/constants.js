@@ -72,12 +72,12 @@ export const TABLE_NAMES = [
     sqlTable: 'listeningqs'
   },
   {
-    name: 'StudentsInCountries',
-    sqlTable: 'students_in_countries'
-  },
-  {
     name: 'TaughtBy',
     sqlTable: 'taught_by'
+  },
+  {
+    name: 'StudentsInCountries',
+    sqlTable: 'students_in_countries'
   },
   {
     name: 'LessonsContainStudents',
@@ -88,16 +88,16 @@ export const TABLE_NAMES = [
     sqlTable: 'students_take_quizzes'
   },
   {
-    name: 'InterestedIn',
-    sqlTable: 'interested_in'
-  },
-  {
     name: 'StudentsInGroups',
     sqlTable: 'students_in_groups'
   },
   {
     name: 'StudentsConnectedWith',
     sqlTable: 'students_connected_with'
+  },
+  {
+    name: 'InterestedIn',
+    sqlTable: 'interested_in'
   },
   {
     name: 'InstructorGradeStudentQuiz',
