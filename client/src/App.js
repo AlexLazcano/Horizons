@@ -28,14 +28,16 @@ function App() {
     clearFilters()
   }, [currentTable])
 
-  const deleteRecord = (id, id2) => {
-    requests[currentTable].delete
-      .apply(this, id2 != null ? [id, id2] : [id])
-      .then(res => {
-        if (res.status === 200) {
-          getAll()
-        }
-      })
+  const deleteRecord = (id, id2, id3) => {
+    const ids = [id, id2, id3]
+    // filter out empty ids
+    const filteredIds = ids.filter(id => id !== undefined)
+
+    requests[currentTable].delete.apply(this, filteredIds).then(res => {
+      if (res.status === 200) {
+        getAll()
+      }
+    })
   }
 
   const editRow = record => {
@@ -77,17 +79,20 @@ function App() {
       key2: '',
       key3: ''
     })
-  const saveEdit = async (id, id2) => {
+  const saveEdit = async (id, id2, id3) => {
     try {
-      const row = await form.validateFields()
+      const ids = [id, id2, id3]
 
-      requests[currentTable].update
-        .apply(this, id2 != null ? [id, id2, row] : [id, row])
-        .then(res => {
-          if (res?.status === 200) {
-            getAll()
-          }
-        })
+      const filteredIds = ids.filter(id => id !== undefined)
+      const row = await form.validateFields()
+      filteredIds.push(row)
+      console.log(filteredIds)
+
+      requests[currentTable].update.apply(this, filteredIds).then(res => {
+        if (res?.status === 200) {
+          getAll()
+        }
+      })
 
       setEditingKey({
         key1: '',
