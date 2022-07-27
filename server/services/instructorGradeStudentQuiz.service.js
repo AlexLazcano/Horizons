@@ -77,7 +77,7 @@ const getRows = async () => {
   }
 }
 
-const select = async () => {
+const select = async (min,max) => {
   try {
     const rows = db.query(`SElECT DISTINCT *
     FROM (
@@ -96,9 +96,10 @@ const select = async () => {
 }
 
 module.exports = {
-  getInstructorGradeStudentQuiz,
-  createInstructorGradeStudentQuiz,
-  deleteInstructorGradeStudentQuiz,
-  updateInstructorGradeStudentQuiz,
-  getRows
+    getInstructorGradeStudentQuiz,
+    createInstructorGradeStudentQuiz,
+    deleteInstructorGradeStudentQuiz,
+    updateInstructorGradeStudentQuiz,
+    getRows,
+    select
 }
