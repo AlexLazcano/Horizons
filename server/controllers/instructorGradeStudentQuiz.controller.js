@@ -66,10 +66,24 @@ const getRows = async (req, res) => {
   }
 }
 
+const select = async (req, res) => {
+  try {
+    const result = await instructorGradeStudentQuiz.select(
+      req.params.min,
+      req.params.max
+    )
+
+    res.json(result)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   get,
   post,
   remove,
   patch,
-  getRows
+  getRows,
+  select
 }

@@ -77,10 +77,22 @@ const getRows = async () => {
   }
 }
 
+const select = async (min, max) => {
+  try {
+    const rows = db.query(
+      `SELECT DISTINCT SID, IID, QuizID, Score FROM instructor_grade_student_quiz WHERE Score Between ${min} AND ${max}`
+    )
+    return !rows ? [] : rows
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   getInstructorGradeStudentQuiz,
   createInstructorGradeStudentQuiz,
   deleteInstructorGradeStudentQuiz,
   updateInstructorGradeStudentQuiz,
-  getRows
+  getRows,
+  select
 }

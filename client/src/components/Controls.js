@@ -5,6 +5,7 @@ import {
   JOINED_TABLE_NAMES,
   NESTED_TABLE_NAMES,
   PROJECTION_TABLE_NAMES,
+  SELECT_TABLE_NAMES,
   TABLE_NAMES
 } from '../lib/constants'
 import requests from '../lib/requests'
@@ -52,6 +53,19 @@ const Controls = ({
     })
   }
 
+  const onSelect = values => {
+    const { min, max } = values
+
+    if (Number(min) > Number(max)) {
+      console.error('min > max')
+      setTableData([])
+      return
+    }
+
+    requests[currentTable].getSelect(min, max).then(res => {
+      setTableData(res)
+    })
+  }
   const onDivide = () => {
     requests[currentTable].divide().then(res => {
       console.log('onDivide', res)
@@ -80,6 +94,9 @@ const Controls = ({
   const defaultEnabled = TABLE_NAMES.find(t => t.sqlTable === currentTable)
 
   const nestedEnabled = NESTED_TABLE_NAMES.find(
+    t => t.sqlTable === currentTable
+  )
+  const selectEnabled = SELECT_TABLE_NAMES.find(
     t => t.sqlTable === currentTable
   )
 
@@ -167,6 +184,66 @@ const Controls = ({
             trigger='click'
           >
             <Button>Nested Aggregation</Button>
+          </Popover>
+        )}
+        {selectEnabled && (
+          <Popover
+            content={
+              <Form layout='vertical' onFinish={onSelect}>
+                <Form.Item
+                  name='min'
+                  label='Minimum'
+                  rules={[
+                    {
+                      required: true,
+                      pattern: /^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/,
+                      message: 'Please enter a number Or Decimal',
+                      validator: (rule, value) => {
+                        if (value === '') {
+                          return Promise.reject('Please enter a number')
+                        }
+                        if (!rule.pattern.test(value)) {
+                          return Promise.reject('Please enter a number')
+                        }
+
+                        return Promise.resolve()
+                      }
+                    }
+                  ]}
+                >
+                  <DynamicInput inputType='input' />
+                </Form.Item>
+                <Form.Item
+                  name='max'
+                  label='Maximum'
+                  rules={[
+                    {
+                      required: true,
+                      pattern: /^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/,
+                      message: 'Please enter a number Or Decimal',
+                      validator: (rule, value) => {
+                        if (value === '') {
+                          return Promise.reject('Please enter a number')
+                        }
+                        if (!rule.pattern.test(value)) {
+                          return Promise.reject('Please enter a number')
+                        }
+
+                        return Promise.resolve()
+                      }
+                    }
+                  ]}
+                >
+                  <DynamicInput inputType='input' />
+                </Form.Item>
+                <Button type='primary' htmlType='submit'>
+                  Get Students with score in range
+                </Button>
+              </Form>
+            }
+            trigger='click'
+          >
+            <Button>Select</Button>
           </Popover>
         )}
       </Col>

@@ -12,4 +12,6 @@ router.patch('/:SID/:IID/:QuizID', instructorGradeStudentQuiz.patch)
 
 router.get('/rows', instructorGradeStudentQuiz.getRows)
 
+router.get('/select/:min/:max', instructorGradeStudentQuiz.select)
+
 module.exports = router
